@@ -1,15 +1,13 @@
 package com.tilldown.Controller;
 
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
-import com.badlogic.gdx.scenes.scene2d.ui.TextField;
 import com.tilldown.Main;
 import com.tilldown.Model.Game;
 import com.tilldown.Model.GameAssetManager;
 import com.tilldown.Model.Player;
+import com.tilldown.View.ChangeUsername;
 import com.tilldown.View.GameMenu;
-import com.tilldown.View.MusicMenu;
 import com.tilldown.View.ProfileMenu;
-import com.tilldown.View.StartMenu;
 
 public class ProfileMenuController {
     private ProfileMenu view;
@@ -23,6 +21,9 @@ public class ProfileMenuController {
             if (view.getBackButton().isChecked()) {
                 Main.getMain().getScreen().dispose();
                 Main.getMain().setScreen(new GameMenu(new GameMenuController(), GameAssetManager.getGameAssetManager().getSkin()));
+            } else if (view.getChangeUsername().isChecked()) {
+                Main.getMain().getScreen().dispose();
+                Main.getMain().setScreen(new ChangeUsername(new ChangeUsernameController(), GameAssetManager.getGameAssetManager().getSkin()));
             }
         }
     }

@@ -51,14 +51,6 @@ public class Player {
         this.password = password;
     }
 
-    public void setSecurityQuestion(String securityQuestion) {
-        this.securityQuestion = securityQuestion;
-    }
-
-    public void setSecurityAnswer(String securityAnswer) {
-        this.securityAnswer = securityAnswer;
-    }
-
     public void setAvatar(Texture avatar) {
         this.avatar = avatar;
     }

@@ -7,7 +7,6 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.*;
 import com.badlogic.gdx.utils.ScreenUtils;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
-import com.tilldown.Controller.GameMenuController;
 import com.tilldown.Controller.ProfileMenuController;
 import com.tilldown.Main;
 import com.tilldown.Model.Game;
