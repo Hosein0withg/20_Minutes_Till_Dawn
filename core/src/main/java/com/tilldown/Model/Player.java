@@ -12,6 +12,7 @@ public class Player {
     private String securityQuestion;
     private String securityAnswer;
     private Texture avatar;
+    private int points;
 
     public Player(String username, String password, String securityQuestion, String securityAnswer, String avatarPath) {
         this.username = username;
@@ -19,6 +20,7 @@ public class Player {
         this.securityQuestion = securityQuestion;
         this.securityAnswer = securityAnswer;
         this.avatar = new Texture(avatarPath);
+        points = 0;
     }
 
     public String getUsername() {
@@ -59,5 +61,17 @@ public class Player {
 
     public void setAvatar(Texture avatar) {
         this.avatar = avatar;
+    }
+
+    public Texture getAvatar() {
+        return avatar;
+    }
+
+    public int getPoints() {
+        return points;
+    }
+
+    public void setPoints(int points) {
+        this.points = points;
     }
 }

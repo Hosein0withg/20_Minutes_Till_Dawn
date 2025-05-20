@@ -33,7 +33,7 @@ public class GameMenu implements Screen {
         this.preGameButton = new TextButton("Pre Game", skin);
         this.hintButton = new TextButton("Hint", skin);
         this.resumeGameButton = new TextButton("Resume Game", skin);
-        this.backButton = new TextButton("Back", skin);
+        this.backButton = new TextButton("Logout", skin);
         this.table = new Table();
 
         controller.setView(this);
