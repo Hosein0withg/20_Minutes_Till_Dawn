@@ -46,19 +46,19 @@ public class GameMenu implements Screen {
 
         table.setFillParent(true);
         table.center();
-        table.add(profileButton);
+        table.add(preGameButton).width(400);
         table.row();
-        table.add(settingsButton);
+        table.add(profileButton).width(400);
         table.row();
-        table.add(scoreboardButton);
+        table.add(settingsButton).width(400);
         table.row();
-        table.add(preGameButton);
+        table.add(scoreboardButton).width(400);
         table.row();
-        table.add(hintButton);
+        table.add(hintButton).width(400);
         table.row();
-        table.add(resumeGameButton);
+        table.add(resumeGameButton).width(400);
         table.row();
-        table.add(backButton);
+        table.add(backButton).width(400);
         stage.addActor(table);
     }
 

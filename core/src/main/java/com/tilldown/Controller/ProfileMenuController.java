@@ -5,10 +5,7 @@ import com.tilldown.Main;
 import com.tilldown.Model.Game;
 import com.tilldown.Model.GameAssetManager;
 import com.tilldown.Model.Player;
-import com.tilldown.View.ChangePassword;
-import com.tilldown.View.ChangeUsername;
-import com.tilldown.View.GameMenu;
-import com.tilldown.View.ProfileMenu;
+import com.tilldown.View.*;
 
 public class ProfileMenuController {
     private ProfileMenu view;
@@ -28,6 +25,14 @@ public class ProfileMenuController {
             } else if (view.getChangePassword().isChecked()) {
                 Main.getMain().getScreen().dispose();
                 Main.getMain().setScreen(new ChangePassword(new ChangePasswordController(), GameAssetManager.getGameAssetManager().getSkin()));
+            } else if (view.getChangeAvatar().isChecked()) {
+                Main.getMain().getScreen().dispose();
+                Main.getMain().setScreen(new ChangeAvatar(new ChangeAvatarController(), GameAssetManager.getGameAssetManager().getSkin()));
+            } else if (view.getDeleteAccount().isChecked()) {
+                Game.players.remove(Game.getCurrentPlayer());
+                Game.setCurrentPlayer(null);
+                Main.getMain().getScreen().dispose();
+                Main.getMain().setScreen(new StartMenu(new StartMenuController(), GameAssetManager.getGameAssetManager().getSkin()));
             }
         }
     }

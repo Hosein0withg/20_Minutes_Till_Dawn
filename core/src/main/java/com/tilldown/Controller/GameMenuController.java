@@ -24,6 +24,9 @@ public class GameMenuController {
             } else if (view.getProfileButton().isChecked()) {
                 Main.getMain().getScreen().dispose();
                 Main.getMain().setScreen(new ProfileMenu(new ProfileMenuController(), GameAssetManager.getGameAssetManager().getSkin()));
+            } else if (view.getPreGameButton().isChecked()) {
+                Main.getMain().getScreen().dispose();
+                Main.getMain().setScreen(new PreGameMenu(new PreGameMenuController(), GameAssetManager.getGameAssetManager().getSkin()));
             }
         }
     }

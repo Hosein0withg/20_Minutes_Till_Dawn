@@ -7,10 +7,10 @@ public class GameAssetManager {
     private static GameAssetManager gameAssetManager;
     private final Skin skin = new Skin(Gdx.files.internal("skin/pixthulhu-ui.json"));
     public static final String[] avatarOptions = {
-            "D:\\20min\\assets\\avatar\\1.png",
-            "D:\\20min\\assets\\avatar\\2.png",
-            "D:\\20min\\assets\\avatar\\3.png",
-            "D:\\20min\\assets\\avatar\\4.png"
+            "avatar\\1.png",
+            "avatar\\2.png",
+            "avatar\\3.png",
+            "avatar\\4.png"
     };
     public static final String[] musicOptions = {
         "D:\\20min\\assets\\music\\1.mp3",

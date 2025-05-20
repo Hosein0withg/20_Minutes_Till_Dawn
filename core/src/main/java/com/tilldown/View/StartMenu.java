@@ -40,13 +40,13 @@ public class StartMenu implements Screen {
         table.center();
         table.add(gameTitle);
         table.row();
-        table.add(signupButton).width(200).height(50).pad(10);
+        table.add(signupButton).width(200).height(100);
         table.row();
-        table.add(loginButton).width(200).height(50).pad(10);
+        table.add(loginButton).width(200).height(100);
         table.row();
-        table.add(guestButton).width(200).height(50).pad(10);
+        table.add(guestButton).width(200).height(100);
         table.row();
-        table.add(exitButton).width(200).height(50).pad(10);
+        table.add(exitButton).width(200).height(100);
 
         stage.addActor(table);
     }
