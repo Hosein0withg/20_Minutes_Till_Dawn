@@ -1,18 +1,21 @@
 package com.tilldown.Model;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 
 public class GameAssetManager {
     private static GameAssetManager gameAssetManager;
     private final Skin skin = new Skin(Gdx.files.internal("skin/pixthulhu-ui.json"));
-    public static final String[] AVATAR_OPTIONS = {
+    public static final String[] avatarOptions = {
             "D:\\20min\\assets\\avatar\\1.png",
             "D:\\20min\\assets\\avatar\\2.png",
             "D:\\20min\\assets\\avatar\\3.png",
             "D:\\20min\\assets\\avatar\\4.png"
+    };
+    public static final String[] musicOptions = {
+        "D:\\20min\\assets\\music\\1.mp3",
+        "D:\\20min\\assets\\music\\2.mp3",
+        "D:\\20min\\assets\\music\\3.mp3",
     };
 
 //    private final String character1_idle0 = "1/Idle_0.png";

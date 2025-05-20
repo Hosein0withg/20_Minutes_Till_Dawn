@@ -1,15 +1,10 @@
 package com.tilldown.Controller;
 
-import com.badlogic.gdx.Gdx;
 import com.tilldown.Main;
 import com.tilldown.Model.*;
 import com.tilldown.View.ForgetPassword;
+import com.tilldown.View.GameMenu;
 import com.tilldown.View.LoginMenu;
-import com.tilldown.View.SignupMenu;
-
-import java.util.Random;
-
-import static com.tilldown.Model.GameAssetManager.AVATAR_OPTIONS;
 
 public class LoginMenuController {
     private LoginMenu view;
@@ -28,8 +23,7 @@ public class LoginMenuController {
                     Main.getMain().getScreen().dispose();
                     Result result = login(username, password);
                     if (result.success) {
-                        Gdx.app.exit();
-                        //Main.getMain().setScreen(new PreGameMenuView(new PreGameMenuController(), GameAssetManager.getGameAssetManager().getSkin()));
+                        Main.getMain().setScreen(new GameMenu(new GameMenuController(), GameAssetManager.getGameAssetManager().getSkin()));
                         break;
                     } else {
                         view.getLoginButton().setChecked(false);

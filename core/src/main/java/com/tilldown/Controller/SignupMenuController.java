@@ -1,6 +1,5 @@
 package com.tilldown.Controller;
 
-import com.badlogic.gdx.Gdx;
 import com.tilldown.Main;
 import com.tilldown.Model.*;
 import com.tilldown.View.SignupMenu;
@@ -8,7 +7,7 @@ import com.tilldown.View.StartMenu;
 
 import java.util.Random;
 
-import static com.tilldown.Model.GameAssetManager.AVATAR_OPTIONS;
+import static com.tilldown.Model.GameAssetManager.avatarOptions;
 
 public class SignupMenuController {
     private SignupMenu view;
@@ -39,7 +38,7 @@ public class SignupMenuController {
         } else if (Regex.password.getMatcher(password) == null) {
             return new Result(false, "password is too easy!");
         }
-        String randomAvatar = AVATAR_OPTIONS[new Random().nextInt(AVATAR_OPTIONS.length)];
+        String randomAvatar = avatarOptions[new Random().nextInt(avatarOptions.length)];
         Player player = new Player(username, password, securityQuestion, securityAnswer, randomAvatar);
         Game.players.add(player);
 
