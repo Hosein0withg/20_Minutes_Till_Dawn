@@ -6,7 +6,6 @@ import com.tilldown.Main;
 import com.tilldown.Model.Game;
 import com.tilldown.Model.GameAssetManager;
 import com.tilldown.Model.Player;
-import com.tilldown.Model.Result;
 import com.tilldown.View.*;
 
 public class ChangeUsernameController {
