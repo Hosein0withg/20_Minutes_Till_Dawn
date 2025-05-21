@@ -11,8 +11,8 @@ import java.awt.*;
 public class Player {
     private String username;
     private String password;
-    private String securityQuestion;
-    private String securityAnswer;
+    private final String securityQuestion;
+    private final String securityAnswer;
     private Texture avatar;
     private int points;
     private Texture playerTexture = new Texture(GameAssetManager.getGameAssetManager().getCharacter1_idle0());
@@ -20,7 +20,7 @@ public class Player {
     private float posX = 0;
     private float posY = 0;
     private float playerHealth = 100;
-    private CollisionRect rect ;
+    private CollisionRect rect;
     private float time = 0;
     private float speed = 5;
     private boolean isPlayerIdle = true;
