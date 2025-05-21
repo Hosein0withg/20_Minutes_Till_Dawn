@@ -5,6 +5,7 @@ import com.tilldown.Main;
 import com.tilldown.Model.Game;
 import com.tilldown.Model.GameAssetManager;
 import com.tilldown.Model.Player;
+import com.tilldown.Model.User;
 import com.tilldown.View.GameMenu;
 import com.tilldown.View.LoginMenu;
 import com.tilldown.View.SignupMenu;
@@ -37,8 +38,8 @@ public class StartMenuController {
     }
 
     private void setGuest() {
-        Player guest = new Player("Guest", "Guest", "Guest", "Guest", "D:\\20min\\assets\\avatar\\2.png");
-        Game.players.add(guest);
-        Game.setCurrentPlayer(guest);
+        User guest = new User("Guest", "Guest", "Guest", "Guest", "D:\\20min\\assets\\avatar\\2.png");
+        Game.users.add(guest);
+        Game.setCurrentUser(guest);
     }
 }

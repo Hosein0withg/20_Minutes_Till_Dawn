@@ -23,7 +23,7 @@ public class ChangeAvatarController {
 
         String filePath = fileDialog.getDirectory() + fileDialog.getFile();
         if (filePath != null) {
-            Game.getCurrentPlayer().setAvatar(new Texture(filePath));
+            Game.getCurrentUser().setAvatar(new Texture(filePath));
         }
     }
 

@@ -33,14 +33,14 @@ public class SignupMenuController {
     }
 
     public Result signup(String username, String password, String securityQuestion, String securityAnswer) {
-        if (Game.getPlayer(username) != null) {
+        if (Game.findUser(username) != null) {
             return new Result(false, "Username is already in use");
         } else if (Regex.password.getMatcher(password) == null) {
             return new Result(false, "password is too easy!");
         }
         String randomAvatar = avatarOptions[new Random().nextInt(avatarOptions.length)];
-        Player player = new Player(username, password, securityQuestion, securityAnswer, randomAvatar);
-        Game.players.add(player);
+        User player = new User(username, password, securityQuestion, securityAnswer, randomAvatar);
+        Game.users.add(player);
 
         return new Result(true, "Signup successful!");
     }

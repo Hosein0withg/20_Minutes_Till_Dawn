@@ -6,6 +6,7 @@ import com.tilldown.Main;
 import com.tilldown.Model.Game;
 import com.tilldown.Model.GameAssetManager;
 import com.tilldown.Model.Player;
+import com.tilldown.Model.User;
 import com.tilldown.View.*;
 
 public class ChangeUsernameController {
@@ -21,12 +22,12 @@ public class ChangeUsernameController {
                 @Override
                 public void changed(ChangeListener.ChangeEvent event, Actor actor) {
                     String username = view.username.getText();
-                    if (Game.getPlayer(username) != null) {
+                    if (Game.findUser(username) != null) {
                         view.errorLabel.setText("Username already exists");
                     } else {
-                        Player currentPlayer = Game.getPlayer(Game.getCurrentPlayer().getUsername());
-                        if (currentPlayer != null) {
-                            currentPlayer.setUsername(username);
+                        User currentUser = Game.findUser(Game.getCurrentUser().getUsername());
+                        if (currentUser != null) {
+                            currentUser.setUsername(username);
                             Main.getMain().setScreen(new ProfileMenu(new ProfileMenuController(), GameAssetManager.getGameAssetManager().getSkin()));
                         }
                     }

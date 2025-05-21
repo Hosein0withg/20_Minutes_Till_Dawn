@@ -9,12 +9,6 @@ import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import java.awt.*;
 
 public class Player {
-    private String username;
-    private String password;
-    private final String securityQuestion;
-    private final String securityAnswer;
-    private Texture avatar;
-    private int points;
     private Texture playerTexture = new Texture(GameAssetManager.getGameAssetManager().getCharacter1_idle0());
     private Sprite playerSprite = new Sprite(playerTexture);
     private float posX = 0;
@@ -26,60 +20,10 @@ public class Player {
     private boolean isPlayerIdle = true;
     private boolean isPlayerRunning = false;
 
-    public Player(String username, String password, String securityQuestion, String securityAnswer, String avatarPath) {
-        this.username = username;
-        this.password = password;
-        this.securityQuestion = securityQuestion;
-        this.securityAnswer = securityAnswer;
-        this.avatar = new Texture(avatarPath);
-        points = 0;
+    public Player() {
         playerSprite.setPosition((float) Gdx.graphics.getWidth() / 2, (float) Gdx.graphics.getHeight() / 2);
         playerSprite.setSize(playerTexture.getWidth() * 3, playerTexture.getHeight() * 3);
         rect = new CollisionRect((float) Gdx.graphics.getWidth() / 2, (float) Gdx.graphics.getHeight(), playerTexture.getWidth() * 3, playerTexture.getHeight() * 3);
-    }
-
-    public String getUsername() {
-        return username;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public String getSecurityQuestion() {
-        return securityQuestion;
-    }
-
-    public String getSecurityAnswer() {
-        return securityAnswer;
-    }
-
-    public TextureRegionDrawable getAvatarDrawable() {
-        return new TextureRegionDrawable(new TextureRegion(this.avatar));
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public void setAvatar(Texture avatar) {
-        this.avatar = avatar;
-    }
-
-    public Texture getAvatar() {
-        return avatar;
-    }
-
-    public int getPoints() {
-        return points;
-    }
-
-    public void setPoints(int points) {
-        this.points = points;
     }
 
     public Texture getPlayerTexture() {

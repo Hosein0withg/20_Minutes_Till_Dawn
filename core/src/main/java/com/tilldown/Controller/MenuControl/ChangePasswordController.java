@@ -3,10 +3,7 @@ package com.tilldown.Controller.MenuControl;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.tilldown.Main;
-import com.tilldown.Model.Game;
-import com.tilldown.Model.GameAssetManager;
-import com.tilldown.Model.Player;
-import com.tilldown.Model.Regex;
+import com.tilldown.Model.*;
 import com.tilldown.View.*;
 
 public class ChangePasswordController {
@@ -25,9 +22,9 @@ public class ChangePasswordController {
                     if (Regex.password.getMatcher(password) == null) {
                         view.errorLabel.setText("Password is too easy!");
                     } else {
-                        Player currentPlayer = Game.getPlayer(Game.getCurrentPlayer().getUsername());
-                        if (currentPlayer != null) {
-                            currentPlayer.setPassword(password);
+                        User currentUser = Game.findUser(Game.getCurrentUser().getUsername());
+                        if (currentUser != null) {
+                            currentUser.setPassword(password);
                             Main.getMain().setScreen(new ProfileMenu(new ProfileMenuController(), GameAssetManager.getGameAssetManager().getSkin()));
                         }
                     }

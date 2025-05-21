@@ -4,6 +4,7 @@ import com.tilldown.Main;
 import com.tilldown.Model.Game;
 import com.tilldown.Model.GameAssetManager;
 import com.tilldown.Model.Player;
+import com.tilldown.Model.User;
 import com.tilldown.View.ForgetPassword;
 import com.tilldown.View.LoginMenu;
 
@@ -16,7 +17,7 @@ public class ForgetPasswordController {
 
     public void handleSubmitUsernameButton(String username) {
         if (view != null && view.getSubmitUsernameButton().isChecked()) {
-            Player player = Game.getPlayer(username);
+            User player = Game.findUser(username);
 
             if (player != null) {
                 view.questionLabel.setText("Security Question: " + player.getSecurityQuestion()); // Show the question
@@ -33,7 +34,7 @@ public class ForgetPasswordController {
 
     public void handleSubmitAnswerButton(String username, String answer) {
         if (view != null && view.getSubmitAnswerButton().isChecked()) {
-            Player player = Game.getPlayer(username);
+            User player = Game.findUser(username);
 
             if (player != null && player.getSecurityAnswer().equals(answer)) {
                 view.password.setVisible(true);
@@ -50,7 +51,7 @@ public class ForgetPasswordController {
 
     public void handleSubmitPasswordButton(String username, String password) {
         if (view != null && view.getSubmitPasswordButton().isChecked()) {
-            Player player = Game.getPlayer(username);
+            User player = Game.findUser(username);
 
             if (player != null) {
                 player.setPassword(password);

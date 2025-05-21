@@ -12,8 +12,8 @@ import com.tilldown.Model.Game;
 public class PlayerController {
     private Player player;
 
-    public PlayerController(){
-        this.player = Game.getCurrentPlayer();
+    public PlayerController(Player player) {
+        this.player = player;
     }
 
     public void update(){

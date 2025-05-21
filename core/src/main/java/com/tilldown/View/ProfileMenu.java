@@ -11,6 +11,7 @@ import com.tilldown.Controller.MenuControl.ProfileMenuController;
 import com.tilldown.Main;
 import com.tilldown.Model.Game;
 import com.tilldown.Model.Player;
+import com.tilldown.Model.User;
 
 public class ProfileMenu implements Screen {
     private Stage stage;
@@ -26,7 +27,7 @@ public class ProfileMenu implements Screen {
 
     public ProfileMenu(ProfileMenuController controller, Skin skin) {
         this.controller = controller;
-        Player player = Game.getCurrentPlayer();
+        User player = Game.getCurrentUser();
         this.changeUsername = new TextButton("Change Username", skin);
         this.changePassword = new TextButton("Change Password", skin);
         this.changeAvatar = new TextButton("Change Avatar", skin);

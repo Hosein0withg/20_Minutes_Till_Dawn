@@ -35,14 +35,14 @@ public class LoginMenuController {
     }
 
     public Result login(String username, String password) {
-        if (Game.getPlayer(username) == null) {
+        if (Game.findUser(username) == null) {
             return new Result(false, "Username is wrong");
         }
-        Player player = Game.getPlayer(username);
+        User player = Game.findUser(username);
         if (!player.getPassword().equals(password)) {
             return new Result(false, "password is wrong");
         }
-        Game.setCurrentPlayer(player);
+        Game.setCurrentUser(player);
         return new Result(true, "login successful!");
     }
 }

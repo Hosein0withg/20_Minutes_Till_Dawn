@@ -1,5 +1,6 @@
 package com.tilldown.Controller;
 
+import com.tilldown.Model.Player;
 import com.tilldown.Model.Weapon;
 import com.tilldown.View.GameView;
 
@@ -12,7 +13,7 @@ public class GameController {
 
     public void setView(GameView view) {
         this.view = view;
-        playerController = new PlayerController();
+        playerController = new PlayerController(new Player());
         worldController = new WorldController(playerController);
         weaponController = new WeaponController(new Weapon());
     }

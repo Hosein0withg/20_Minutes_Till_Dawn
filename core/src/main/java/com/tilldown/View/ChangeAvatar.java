@@ -38,28 +38,28 @@ public class ChangeAvatar implements Screen {
         avatar1.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
-                Game.getCurrentPlayer().setAvatar(new Texture(GameAssetManager.avatarOptions[0]));
+                Game.getCurrentUser().setAvatar(new Texture(GameAssetManager.avatarOptions[0]));
             }
         });
 
         avatar2.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
-                Game.getCurrentPlayer().setAvatar(new Texture(GameAssetManager.avatarOptions[1]));
+                Game.getCurrentUser().setAvatar(new Texture(GameAssetManager.avatarOptions[1]));
             }
         });
 
         avatar3.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
-                Game.getCurrentPlayer().setAvatar(new Texture(GameAssetManager.avatarOptions[2]));
+                Game.getCurrentUser().setAvatar(new Texture(GameAssetManager.avatarOptions[2]));
             }
         });
 
         avatar4.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
-                Game.getCurrentPlayer().setAvatar(new Texture(GameAssetManager.avatarOptions[3]));
+                Game.getCurrentUser().setAvatar(new Texture(GameAssetManager.avatarOptions[3]));
             }
         });
 

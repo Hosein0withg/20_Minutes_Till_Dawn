@@ -19,7 +19,7 @@ public class GameMenuController {
                 Main.getMain().setScreen(new MusicMenu(GameAssetManager.getGameAssetManager().getSkin()));
             } else if (view.getBackButton().isChecked()) {
                 Main.getMain().getScreen().dispose();
-                Game.setCurrentPlayer(null);
+                Game.setCurrentUser(null);
                 Main.getMain().setScreen(new StartMenu(new StartMenuController(), GameAssetManager.getGameAssetManager().getSkin()));
             } else if (view.getProfileButton().isChecked()) {
                 Main.getMain().getScreen().dispose();
