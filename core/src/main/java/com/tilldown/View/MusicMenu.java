@@ -60,9 +60,10 @@ public class MusicMenu implements Screen {
         table.setFillParent(true);
 
         Array<String> musics = new Array<>();
-        musics.add("Hedwig's Theme - John Williams");
-        musics.add("Sur le fil - Yann Tiersen");
-        musics.add("Mission Impossible - Adam Clayton & Larry Mullen");
+        musics.add("The Last of Us (Gustavo Santaolalla)");
+        musics.add("Seven Nation Army (The White Stripes)");
+        musics.add("Where Is My Mind? (Pixies)");
+
         selectMusic.setItems(musics);
         table.add(selectMusic).width(600).pad(10);
         table.row();

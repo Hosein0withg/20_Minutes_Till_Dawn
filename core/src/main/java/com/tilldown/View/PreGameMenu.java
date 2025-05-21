@@ -27,7 +27,7 @@ public class PreGameMenu implements Screen {
 
     public PreGameMenu(PreGameMenuController controller, Skin skin) {
         this.controller = controller;
-        this.startGameButton = new TextButton("Start Game", skin);
+        this.startGameButton = new TextButton("Play", skin);
         this.selectHere = new SelectBox(skin);
         this.selectWeapon = new SelectBox(skin);
         this.selectDuration = new SelectBox(skin);
