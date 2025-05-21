@@ -8,6 +8,8 @@ import com.badlogic.gdx.utils.ScreenUtils;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import com.tilldown.Controller.MenuControl.StartMenuController;
 import com.tilldown.Main;
+import com.tilldown.Model.Game;
+import com.tilldown.Model.User;
 
 public class StartMenu implements Screen {
     private Stage stage;
@@ -20,6 +22,7 @@ public class StartMenu implements Screen {
     private final StartMenuController controller;
 
     public StartMenu(StartMenuController controller, Skin skin) {
+        Game.setCurrentUser(new User("Guest", "Guest", "Guest", "Guest", "avatar\\1.png"));
         this.controller = controller;
         this.signupButton = new TextButton("signup", skin);
         this.loginButton = new TextButton("login", skin);

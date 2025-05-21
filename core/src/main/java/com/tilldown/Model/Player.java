@@ -6,8 +6,8 @@ import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 
 public class Player {
-    private Texture playerTexture = new Texture(GameAssetManager.getGameAssetManager().getCharacter_idle0());
-    private Sprite playerSprite = new Sprite(playerTexture);
+    private Texture playerTexture;
+    private Sprite playerSprite;
     private float posX = 0;
     private float posY = 0;
     private CollisionRect rect;
@@ -18,7 +18,9 @@ public class Player {
     private boolean isPlayerRunning = false;
     private final Animation<Texture> character_idle_frames;
 
-    public Player(int HP, int speed, Animation<Texture> character_idle_frames) {
+    public Player(int HP, int speed, Animation<Texture> character_idle_frames, String idle0Address) {
+        this.playerTexture = new Texture(idle0Address);
+        this.playerSprite = new Sprite(playerTexture);
         playerSprite.setPosition((float) Gdx.graphics.getWidth() / 2, (float) Gdx.graphics.getHeight() / 2);
         playerSprite.setSize(playerTexture.getWidth() * 3, playerTexture.getHeight() * 3);
         rect = new CollisionRect((float) Gdx.graphics.getWidth() / 2, (float) Gdx.graphics.getHeight(),

@@ -51,22 +51,6 @@ public class GameAssetManager {
         return Game.getCurrentUser().getCurrentHero().getCharacter_idle_frames();
     }
 
-    public String getCharacter_idle0() {
-        switch (Game.getCurrentUser().characters.indexOf(Game.getCurrentUser().getCurrentHero())) {
-            case 0:
-                return character1[0];
-            case 1:
-                return character2[0];
-            case 2:
-                return character3[0];
-            case 3:
-                return character4[0];
-            case 4:
-                return character5[0];
-        }
-        return "";
-    }
-
     public Texture getSmgTexture() {
         return smgTexture;
     }
