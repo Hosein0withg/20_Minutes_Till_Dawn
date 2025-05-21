@@ -2,28 +2,30 @@ package com.tilldown.Model;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.Sprite;
-import com.badlogic.gdx.graphics.g2d.TextureRegion;
-import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
-
-import java.awt.*;
 
 public class Player {
-    private Texture playerTexture = new Texture(GameAssetManager.getGameAssetManager().getCharacter1_idle0());
+    private Texture playerTexture = new Texture(GameAssetManager.getGameAssetManager().getCharacter_idle0());
     private Sprite playerSprite = new Sprite(playerTexture);
     private float posX = 0;
     private float posY = 0;
-    private float playerHealth = 100;
     private CollisionRect rect;
     private float time = 0;
+    private float HP = 100;
     private float speed = 5;
     private boolean isPlayerIdle = true;
     private boolean isPlayerRunning = false;
+    private final Animation<Texture> character_idle_frames;
 
-    public Player() {
+    public Player(int HP, int speed, Animation<Texture> character_idle_frames) {
         playerSprite.setPosition((float) Gdx.graphics.getWidth() / 2, (float) Gdx.graphics.getHeight() / 2);
         playerSprite.setSize(playerTexture.getWidth() * 3, playerTexture.getHeight() * 3);
-        rect = new CollisionRect((float) Gdx.graphics.getWidth() / 2, (float) Gdx.graphics.getHeight(), playerTexture.getWidth() * 3, playerTexture.getHeight() * 3);
+        rect = new CollisionRect((float) Gdx.graphics.getWidth() / 2, (float) Gdx.graphics.getHeight(),
+            playerTexture.getWidth() * 3, playerTexture.getHeight() * 3);
+        this.HP = HP;
+        this.speed = speed;
+        this.character_idle_frames = character_idle_frames;
     }
 
     public Texture getPlayerTexture() {
@@ -58,12 +60,12 @@ public class Player {
         this.posY = posY;
     }
 
-    public float getPlayerHealth() {
-        return playerHealth;
+    public float getHP() {
+        return HP;
     }
 
-    public void setPlayerHealth(float playerHealth) {
-        this.playerHealth = playerHealth;
+    public void setHP(float HP) {
+        this.HP = HP;
     }
 
     public CollisionRect getRect() {
@@ -104,5 +106,9 @@ public class Player {
 
     public void setPlayerRunning(boolean playerRunning) {
         isPlayerRunning = playerRunning;
+    }
+
+    public Animation<Texture> getCharacter_idle_frames() {
+        return character_idle_frames;
     }
 }

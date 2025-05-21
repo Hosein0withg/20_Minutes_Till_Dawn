@@ -39,9 +39,11 @@ public class PreGameMenu implements Screen {
         Gdx.input.setInputProcessor(stage);
 
         Array<String> hero = new Array<>();
-        hero.add("Hero1");
-        hero.add("Hero2");
-        hero.add("Hero3");
+        hero.add("Shana");
+        hero.add("Diamond");
+        hero.add("Scarlet");
+        hero.add("Lilith");
+        hero.add("Dasher");
         selectHere.setItems(hero);
 
         table.setFillParent(true);
@@ -65,6 +67,7 @@ public class PreGameMenu implements Screen {
         stage.act(Math.min(Gdx.graphics.getDeltaTime(), 1 / 30f));
         stage.draw();
         controller.handlePreGameMenuButtons();
+        controller.handleHeroSelection();
     }
 
     @Override
@@ -94,5 +97,9 @@ public class PreGameMenu implements Screen {
 
     public TextButton getStartGameButton() {
         return startGameButton;
+    }
+
+    public String getSelectedHero() {
+        return selectHere.getSelected().toString();
     }
 }

@@ -7,7 +7,6 @@ import com.badlogic.gdx.graphics.g2d.Animation;
 import com.tilldown.Main;
 import com.tilldown.Model.GameAssetManager;
 import com.tilldown.Model.Player;
-import com.tilldown.Model.Game;
 
 public class PlayerController {
     private Player player;
@@ -45,7 +44,7 @@ public class PlayerController {
 
 
     public void idleAnimation(){
-        Animation<Texture> animation = GameAssetManager.getGameAssetManager().getCharacter1_idle_animation();
+        Animation<Texture> animation = GameAssetManager.getGameAssetManager().getCharacter_idle_animation();
 
         player.getPlayerSprite().setRegion(animation.getKeyFrame(player.getTime()));
 

@@ -9,10 +9,10 @@ public class GameAssetManager {
     private static GameAssetManager gameAssetManager;
     private final Skin skin = new Skin(Gdx.files.internal("skin/pixthulhu-ui.json"));
     public static final String[] avatarOptions = {
-            "avatar/1.png",
-            "avatar/2.png",
-            "avatar/3.png",
-            "avatar/4.png"
+        "avatar/1.png",
+        "avatar/2.png",
+        "avatar/3.png",
+        "avatar/4.png"
     };
     public static final String[] musicOptions = {
         "music/1.mp3",
@@ -20,19 +20,11 @@ public class GameAssetManager {
         "music/3.mp3",
     };
 
-    private final String character1_idle0 = "1/Idle_0.png";
-    private final String character1_idle1 = "1/Idle_1.png";
-    private final String character1_idle2 = "1/Idle_2.png";
-    private final String character1_idle3 = "1/Idle_3.png";
-    private final String character1_idle4 = "1/Idle_4.png";
-    private final String character1_idle5 = "1/Idle_5.png";
-    private final Texture character1_idle0_tex = new Texture(character1_idle0);
-    private final Texture character1_idle1_tex = new Texture(character1_idle1);
-    private final Texture character1_idle2_tex = new Texture(character1_idle2);
-    private final Texture character1_idle3_tex = new Texture(character1_idle3);
-    private final Texture character1_idle4_tex = new Texture(character1_idle4);
-    private final Texture character1_idle5_tex = new Texture(character1_idle5);
-    private final Animation<Texture> character1_idle_frames = new Animation<>(0.1f, character1_idle0_tex, character1_idle1_tex, character1_idle2_tex, character1_idle3_tex, character1_idle4_tex, character1_idle5_tex);
+    public static String[] character1 = {"1/Idle_0.png", "1/Idle_1.png", "1/Idle_2.png", "1/Idle_3.png", "1/Idle_4.png", "1/Idle_5.png"};
+    public static String[] character2 = {"2/Idle_0.png", "2/Idle_1.png", "2/Idle_2.png", "2/Idle_3.png", "2/Idle_4.png", "2/Idle_5.png"};
+    public static String[] character3 = {"3/Idle_0.png", "3/Idle_1.png", "3/Idle_2.png", "3/Idle_3.png", "3/Idle_4.png", "3/Idle_5.png"};
+    public static String[] character4 = {"4/Idle_0.png", "4/Idle_1.png", "4/Idle_2.png", "4/Idle_3.png", "4/Idle_4.png", "4/Idle_5.png"};
+    public static String[] character5 = {"5/Idle_0.png", "5/Idle_1.png", "5/Idle_2.png", "5/Idle_3.png", "5/Idle_4.png", "5/Idle_5.png"};
 
     private final String smg = "smg/SMGStill.png";
     private final Texture smgTexture = new Texture(smg);
@@ -40,12 +32,12 @@ public class GameAssetManager {
     private final String bullet = "bullet.png";
 
 
-    private GameAssetManager(){
+    private GameAssetManager() {
 
     }
 
-    public static GameAssetManager getGameAssetManager(){
-        if (gameAssetManager == null){
+    public static GameAssetManager getGameAssetManager() {
+        if (gameAssetManager == null) {
             gameAssetManager = new GameAssetManager();
         }
         return gameAssetManager;
@@ -55,23 +47,35 @@ public class GameAssetManager {
         return skin;
     }
 
-    public Animation<Texture> getCharacter1_idle_animation() {
-        return character1_idle_frames;
+    public Animation<Texture> getCharacter_idle_animation() {
+        return Game.getCurrentUser().getCurrentHero().getCharacter_idle_frames();
     }
 
-    public String getCharacter1_idle0(){
-        return character1_idle0;
+    public String getCharacter_idle0() {
+        switch (Game.getCurrentUser().characters.indexOf(Game.getCurrentUser().getCurrentHero())) {
+            case 0:
+                return character1[0];
+            case 1:
+                return character2[0];
+            case 2:
+                return character3[0];
+            case 3:
+                return character4[0];
+            case 4:
+                return character5[0];
+        }
+        return "";
     }
 
-    public Texture getSmgTexture(){
+    public Texture getSmgTexture() {
         return smgTexture;
     }
 
-    public String getSmg(){
+    public String getSmg() {
         return smg;
     }
 
-    public String getBullet(){
+    public String getBullet() {
         return bullet;
     }
 }
