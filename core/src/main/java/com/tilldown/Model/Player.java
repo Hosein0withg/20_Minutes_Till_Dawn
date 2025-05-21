@@ -14,9 +14,14 @@ public class Player {
     private float time = 0;
     private float HP = 100;
     private float speed = 5;
+    private int XP = 0;
     private boolean isPlayerIdle = true;
     private boolean isPlayerRunning = false;
     private final Animation<Texture> character_idle_frames;
+    private int kill = 0;
+    private int level = 1;
+    private int ammoLeft = 30;
+
 
     public Player(int HP, int speed, Animation<Texture> character_idle_frames, String idle0Address) {
         this.playerTexture = new Texture(idle0Address);
@@ -112,5 +117,25 @@ public class Player {
 
     public Animation<Texture> getCharacter_idle_frames() {
         return character_idle_frames;
+    }
+
+    public int getXP() {
+        return XP;
+    }
+
+    public void setXP(int XP) {
+        this.XP = XP;
+    }
+
+    public int getKill() {
+        return kill;
+    }
+
+    public int getLevel() {
+        return level;
+    }
+
+    public int getAmmoLeft() {
+        return ammoLeft;
     }
 }

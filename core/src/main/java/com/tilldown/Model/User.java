@@ -18,6 +18,7 @@ public class User {
     private int points;
     public ArrayList<Player> characters = new ArrayList<>();
     private Player currentHero;
+    public int gameDuration = 1;
 
     public User(String username, String password, String securityQuestion, String securityAnswer, String avatarPath) {
         this.username = username;

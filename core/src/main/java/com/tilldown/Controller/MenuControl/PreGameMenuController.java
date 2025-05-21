@@ -18,7 +18,7 @@ public class PreGameMenuController {
         if (view != null) {
             if (view.getStartGameButton().isChecked()) {
                 Main.getMain().getScreen().dispose();
-                Main.getMain().setScreen(new GameView(new GameController()));
+                Main.getMain().setScreen(new GameView(new GameController(), GameAssetManager.getGameAssetManager().getSkin()));
             }
         }
     }

@@ -6,10 +6,15 @@ import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.scenes.scene2d.ui.Label;
+import com.badlogic.gdx.scenes.scene2d.ui.Skin;
+import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.utils.ScreenUtils;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import com.tilldown.Controller.GameController;
 import com.tilldown.Main;
+import com.tilldown.Model.Game;
+import com.tilldown.Model.Player;
 
 
 public class GameView implements Screen, InputProcessor {
@@ -17,25 +22,45 @@ public class GameView implements Screen, InputProcessor {
     private Texture cursorTexture;
     private Sprite cursorSprite;
     private GameController controller;
+    Table table = new Table();
+    Label timerLabel;
+    Label HPLabel;
+    Label killLabel;
+    Label ammoLeftLabel;
+    Label levelLabel;
 
-    public GameView(GameController controller) {
+    public GameView(GameController controller, Skin skin) {
         this.controller = controller;
         controller.setView(this);
         //Gdx.input.setCursorCatched(true);
         Gdx.input.setCursorPosition(Gdx.graphics.getWidth() / 2, Gdx.graphics.getHeight() / 2);
         cursorTexture = new Texture("cursor.png");
         cursorSprite = new Sprite(cursorTexture);
+        Player hero = Game.getCurrentUser().getCurrentHero();
+        timerLabel = new Label("Time Left: " + formatTime(controller.getGameTime()), skin);
+        HPLabel = new Label("HP: " + hero.getHP(), skin);
+        killLabel = new Label("Kill: " + hero.getKill(), skin);
+        ammoLeftLabel = new Label("Ammo Left: " + hero.getAmmoLeft(), skin);
+        levelLabel = new Label("Level: " + hero.getLevel(), skin);
     }
 
     @Override
     public void show() {
         stage = new Stage(new ScreenViewport());
+        table.top().left().setFillParent(true);
         Gdx.input.setInputProcessor(this);
+        table.add(timerLabel).pad(30);
+        table.add(HPLabel).pad(20);
+        table.add(ammoLeftLabel).pad(20);
+        table.add(levelLabel).pad(20);
+        table.add(killLabel).pad(20);
+        stage.addActor(table);
     }
 
     @Override
     public void render(float delta) {
         ScreenUtils.clear(0, 0, 0, 1);
+        timerLabel.setText("Time Left: " + formatTime(controller.getGameTime()));
         cursorSprite.setPosition(Gdx.input.getX(), Gdx.graphics.getHeight() - Gdx.input.getY());
         Main.getBatch().begin();
         controller.updateGame();
@@ -116,5 +141,11 @@ public class GameView implements Screen, InputProcessor {
     @Override
     public boolean scrolled(float amountX, float amountY) {
         return false;
+    }
+
+    private String formatTime(float time) {
+        int minutes = (int) (time / 60);
+        int seconds = (int) (time % 60);
+        return String.format("%02d:%02d", minutes, seconds);
     }
 }

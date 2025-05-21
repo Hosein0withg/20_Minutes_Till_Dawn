@@ -1,5 +1,6 @@
 package com.tilldown.Controller;
 
+import com.badlogic.gdx.Gdx;
 import com.tilldown.Model.Game;
 import com.tilldown.Model.Player;
 import com.tilldown.Model.Weapon;
@@ -10,6 +11,7 @@ public class GameController {
     private PlayerController playerController;
     private WorldController worldController;
     private WeaponController weaponController;
+    private float gameTime = Game.getCurrentUser().gameDuration * 60;
 
 
     public void setView(GameView view) {
@@ -24,6 +26,11 @@ public class GameController {
             worldController.update();
             playerController.update();
             weaponController.update();
+            gameTime -= Gdx.graphics.getDeltaTime();
+
+            if (gameTime <= 0) {
+                Gdx.app.exit();
+            }
         }
     }
 
@@ -33,5 +40,9 @@ public class GameController {
 
     public WeaponController getWeaponController() {
         return weaponController;
+    }
+
+    public float getGameTime() {
+        return gameTime;
     }
 }
