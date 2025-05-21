@@ -7,8 +7,7 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.*;
 import com.badlogic.gdx.utils.ScreenUtils;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
-import com.tilldown.Controller.LoginMenuController;
-import com.tilldown.Controller.SignupMenuController;
+import com.tilldown.Controller.MenuControl.LoginMenuController;
 import com.tilldown.Main;
 
 public class LoginMenu implements Screen {

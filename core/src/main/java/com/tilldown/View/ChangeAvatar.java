@@ -11,7 +11,7 @@ import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.badlogic.gdx.utils.ScreenUtils;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
-import com.tilldown.Controller.ChangeAvatarController;
+import com.tilldown.Controller.MenuControl.ChangeAvatarController;
 import com.tilldown.Model.Game;
 import com.tilldown.Model.GameAssetManager;
 

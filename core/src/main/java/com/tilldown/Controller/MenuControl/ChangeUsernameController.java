@@ -1,4 +1,4 @@
-package com.tilldown.Controller;
+package com.tilldown.Controller.MenuControl;
 
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
@@ -6,28 +6,27 @@ import com.tilldown.Main;
 import com.tilldown.Model.Game;
 import com.tilldown.Model.GameAssetManager;
 import com.tilldown.Model.Player;
-import com.tilldown.Model.Regex;
 import com.tilldown.View.*;
 
-public class ChangePasswordController {
-    private ChangePassword view;
+public class ChangeUsernameController {
+    private ChangeUsername view;
 
-    public void setView(ChangePassword view) {
+    public void setView(ChangeUsername view) {
         this.view = view;
     }
 
-    public void handleChangePasswordMenuButton() {
+    public void handleChangeUsernameMenuButton() {
         if (view != null) {
-            view.getChangePassword().addListener(new ChangeListener() {
+            view.getChangeUsername().addListener(new ChangeListener() {
                 @Override
                 public void changed(ChangeListener.ChangeEvent event, Actor actor) {
-                    String password = view.password.getText();
-                    if (Regex.password.getMatcher(password) == null) {
-                        view.errorLabel.setText("Password is too easy!");
+                    String username = view.username.getText();
+                    if (Game.getPlayer(username) != null) {
+                        view.errorLabel.setText("Username already exists");
                     } else {
                         Player currentPlayer = Game.getPlayer(Game.getCurrentPlayer().getUsername());
                         if (currentPlayer != null) {
-                            currentPlayer.setPassword(password);
+                            currentPlayer.setUsername(username);
                             Main.getMain().setScreen(new ProfileMenu(new ProfileMenuController(), GameAssetManager.getGameAssetManager().getSkin()));
                         }
                     }
@@ -35,4 +34,5 @@ public class ChangePasswordController {
             });
         }
     }
+
 }

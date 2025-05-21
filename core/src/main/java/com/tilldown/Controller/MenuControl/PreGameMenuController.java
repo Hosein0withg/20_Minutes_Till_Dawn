@@ -1,8 +1,8 @@
-package com.tilldown.Controller;
+package com.tilldown.Controller.MenuControl;
 
 import com.badlogic.gdx.Gdx;
+import com.tilldown.Controller.GameController;
 import com.tilldown.Main;
-import com.tilldown.Model.Game;
 import com.tilldown.Model.GameAssetManager;
 import com.tilldown.View.*;
 
@@ -17,8 +17,7 @@ public class PreGameMenuController {
         if (view != null) {
             if (view.getStartGameButton().isChecked()) {
                 Main.getMain().getScreen().dispose();
-                Gdx.app.exit();
-                //Main.getMain().setScreen(new MusicMenu(GameAssetManager.getGameAssetManager().getSkin()));
+                Main.getMain().setScreen(new GameView(new GameController()));
             }
         }
     }

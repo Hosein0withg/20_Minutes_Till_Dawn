@@ -1,4 +1,4 @@
-package com.tilldown.Controller;
+package com.tilldown.Controller.MenuControl;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.scenes.scene2d.Actor;

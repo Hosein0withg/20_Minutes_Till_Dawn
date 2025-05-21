@@ -10,7 +10,7 @@ import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import com.tilldown.Model.GameAssetManager;
-import com.tilldown.Controller.MusicMenuController;
+import com.tilldown.Controller.MenuControl.MusicMenuController;
 
 public class MusicMenu implements Screen {
     private final MusicMenuController musicManager = MusicMenuController.getInstance();

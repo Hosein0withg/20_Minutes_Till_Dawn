@@ -1,4 +1,4 @@
-package com.tilldown.Controller;
+package com.tilldown.Controller.MenuControl;
 
 import com.tilldown.Main;
 import com.tilldown.Model.*;

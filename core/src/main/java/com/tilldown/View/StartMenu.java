@@ -6,7 +6,7 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.*;
 import com.badlogic.gdx.utils.ScreenUtils;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
-import com.tilldown.Controller.StartMenuController;
+import com.tilldown.Controller.MenuControl.StartMenuController;
 import com.tilldown.Main;
 
 public class StartMenu implements Screen {

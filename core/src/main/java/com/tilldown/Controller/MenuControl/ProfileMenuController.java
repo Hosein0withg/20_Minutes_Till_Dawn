@@ -1,4 +1,4 @@
-package com.tilldown.Controller;
+package com.tilldown.Controller.MenuControl;
 
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.tilldown.Main;

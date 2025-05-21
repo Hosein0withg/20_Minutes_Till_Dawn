@@ -10,11 +10,8 @@ import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.ScreenUtils;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
-import com.tilldown.Controller.GameMenuController;
-import com.tilldown.Controller.PreGameMenuController;
+import com.tilldown.Controller.MenuControl.PreGameMenuController;
 import com.tilldown.Main;
-
-import java.util.ArrayList;
 
 public class PreGameMenu implements Screen {
     private Stage stage;
