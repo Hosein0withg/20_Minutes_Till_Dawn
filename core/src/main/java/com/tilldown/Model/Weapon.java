@@ -61,4 +61,24 @@ public class Weapon {
     public int getProjectile() {
         return projectile;
     }
+
+    public void setGunTexture(Texture gunTexture) {
+        this.gunTexture = gunTexture;
+    }
+
+    public void setGunSprite(Sprite gunSprite) {
+        this.gunSprite = gunSprite;
+    }
+
+    public void setDamage(int damage) {
+        this.damage = damage;
+    }
+
+    public void setReloadTime(int reloadTime) {
+        this.reloadTime = reloadTime;
+    }
+
+    public void setProjectile(int projectile) {
+        this.projectile = projectile;
+    }
 }

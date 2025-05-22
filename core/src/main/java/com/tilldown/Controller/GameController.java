@@ -43,4 +43,8 @@ public class GameController {
     public float getGameTime() {
         return gameTime;
     }
+
+    public GameView getView() {
+        return view;
+    }
 }

@@ -4,6 +4,10 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.Sprite;
+import com.badlogic.gdx.utils.Timer;
+import com.tilldown.Main;
+
+import java.util.Random;
 
 public class Player {
     private Texture playerTexture;
@@ -160,5 +164,73 @@ public class Player {
 
     public void setCurrentGun(Weapon currentGun) {
         this.currentGun = currentGun;
+    }
+
+    public int calculateNextLevelXP() {
+        return (20 * level);
+    }
+
+    public void updateLevel() {
+        if (XP >= calculateNextLevelXP()) {
+            XP -= calculateNextLevelXP();
+            level++;
+        }
+        // assign a random ability
+    }
+
+    public void setAbility() {
+        switch (new Random().nextInt(5)) {
+            case 0:
+                if (!Game.getCurrentUser().gainedAbilities.contains("Vitality"))
+                    Game.getCurrentUser().gainedAbilities.add("Vitality");
+                Game.getCurrentUser().getCurrentHero().setHP(Game.getCurrentUser().getCurrentHero().getHP() + 1);
+                break;
+            case 1:
+                if (!Game.getCurrentUser().gainedAbilities.contains("Damager"))
+                    Game.getCurrentUser().gainedAbilities.add("Damager");
+                boostGunDamage();
+                break;
+            case 2:
+                if (!Game.getCurrentUser().gainedAbilities.contains("Procrease"))
+                    Game.getCurrentUser().gainedAbilities.add("Procrease");
+                Game.getCurrentUser().getCurrentHero().getCurrentGun().setProjectile(Game.getCurrentUser().getCurrentHero().getCurrentGun().getProjectile() + 1);
+                break;
+            case 3:
+                if (!Game.getCurrentUser().gainedAbilities.contains("Amocrease"))
+                    Game.getCurrentUser().gainedAbilities.add("Amocrease");
+                Game.getCurrentUser().getCurrentHero().getCurrentGun().setAmmo(Game.getCurrentUser().getCurrentHero().getCurrentGun().getAmmo() + 5);
+                break;
+            case 4:
+                if (!Game.getCurrentUser().gainedAbilities.contains("Speedy"))
+                    Game.getCurrentUser().gainedAbilities.add("Speedy");
+                boostPlayerSpeed();
+                break;
+
+        }
+    }
+
+    private void boostGunDamage() {
+        Weapon weapon = Game.getCurrentUser().getCurrentHero().getCurrentGun();
+        int originalDamage = weapon.getDamage();
+        weapon.setDamage((int) (originalDamage * 1.25));
+
+        Timer.schedule(new Timer.Task() {
+            @Override
+            public void run() {
+                weapon.setDamage(originalDamage);
+            }
+        }, 10);
+    }
+
+    private void boostPlayerSpeed() {
+        Player player = Game.getCurrentUser().getCurrentHero();
+        player.setSpeed(player.getSpeed() * 2);
+
+        Timer.schedule(new Timer.Task() {
+            @Override
+            public void run() {
+                player.setSpeed(player.getSpeed() / 2);
+            }
+        }, 10);
     }
 }

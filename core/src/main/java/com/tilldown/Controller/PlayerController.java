@@ -48,6 +48,7 @@ public class PlayerController {
             gameController.getWeaponController().reloadGun();
         } else if (Gdx.input.isKeyPressed(Input.Keys.ESCAPE)) {
             Main.getMain().getScreen().dispose();
+            gameController.getView().pause();
             Main.getMain().setScreen(new PreGameMenu(new PreGameMenuController(), GameAssetManager.getGameAssetManager().getSkin()));
         }
     }

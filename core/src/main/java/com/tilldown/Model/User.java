@@ -17,6 +17,7 @@ public class User {
     private Player currentHero;
     public int gameDuration = 2;
     private boolean autoReload = false;
+    public ArrayList<String> gainedAbilities = new ArrayList<>();
 
     public User(String username, String password, String securityQuestion, String securityAnswer, String avatarPath) {
         this.username = username;
