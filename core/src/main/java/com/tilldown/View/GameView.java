@@ -17,6 +17,7 @@ import com.tilldown.Main;
 import com.tilldown.Model.Game;
 import com.tilldown.Model.GameAssetManager;
 import com.tilldown.Model.Player;
+import com.tilldown.Model.Tree;
 
 
 public class GameView implements Screen, InputProcessor {
@@ -84,6 +85,22 @@ public class GameView implements Screen, InputProcessor {
         cursorSprite.setPosition(Gdx.input.getX(), Gdx.graphics.getHeight() - Gdx.input.getY());
         Main.getBatch().begin();
         controller.updateGame();
+
+        float playerX = Game.getCurrentUser().getCurrentHero().getPosX();
+        float playerY = Game.getCurrentUser().getCurrentHero().getPosY();
+
+        for (Tree tree : Game.trees) {
+            float treeScreenX = tree.getWorldX() + playerX + (Gdx.graphics.getWidth() / 2f);
+            float treeScreenY = tree.getWorldY() + playerY + (Gdx.graphics.getHeight() / 2f);
+            Main.getBatch().draw(
+                tree.getSprite().getTexture(),
+                treeScreenX,
+                treeScreenY,
+                tree.getSprite().getWidth(),
+                tree.getSprite().getHeight()
+            );
+        }
+
         //cursorSprite.draw(Main.getBatch());
         Main.getBatch().end();
         stage.act(Math.min(Gdx.graphics.getDeltaTime(), 1 / 30f));

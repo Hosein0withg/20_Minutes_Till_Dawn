@@ -2,6 +2,7 @@ package com.tilldown.Model;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Animation;
+import com.tilldown.View.SpawnTree;
 
 import java.util.ArrayList;
 
@@ -13,9 +14,13 @@ public class Game {
     private static User currentUser;
     public static ArrayList<Player> characters = new ArrayList<>();
     public static ArrayList<Weapon> guns = new ArrayList<>();
+    public static ArrayList<Tree> trees = new ArrayList<>();
 
     static {
         initialize();
+        SpawnTree treeSpawner = new SpawnTree();
+        treeSpawner.spawnTrees();
+        trees = treeSpawner.getTrees();
     }
 
     private static void initialize() {

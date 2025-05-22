@@ -26,6 +26,7 @@ public class GameAssetManager {
     public static String[] character4 = {"4/Idle_0.png", "4/Idle_1.png", "4/Idle_2.png", "4/Idle_3.png", "4/Idle_4.png", "4/Idle_5.png"};
     public static String[] character5 = {"5/Idle_0.png", "5/Idle_1.png", "5/Idle_2.png", "5/Idle_3.png", "5/Idle_4.png", "5/Idle_5.png"};
 
+    private final String tree = "tree.png";
     private final String smg = "gun/SMG.png";
     private final String revolver = "gun/Revolver.png";
     private final String shotgun = "gun/Shotgun.png";
@@ -66,6 +67,10 @@ public class GameAssetManager {
 
     public String getBullet() {
         return bullet;
+    }
+
+    public String getTree() {
+        return tree;
     }
 }
 
