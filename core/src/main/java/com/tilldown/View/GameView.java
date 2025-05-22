@@ -61,6 +61,7 @@ public class GameView implements Screen, InputProcessor {
     public void render(float delta) {
         ScreenUtils.clear(0, 0, 0, 1);
         timerLabel.setText("Time Left: " + formatTime(controller.getGameTime()));
+        ammoLeftLabel.setText("Ammo Left: " + Game.getCurrentUser().getCurrentHero().getAmmoLeft());
         cursorSprite.setPosition(Gdx.input.getX(), Gdx.graphics.getHeight() - Gdx.input.getY());
         Main.getBatch().begin();
         controller.updateGame();

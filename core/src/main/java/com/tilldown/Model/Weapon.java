@@ -28,6 +28,10 @@ public class Weapon {
         gunSprite.setX((float) Gdx.graphics.getWidth() / 2);
         gunSprite.setY((float) Gdx.graphics.getHeight() / 2);
         gunSprite.setSize(50, 50);
+        this.ammo = ammo;
+        this.damage = damage;
+        this.projectile = projectile;
+        this.reloadTime = reloadTime;
     }
 
     public Sprite getGunSprite() {

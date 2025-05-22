@@ -6,6 +6,7 @@ import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Vector2;
 import com.tilldown.Main;
 import com.tilldown.Model.Bullet;
+import com.tilldown.Model.Game;
 import com.tilldown.Model.Weapon;
 
 import java.util.ArrayList;
@@ -37,7 +38,7 @@ public class WeaponController {
 
     public void handleWeaponShoot(int x, int y) {
         bullets.add(new Bullet(x, y));
-        weapon.setAmmo(weapon.getAmmo() - 1);
+        Game.getCurrentUser().getCurrentHero().setAmmoLeft(Game.getCurrentUser().getCurrentHero().getAmmoLeft() - 1);
     }
 
     public void updateBullets() {

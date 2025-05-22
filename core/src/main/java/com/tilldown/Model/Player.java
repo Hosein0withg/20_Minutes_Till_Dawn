@@ -35,6 +35,7 @@ public class Player {
         this.speed = speed;
         this.character_idle_frames = character_idle_frames;
         this.currentGun = Game.guns.get(0);
+        this.ammoLeft = this.currentGun.getAmmo();
     }
 
     public Texture getPlayerTexture() {
