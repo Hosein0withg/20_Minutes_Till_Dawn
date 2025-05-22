@@ -26,8 +26,9 @@ public class GameAssetManager {
     public static String[] character4 = {"4/Idle_0.png", "4/Idle_1.png", "4/Idle_2.png", "4/Idle_3.png", "4/Idle_4.png", "4/Idle_5.png"};
     public static String[] character5 = {"5/Idle_0.png", "5/Idle_1.png", "5/Idle_2.png", "5/Idle_3.png", "5/Idle_4.png", "5/Idle_5.png"};
 
-    private final String smg = "smg/SMGStill.png";
-    private final Texture smgTexture = new Texture(smg);
+    private final String smg = "gun/SMG.png";
+    private final String revolver = "gun/Revolver.png";
+    private final String shotgun = "gun/Shotgun.png";
 
     private final String bullet = "bullet.png";
 
@@ -51,12 +52,16 @@ public class GameAssetManager {
         return Game.getCurrentUser().getCurrentHero().getCharacter_idle_frames();
     }
 
-    public Texture getSmgTexture() {
-        return smgTexture;
-    }
-
     public String getSmg() {
         return smg;
+    }
+
+    public String getRevolver() {
+        return revolver;
+    }
+
+    public String getShotgun() {
+        return shotgun;
     }
 
     public String getBullet() {

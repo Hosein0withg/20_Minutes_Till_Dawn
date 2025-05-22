@@ -15,17 +15,17 @@ public class WeaponController {
     private Weapon weapon;
     private ArrayList<Bullet> bullets = new ArrayList<>();
 
-    public WeaponController(Weapon weapon){
+    public WeaponController(Weapon weapon) {
         this.weapon = weapon;
     }
 
-    public void update(){
-        weapon.getSmgSprite().draw(Main.getBatch());
+    public void update() {
+        weapon.getGunSprite().draw(Main.getBatch());
         updateBullets();
     }
 
     public void handleWeaponRotation(int x, int y) {
-        Sprite weaponSprite = weapon.getSmgSprite();
+        Sprite weaponSprite = weapon.getGunSprite();
 
         float weaponCenterX = (float) Gdx.graphics.getWidth() / 2;
         float weaponCenterY = (float) Gdx.graphics.getHeight() / 2;
@@ -35,7 +35,7 @@ public class WeaponController {
         weaponSprite.setRotation((float) (Math.PI - angle * MathUtils.radiansToDegrees));
     }
 
-    public void handleWeaponShoot(int x, int y){
+    public void handleWeaponShoot(int x, int y) {
         bullets.add(new Bullet(x, y));
         weapon.setAmmo(weapon.getAmmo() - 1);
     }
@@ -48,8 +48,8 @@ public class WeaponController {
             b.getSprite().draw(Main.getBatch());
 
             Vector2 direction = new Vector2(
-                Gdx.graphics.getWidth()/2f - b.getX(),
-                Gdx.graphics.getHeight()/2f - b.getY()
+                Gdx.graphics.getWidth() / 2f - b.getX(),
+                Gdx.graphics.getHeight() / 2f - b.getY()
             ).nor();
 
             b.getSprite().setX(b.getSprite().getX() - direction.x * 5);

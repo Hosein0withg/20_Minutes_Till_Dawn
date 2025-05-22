@@ -7,8 +7,6 @@ import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 
 import java.util.ArrayList;
 
-import static com.tilldown.Model.GameAssetManager.*;
-
 public class User {
     private String username;
     private String password;
@@ -16,9 +14,8 @@ public class User {
     private final String securityAnswer;
     private Texture avatar;
     private int points;
-    public ArrayList<Player> characters = new ArrayList<>();
     private Player currentHero;
-    public int gameDuration = 1;
+    public int gameDuration = 2;
 
     public User(String username, String password, String securityQuestion, String securityAnswer, String avatarPath) {
         this.username = username;
@@ -27,12 +24,8 @@ public class User {
         this.securityAnswer = securityAnswer;
         this.avatar = new Texture(avatarPath);
         points = 0;
-        this.characters.add(new Player(4, 4, new Animation<>(0.1f, new Texture(character1[0]), new Texture(character1[1]), new Texture(character1[2]), new Texture(character1[3]), new Texture(character1[4]), new Texture(character1[5])), character1[0]));
-        this.characters.add(new Player(7, 1, new Animation<>(0.1f, new Texture(character2[0]), new Texture(character2[1]), new Texture(character2[2]), new Texture(character2[3]), new Texture(character2[4]), new Texture(character2[5])), character2[0]));
-        this.characters.add(new Player(3, 5, new Animation<>(0.1f, new Texture(character3[0]), new Texture(character3[1]), new Texture(character3[2]), new Texture(character3[3]), new Texture(character3[4]), new Texture(character3[5])), character3[0]));
-        this.characters.add(new Player(5, 3, new Animation<>(0.1f, new Texture(character4[0]), new Texture(character4[1]), new Texture(character4[2]), new Texture(character4[3]), new Texture(character4[4]), new Texture(character4[5])), character4[0]));
-        this.characters.add(new Player(2, 10, new Animation<>(0.1f, new Texture(character5[0]), new Texture(character5[1]), new Texture(character5[2]), new Texture(character5[3]), new Texture(character5[4]), new Texture(character5[5])), character5[0]));
-        this.currentHero = characters.get(0);
+        this.currentHero = Game.characters.get(0);
+
     }
 
     public String getUsername() {
@@ -85,5 +78,9 @@ public class User {
 
     public void setCurrentHero(Player currentHero) {
         this.currentHero = currentHero;
+    }
+
+    public void setGameDuration(int gameDuration) {
+        this.gameDuration = gameDuration;
     }
 }

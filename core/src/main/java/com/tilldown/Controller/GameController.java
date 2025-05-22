@@ -2,8 +2,6 @@ package com.tilldown.Controller;
 
 import com.badlogic.gdx.Gdx;
 import com.tilldown.Model.Game;
-import com.tilldown.Model.Player;
-import com.tilldown.Model.Weapon;
 import com.tilldown.View.GameView;
 
 public class GameController {
@@ -18,7 +16,7 @@ public class GameController {
         this.view = view;
         playerController = new PlayerController(Game.getCurrentUser().getCurrentHero());
         worldController = new WorldController(playerController);
-        weaponController = new WeaponController(new Weapon());
+        weaponController = new WeaponController(Game.getCurrentUser().getCurrentHero().getCurrentGun());
     }
 
     public void updateGame() {

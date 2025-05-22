@@ -20,7 +20,8 @@ public class Player {
     private final Animation<Texture> character_idle_frames;
     private int kill = 0;
     private int level = 1;
-    private int ammoLeft = 30;
+    private int ammoLeft;
+    private Weapon currentGun;
 
 
     public Player(int HP, int speed, Animation<Texture> character_idle_frames, String idle0Address) {
@@ -33,6 +34,7 @@ public class Player {
         this.HP = HP;
         this.speed = speed;
         this.character_idle_frames = character_idle_frames;
+        this.currentGun = Game.guns.get(0);
     }
 
     public Texture getPlayerTexture() {
@@ -137,5 +139,25 @@ public class Player {
 
     public int getAmmoLeft() {
         return ammoLeft;
+    }
+
+    public void setKill(int kill) {
+        this.kill = kill;
+    }
+
+    public void setLevel(int level) {
+        this.level = level;
+    }
+
+    public void setAmmoLeft(int ammoLeft) {
+        this.ammoLeft = ammoLeft;
+    }
+
+    public Weapon getCurrentGun() {
+        return currentGun;
+    }
+
+    public void setCurrentGun(Weapon currentGun) {
+        this.currentGun = currentGun;
     }
 }

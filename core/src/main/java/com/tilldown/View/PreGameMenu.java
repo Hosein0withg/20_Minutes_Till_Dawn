@@ -3,10 +3,8 @@ package com.tilldown.View;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.scenes.scene2d.Stage;
-import com.badlogic.gdx.scenes.scene2d.ui.SelectBox;
-import com.badlogic.gdx.scenes.scene2d.ui.Skin;
-import com.badlogic.gdx.scenes.scene2d.ui.Table;
-import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
+import com.badlogic.gdx.scenes.scene2d.ui.*;
+import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.ScreenUtils;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
@@ -19,7 +17,11 @@ public class PreGameMenu implements Screen {
     private final SelectBox selectHere;
     private final SelectBox selectWeapon;
     private final SelectBox selectDuration;
+    private final Label hero;
+    private final Label gun;
+    private final Label duration;
     public Table table;
+    public Table table2;
     private final PreGameMenuController controller;
 
     public PreGameMenu(PreGameMenuController controller, Skin skin) {
@@ -28,7 +30,11 @@ public class PreGameMenu implements Screen {
         this.selectHere = new SelectBox(skin);
         this.selectWeapon = new SelectBox(skin);
         this.selectDuration = new SelectBox(skin);
+        this.hero = new Label("Hero:", skin);
+        this.gun = new Label("Gun:", skin);
+        this.duration = new Label("Game Duration:", skin);
         this.table = new Table();
+        this.table2 = new Table();
 
         controller.setView(this);
     }
@@ -46,6 +52,19 @@ public class PreGameMenu implements Screen {
         hero.add("Dasher");
         selectHere.setItems(hero);
 
+        Array<String> guns = new Array<>();
+        guns.add("Revolver");
+        guns.add("Shotgun");
+        guns.add("SMG");
+        selectWeapon.setItems(guns);
+
+        Array<String> durations = new Array<>();
+        durations.add("2");
+        durations.add("5");
+        durations.add("10");
+        durations.add("20");
+        selectDuration.setItems(durations);
+
         table.setFillParent(true);
         table.center();
         table.add(selectHere).width(400);
@@ -57,6 +76,15 @@ public class PreGameMenu implements Screen {
         table.add(startGameButton).width(400);
         table.row();
         stage.addActor(table);
+
+        table2.setFillParent(true);
+        this.hero.setPosition(600, 655);
+        gun.setPosition(600, 570);
+        duration.setPosition(524, 485);
+        stage.addActor(this.hero);
+        stage.addActor(gun);
+        stage.addActor(duration);
+        stage.addActor(table2);
     }
 
     @Override
@@ -68,6 +96,8 @@ public class PreGameMenu implements Screen {
         stage.draw();
         controller.handlePreGameMenuButtons();
         controller.handleHeroSelection();
+        controller.handleGunSelection();
+        controller.handleTimeSelection();
     }
 
     @Override
@@ -101,5 +131,13 @@ public class PreGameMenu implements Screen {
 
     public String getSelectedHero() {
         return selectHere.getSelected().toString();
+    }
+
+    public String getSelectedGun() {
+        return selectWeapon.getSelected().toString();
+    }
+
+    public String getSelectedDuration() {
+        return selectDuration.getSelected().toString();
     }
 }
