@@ -42,6 +42,7 @@ public class WeaponController {
     public void handleWeaponShoot(int x, int y) {
         if (Game.getCurrentUser().getCurrentHero().getAmmoLeft() > 0 && !isReloading) {
             bullets.add(new Bullet(x, y));
+            //Game.getCurrentUser().getCurrentHero().setXP(Game.getCurrentUser().getCurrentHero().getXP() + 10);
             Game.getCurrentUser().getCurrentHero().setAmmoLeft(Game.getCurrentUser().getCurrentHero().getAmmoLeft() - 1);
         }
         if (Game.getCurrentUser().getCurrentHero().getAmmoLeft() <= 0 && Game.getCurrentUser().isAutoReload()) {

@@ -7,6 +7,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
+import com.badlogic.gdx.scenes.scene2d.ui.ProgressBar;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.utils.ScreenUtils;
@@ -14,6 +15,7 @@ import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import com.tilldown.Controller.GameController;
 import com.tilldown.Main;
 import com.tilldown.Model.Game;
+import com.tilldown.Model.GameAssetManager;
 import com.tilldown.Model.Player;
 
 
@@ -28,6 +30,7 @@ public class GameView implements Screen, InputProcessor {
     Label killLabel;
     Label ammoLeftLabel;
     Label levelLabel;
+    ProgressBar xpBar;
     Label abilityLabel;
     public boolean showAbility = false;
     public String ability = "";
@@ -46,6 +49,8 @@ public class GameView implements Screen, InputProcessor {
         ammoLeftLabel = new Label("Ammo Left: " + hero.getAmmoLeft(), skin);
         levelLabel = new Label("Level: " + hero.getLevel(), skin);
         abilityLabel = new Label("Ability: ", skin);
+        xpBar = new ProgressBar(0, Game.getCurrentUser().getCurrentHero().calculateNextLevelXP(), 1, false, GameAssetManager.getGameAssetManager().getSkin());
+        xpBar.setValue(Game.getCurrentUser().getCurrentHero().getXP());
     }
 
     @Override
@@ -57,6 +62,7 @@ public class GameView implements Screen, InputProcessor {
         table.add(HPLabel).pad(20);
         table.add(ammoLeftLabel).pad(20);
         table.add(levelLabel).pad(20);
+        table.add(xpBar).pad(20);
         table.add(killLabel).pad(20);
         table.add(abilityLabel).pad(20);
         stage.addActor(table);
@@ -73,6 +79,8 @@ public class GameView implements Screen, InputProcessor {
         } else {
             abilityLabel.setText("Ability: nothing");
         }
+        xpBar.setRange(0, Game.getCurrentUser().getCurrentHero().calculateNextLevelXP());
+        xpBar.setValue(Game.getCurrentUser().getCurrentHero().getXP());
         cursorSprite.setPosition(Gdx.input.getX(), Gdx.graphics.getHeight() - Gdx.input.getY());
         Main.getBatch().begin();
         controller.updateGame();
