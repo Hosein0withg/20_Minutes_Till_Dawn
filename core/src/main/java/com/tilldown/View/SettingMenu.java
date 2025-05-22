@@ -4,30 +4,35 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.scenes.scene2d.Actor;
+import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.*;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
+import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
+import com.tilldown.Model.Game;
 import com.tilldown.Model.GameAssetManager;
-import com.tilldown.Controller.MenuControl.MusicMenuController;
+import com.tilldown.Controller.MenuControl.SettingMenuController;
 
-public class MusicMenu implements Screen {
-    private final MusicMenuController musicManager = MusicMenuController.getInstance();
+public class SettingMenu implements Screen {
+    private final SettingMenuController musicManager = SettingMenuController.getInstance();
     private final Stage stage;
     private final SelectBox<String> selectMusic;
     private final Slider volumeSlider;
     private final TextButton stopButton;
     private final TextButton backButton;
+    private TextButton toggleButton;
     private final Table table;
 
-    public MusicMenu(Skin skin) {
+    public SettingMenu(Skin skin) {
         this.stage = new Stage(new ScreenViewport());
         Gdx.input.setInputProcessor(stage);
         this.selectMusic = new SelectBox<>(skin);
         this.stopButton = new TextButton("Stop", skin);
         this.volumeSlider = new Slider(0f, 1f, 0.01f, false, skin);
         this.backButton = new TextButton("Back", skin);
+        toggleButton = new TextButton("Auto Reload: OFF", GameAssetManager.getGameAssetManager().getSkin());
         volumeSlider.setValue(0.5f);
         this.table = new Table();
         musicManager.setView(this);
@@ -53,6 +58,14 @@ public class MusicMenu implements Screen {
                 musicManager.stopMusic();
             }
         });
+
+        toggleButton.addListener(new ClickListener() {
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                Game.getCurrentUser().setAutoReload(!Game.getCurrentUser().isAutoReload());
+                toggleButton.setText("Auto Reload: " + (Game.getCurrentUser().isAutoReload() ? "ON" : "OFF"));
+            }
+        });
     }
 
     @Override
@@ -70,6 +83,8 @@ public class MusicMenu implements Screen {
         table.add(stopButton).width(300).pad(10);
         table.row();
         table.add(volumeSlider).width(300).pad(10);
+        table.row();
+        table.add(toggleButton).width(500).pad(10);
         table.row();
         table.add(backButton).width(300).pad(10);
         stage.addActor(table);

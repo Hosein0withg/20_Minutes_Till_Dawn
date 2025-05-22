@@ -26,7 +26,7 @@ public class GameMenu implements Screen {
     public GameMenu(GameMenuController controller, Skin skin) {
         this.controller = controller;
         this.profileButton = new TextButton("Profile", skin);
-        this.settingsButton = new TextButton("Music", skin);
+        this.settingsButton = new TextButton("Setting", skin);
         this.scoreboardButton = new TextButton("Scoreboard", skin);
         this.preGameButton = new TextButton("Pre Game", skin);
         this.hintButton = new TextButton("Hint", skin);

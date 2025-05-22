@@ -14,6 +14,7 @@ import com.tilldown.Main;
 public class PreGameMenu implements Screen {
     private Stage stage;
     private final TextButton startGameButton;
+    private final TextButton backButton;
     private final SelectBox selectHere;
     private final SelectBox selectWeapon;
     private final SelectBox selectDuration;
@@ -27,6 +28,7 @@ public class PreGameMenu implements Screen {
     public PreGameMenu(PreGameMenuController controller, Skin skin) {
         this.controller = controller;
         this.startGameButton = new TextButton("Play", skin);
+        this.backButton = new TextButton("Back", skin);
         this.selectHere = new SelectBox(skin);
         this.selectWeapon = new SelectBox(skin);
         this.selectDuration = new SelectBox(skin);
@@ -73,14 +75,15 @@ public class PreGameMenu implements Screen {
         table.row();
         table.add(selectDuration).width(400);
         table.row();
-        table.add(startGameButton).width(400);
+        table.add(startGameButton).width(400).pad(10);
         table.row();
+        table.add(backButton).width(400).pad(50);
         stage.addActor(table);
 
         table2.setFillParent(true);
-        this.hero.setPosition(600, 655);
-        gun.setPosition(600, 570);
-        duration.setPosition(524, 485);
+        this.hero.setPosition(600, 765);
+        gun.setPosition(600, 680);
+        duration.setPosition(524, 595);
         stage.addActor(this.hero);
         stage.addActor(gun);
         stage.addActor(duration);
@@ -139,5 +142,9 @@ public class PreGameMenu implements Screen {
 
     public String getSelectedDuration() {
         return selectDuration.getSelected().toString();
+    }
+
+    public TextButton getBackButton() {
+        return backButton;
     }
 }

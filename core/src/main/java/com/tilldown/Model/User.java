@@ -16,6 +16,7 @@ public class User {
     private int points;
     private Player currentHero;
     public int gameDuration = 2;
+    private boolean autoReload = false;
 
     public User(String username, String password, String securityQuestion, String securityAnswer, String avatarPath) {
         this.username = username;
@@ -82,5 +83,13 @@ public class User {
 
     public void setGameDuration(int gameDuration) {
         this.gameDuration = gameDuration;
+    }
+
+    public boolean isAutoReload() {
+        return autoReload;
+    }
+
+    public void setAutoReload(boolean autoReload) {
+        this.autoReload = autoReload;
     }
 }

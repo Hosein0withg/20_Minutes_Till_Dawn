@@ -14,17 +14,17 @@ public class GameMenuController {
 
     public void handleGameMenuButtons() {
         if (view != null) {
-            if (view.getSettingsButton().isChecked()) {
+            if (view.getSettingsButton().isPressed()) {
                 Main.getMain().getScreen().dispose();
-                Main.getMain().setScreen(new MusicMenu(GameAssetManager.getGameAssetManager().getSkin()));
-            } else if (view.getBackButton().isChecked()) {
+                Main.getMain().setScreen(new SettingMenu(GameAssetManager.getGameAssetManager().getSkin()));
+            } else if (view.getBackButton().isPressed()) {
                 Main.getMain().getScreen().dispose();
                 Game.setCurrentUser(null);
                 Main.getMain().setScreen(new StartMenu(new StartMenuController(), GameAssetManager.getGameAssetManager().getSkin()));
-            } else if (view.getProfileButton().isChecked()) {
+            } else if (view.getProfileButton().isPressed()) {
                 Main.getMain().getScreen().dispose();
                 Main.getMain().setScreen(new ProfileMenu(new ProfileMenuController(), GameAssetManager.getGameAssetManager().getSkin()));
-            } else if (view.getPreGameButton().isChecked()) {
+            } else if (view.getPreGameButton().isPressed()) {
                 Main.getMain().getScreen().dispose();
                 Main.getMain().setScreen(new PreGameMenu(new PreGameMenuController(), GameAssetManager.getGameAssetManager().getSkin()));
             }

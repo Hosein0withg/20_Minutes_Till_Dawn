@@ -5,21 +5,21 @@ import com.badlogic.gdx.audio.Music;
 import com.tilldown.Main;
 import com.tilldown.Model.GameAssetManager;
 import com.tilldown.View.GameMenu;
-import com.tilldown.View.MusicMenu;
+import com.tilldown.View.SettingMenu;
 
-public class MusicMenuController {
-    private static MusicMenuController instance;
+public class SettingMenuController {
+    private static SettingMenuController instance;
     private Music currentMusic;
-    private MusicMenu view;
+    private SettingMenu view;
 
-    public static MusicMenuController getInstance() {
+    public static SettingMenuController getInstance() {
         if (instance == null) {
-            instance = new MusicMenuController();
+            instance = new SettingMenuController();
         }
         return instance;
     }
 
-    public void setView(MusicMenu view) {
+    public void setView(SettingMenu view) {
         this.view = view;
     }
 

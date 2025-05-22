@@ -4,6 +4,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.utils.Timer;
 import com.tilldown.Main;
 import com.tilldown.Model.Bullet;
 import com.tilldown.Model.Game;
@@ -15,6 +16,7 @@ import java.util.Iterator;
 public class WeaponController {
     private Weapon weapon;
     private ArrayList<Bullet> bullets = new ArrayList<>();
+    private boolean isReloading = false;
 
     public WeaponController(Weapon weapon) {
         this.weapon = weapon;
@@ -37,8 +39,24 @@ public class WeaponController {
     }
 
     public void handleWeaponShoot(int x, int y) {
-        bullets.add(new Bullet(x, y));
-        Game.getCurrentUser().getCurrentHero().setAmmoLeft(Game.getCurrentUser().getCurrentHero().getAmmoLeft() - 1);
+        if (Game.getCurrentUser().getCurrentHero().getAmmoLeft() > 0 && !isReloading) {
+            bullets.add(new Bullet(x, y));
+            Game.getCurrentUser().getCurrentHero().setAmmoLeft(Game.getCurrentUser().getCurrentHero().getAmmoLeft() - 1);
+        }
+        if (Game.getCurrentUser().getCurrentHero().getAmmoLeft() <= 0 && Game.getCurrentUser().isAutoReload()) {
+            reloadGun();
+        }
+    }
+
+    public void reloadGun() {
+        isReloading = true;
+        Timer.schedule(new Timer.Task() {
+            @Override
+            public void run() {
+                Game.getCurrentUser().getCurrentHero().setAmmoLeft(weapon.getAmmo());
+                isReloading = false;
+            }
+        }, weapon.getReloadTime());
     }
 
     public void updateBullets() {
