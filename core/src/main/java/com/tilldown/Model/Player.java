@@ -170,43 +170,35 @@ public class Player {
         return (20 * level);
     }
 
-    public void updateLevel() {
-        if (XP >= calculateNextLevelXP()) {
-            XP -= calculateNextLevelXP();
-            level++;
-        }
-        // assign a random ability
-    }
-
-    public void setAbility() {
+    public String setAbility() {
         switch (new Random().nextInt(5)) {
             case 0:
                 if (!Game.getCurrentUser().gainedAbilities.contains("Vitality"))
                     Game.getCurrentUser().gainedAbilities.add("Vitality");
                 Game.getCurrentUser().getCurrentHero().setHP(Game.getCurrentUser().getCurrentHero().getHP() + 1);
-                break;
+                return "Vitality";
             case 1:
                 if (!Game.getCurrentUser().gainedAbilities.contains("Damager"))
                     Game.getCurrentUser().gainedAbilities.add("Damager");
                 boostGunDamage();
-                break;
+                return "Damager";
             case 2:
                 if (!Game.getCurrentUser().gainedAbilities.contains("Procrease"))
                     Game.getCurrentUser().gainedAbilities.add("Procrease");
                 Game.getCurrentUser().getCurrentHero().getCurrentGun().setProjectile(Game.getCurrentUser().getCurrentHero().getCurrentGun().getProjectile() + 1);
-                break;
+                return "Procrease";
             case 3:
                 if (!Game.getCurrentUser().gainedAbilities.contains("Amocrease"))
                     Game.getCurrentUser().gainedAbilities.add("Amocrease");
                 Game.getCurrentUser().getCurrentHero().getCurrentGun().setAmmo(Game.getCurrentUser().getCurrentHero().getCurrentGun().getAmmo() + 5);
-                break;
+                return "Amocrease";
             case 4:
                 if (!Game.getCurrentUser().gainedAbilities.contains("Speedy"))
                     Game.getCurrentUser().gainedAbilities.add("Speedy");
                 boostPlayerSpeed();
-                break;
-
+                return "Speedy";
         }
+        return "";
     }
 
     private void boostGunDamage() {

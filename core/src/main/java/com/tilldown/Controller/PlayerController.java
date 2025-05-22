@@ -4,6 +4,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Animation;
+import com.badlogic.gdx.utils.Timer;
 import com.tilldown.Controller.MenuControl.PreGameMenuController;
 import com.tilldown.Main;
 import com.tilldown.Model.GameAssetManager;
@@ -21,12 +22,28 @@ public class PlayerController {
 
     public void update(){
         player.getPlayerSprite().draw(Main.getBatch());
+        updateLevel();
 
         if(player.isPlayerIdle()){
             idleAnimation();
         }
 
         handlePlayerInput();
+    }
+
+    public void updateLevel() {
+        if (player.getXP() >= player.calculateNextLevelXP()) {
+            player.setXP(player.getXP() - player.calculateNextLevelXP());
+            player.setLevel(player.getLevel() + 1);
+            gameController.getView().showAbility = true;
+            gameController.getView().ability = player.setAbility();
+            Timer.schedule(new Timer.Task() {
+                @Override
+                public void run() {
+                    gameController.getView().showAbility = false;
+                }
+            }, 10);
+        }
     }
 
 
@@ -65,7 +82,6 @@ public class PlayerController {
         else {
             player.setTime(0);
         }
-
         animation.setPlayMode(Animation.PlayMode.LOOP);
     }
 

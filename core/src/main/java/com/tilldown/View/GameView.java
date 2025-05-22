@@ -28,6 +28,9 @@ public class GameView implements Screen, InputProcessor {
     Label killLabel;
     Label ammoLeftLabel;
     Label levelLabel;
+    Label abilityLabel;
+    public boolean showAbility = false;
+    public String ability = "";
 
     public GameView(GameController controller, Skin skin) {
         this.controller = controller;
@@ -38,10 +41,11 @@ public class GameView implements Screen, InputProcessor {
         cursorSprite = new Sprite(cursorTexture);
         Player hero = Game.getCurrentUser().getCurrentHero();
         timerLabel = new Label("Time Left: " + formatTime(controller.getGameTime()), skin);
-        HPLabel = new Label("HP: " + hero.getHP(), skin);
+        HPLabel = new Label("HP: " + (int) hero.getHP(), skin);
         killLabel = new Label("Kill: " + hero.getKill(), skin);
         ammoLeftLabel = new Label("Ammo Left: " + hero.getAmmoLeft(), skin);
         levelLabel = new Label("Level: " + hero.getLevel(), skin);
+        abilityLabel = new Label("Ability: ", skin);
     }
 
     @Override
@@ -54,6 +58,7 @@ public class GameView implements Screen, InputProcessor {
         table.add(ammoLeftLabel).pad(20);
         table.add(levelLabel).pad(20);
         table.add(killLabel).pad(20);
+        table.add(abilityLabel).pad(20);
         stage.addActor(table);
     }
 
@@ -62,6 +67,12 @@ public class GameView implements Screen, InputProcessor {
         ScreenUtils.clear(0, 0, 0, 1);
         timerLabel.setText("Time Left: " + formatTime(controller.getGameTime()));
         ammoLeftLabel.setText("Ammo Left: " + Game.getCurrentUser().getCurrentHero().getAmmoLeft());
+        levelLabel.setText("Level: " + Game.getCurrentUser().getCurrentHero().getLevel());
+        if (showAbility) {
+            abilityLabel.setText("Ability: " + ability);
+        } else {
+            abilityLabel.setText("Ability: nothing");
+        }
         cursorSprite.setPosition(Gdx.input.getX(), Gdx.graphics.getHeight() - Gdx.input.getY());
         Main.getBatch().begin();
         controller.updateGame();

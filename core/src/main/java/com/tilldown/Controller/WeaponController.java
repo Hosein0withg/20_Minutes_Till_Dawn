@@ -9,6 +9,7 @@ import com.tilldown.Main;
 import com.tilldown.Model.Bullet;
 import com.tilldown.Model.Game;
 import com.tilldown.Model.Weapon;
+import com.tilldown.View.GameView;
 
 import java.util.ArrayList;
 import java.util.Iterator;
