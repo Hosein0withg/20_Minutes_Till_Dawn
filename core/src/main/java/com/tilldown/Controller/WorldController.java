@@ -9,9 +9,7 @@ import com.tilldown.Model.TentacleMonster;
 
 public class WorldController {
     private PlayerController playerController;
-    private Texture backgroundTexture;
-    private float backgroundX = 0;
-    private float backgroundY = 0;
+    private final Texture backgroundTexture;
     private TentacleMonster tentacleMonster;
 
     public WorldController(PlayerController playerController) {
@@ -21,7 +19,7 @@ public class WorldController {
     }
 
     public void update() {
-        Main.getBatch().draw(backgroundTexture, backgroundX, backgroundY);
+        Main.getBatch().draw(backgroundTexture, 0, 0);
         tentacleMonster.getSprite().draw(Main.getBatch());
         idleAnimation();
     }

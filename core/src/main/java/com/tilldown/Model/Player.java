@@ -25,20 +25,38 @@ public class Player {
     private int level = 1;
     private int ammoLeft;
     private Weapon currentGun;
+    private boolean isInvincible = false;
+    private float invincibleTimer = 0f;
 
 
     public Player(int HP, int speed, Animation<Texture> character_idle_frames, String idle0Address) {
         this.playerTexture = new Texture(idle0Address);
         this.playerSprite = new Sprite(playerTexture);
-        playerSprite.setPosition(50, 50);
+        this.posX = 10;
+        this.posY = 50;
+        playerSprite.setPosition(this.posX, this.posY);
         playerSprite.setSize(playerTexture.getWidth() * 3, playerTexture.getHeight() * 3);
-        rect = new CollisionRect(50, 50,
+        rect = new CollisionRect(this.posX, this.posY,
             playerTexture.getWidth() * 3, playerTexture.getHeight() * 3);
         this.HP = HP;
         this.speed = speed;
         this.character_idle_frames = character_idle_frames;
         this.currentGun = Game.guns.get(0);
         this.ammoLeft = this.currentGun.getAmmo();
+    }
+
+    public void startInvincibility() {
+        this.isInvincible = true;
+        this.invincibleTimer = 1;
+    }
+
+    public void updateInvincibility(float delta) {
+        if (isInvincible) {
+            invincibleTimer -= delta;
+            if (invincibleTimer <= 0) {
+                isInvincible = false;
+            }
+        }
     }
 
     public Texture getPlayerTexture() {
@@ -227,5 +245,21 @@ public class Player {
                 player.setSpeed(player.getSpeed() / 2);
             }
         }, 10);
+    }
+
+    public boolean isInvincible() {
+        return isInvincible;
+    }
+
+    public void setInvincible(boolean invincible) {
+        isInvincible = invincible;
+    }
+
+    public float getInvincibleTimer() {
+        return invincibleTimer;
+    }
+
+    public void setInvincibleTimer(float invincibleTimer) {
+        this.invincibleTimer = invincibleTimer;
     }
 }

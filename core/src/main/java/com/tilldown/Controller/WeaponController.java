@@ -1,9 +1,7 @@
 package com.tilldown.Controller;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.math.MathUtils;
-import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Timer;
 import com.tilldown.Main;
 import com.tilldown.Model.Bullet;
@@ -43,8 +41,6 @@ public class WeaponController {
     }
 
     public void handleWeaponShoot(int x, int y) {
-        //float targetX = Gdx.graphics.getWidth() - x;
-        //float targetY = Gdx.graphics.getHeight() - y;
         float weaponX = weapon.getGunSprite().getX();
         float weaponY = weapon.getGunSprite().getY();
 

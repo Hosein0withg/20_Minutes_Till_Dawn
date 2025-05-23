@@ -10,9 +10,9 @@ import java.util.ArrayList;
 
 public class SpawnTree implements Screen {
     private ArrayList<Tree> trees = new ArrayList<>();
-    private final int mapWidth = 2700;
-    private final int mapHeight = 2000;
-    private final int treeCount = 20;
+    private final int mapWidth = Gdx.graphics.getWidth();
+    private final int mapHeight = Gdx.graphics.getHeight();
+    private final int treeCount = 5;
     private SpriteBatch batch;
 
     public SpawnTree() {
@@ -22,8 +22,8 @@ public class SpawnTree implements Screen {
 
     public void spawnTrees() {
         for (int i = 0; i < treeCount; i++) {
-            int x = MathUtils.random(10, mapWidth - 10);
-            int y = MathUtils.random(10, mapHeight - 10);
+            int x = MathUtils.random(30, mapWidth - 30);
+            int y = MathUtils.random(30, mapHeight - 30);
             Tree tree = new Tree(x, y);
             trees.add(tree);
         }

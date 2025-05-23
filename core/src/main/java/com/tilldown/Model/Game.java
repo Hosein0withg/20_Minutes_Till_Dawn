@@ -19,7 +19,6 @@ public class Game {
     static {
         initialize();
         SpawnTree treeSpawner = new SpawnTree();
-        treeSpawner.spawnTrees();
         trees = treeSpawner.getTrees();
     }
 

@@ -21,6 +21,7 @@ public class PlayerController {
     }
 
     public void update() {
+        player.updateInvincibility(Gdx.graphics.getDeltaTime());
         player.getPlayerSprite().setPosition(player.getPosX(), player.getPosY());
         player.getPlayerSprite().draw(Main.getBatch());
         updateLevel();
@@ -84,8 +85,11 @@ public class PlayerController {
         CollisionRect nextRect = new CollisionRect(newX, newY, player.getRect().width, player.getRect().height);
 
         for (Tree tree : Game.trees) {
-            if (nextRect.collidesWith(tree.getRect())) {
-                player.setHP(player.getHP() - 1);
+            if (nextRect.overlap(tree.getRect())) {
+                if (!player.isInvincible()) {
+                    player.setHP(player.getHP() - 1);
+                    player.startInvincibility();
+                }
                 return;
             }
         }

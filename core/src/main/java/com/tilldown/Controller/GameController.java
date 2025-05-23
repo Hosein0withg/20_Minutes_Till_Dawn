@@ -12,7 +12,6 @@ public class GameController {
     private float gameTime = Game.getCurrentUser().gameDuration * 60;
 
 
-
     public void setView(GameView view) {
         this.view = view;
         playerController = new PlayerController(Game.getCurrentUser().getCurrentHero(), this);
