@@ -33,7 +33,7 @@ public class Player {
         this.playerSprite = new Sprite(playerTexture);
         playerSprite.setPosition((float) Gdx.graphics.getWidth() / 2, (float) Gdx.graphics.getHeight() / 2);
         playerSprite.setSize(playerTexture.getWidth() * 3, playerTexture.getHeight() * 3);
-        rect = new CollisionRect((float) Gdx.graphics.getWidth() / 2, (float) Gdx.graphics.getHeight(),
+        rect = new CollisionRect((float) Gdx.graphics.getWidth() / 2, (float) Gdx.graphics.getHeight() / 2,
             playerTexture.getWidth() * 3, playerTexture.getHeight() * 3);
         this.HP = HP;
         this.speed = speed;

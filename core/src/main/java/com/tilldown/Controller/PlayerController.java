@@ -75,6 +75,7 @@ public class PlayerController {
         player.setPosY(newY);
 
 
+
         if (Gdx.input.isKeyPressed(Input.Keys.R)) {
             gameController.getWeaponController().reloadGun();
         } else if (Gdx.input.isKeyPressed(Input.Keys.ESCAPE)) {

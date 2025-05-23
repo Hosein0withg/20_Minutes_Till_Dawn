@@ -16,6 +16,7 @@ public class User {
     private int points;
     private Player currentHero;
     public int gameDuration = 2;
+    public int gameTimePassed = 0;
     private boolean autoReload = false;
     public ArrayList<String> gainedAbilities = new ArrayList<>();
 

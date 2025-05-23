@@ -25,6 +25,7 @@ public class GameController {
             playerController.update();
             weaponController.update();
             gameTime -= Gdx.graphics.getDeltaTime();
+            Game.getCurrentUser().gameTimePassed = (int) ((Game.getCurrentUser().gameDuration * 60) - gameTime);
 
             if (gameTime <= 0) {
                 Gdx.app.exit();

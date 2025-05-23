@@ -26,6 +26,8 @@ public class GameAssetManager {
     public static String[] character4 = {"4/Idle_0.png", "4/Idle_1.png", "4/Idle_2.png", "4/Idle_3.png", "4/Idle_4.png", "4/Idle_5.png"};
     public static String[] character5 = {"5/Idle_0.png", "5/Idle_1.png", "5/Idle_2.png", "5/Idle_3.png", "5/Idle_4.png", "5/Idle_5.png"};
 
+    public static String[] tentacleMonster = {"tentacle/TentacleIdle0.png", "tentacle/TentacleIdle1.png", "tentacle/TentacleIdle2.png", "tentacle/TentacleIdle3.png"};
+
     private final String tree = "tree.png";
     private final String smg = "gun/SMG.png";
     private final String revolver = "gun/Revolver.png";
@@ -51,6 +53,10 @@ public class GameAssetManager {
 
     public Animation<Texture> getCharacter_idle_animation() {
         return Game.getCurrentUser().getCurrentHero().getCharacter_idle_frames();
+    }
+
+    public Animation<Texture> getTentacle_idle_animation() {
+        return new Animation<>(0.1f, new Texture(tentacleMonster[0]), new Texture(tentacleMonster[1]), new Texture(tentacleMonster[2]), new Texture(tentacleMonster[3]));
     }
 
     public String getSmg() {
