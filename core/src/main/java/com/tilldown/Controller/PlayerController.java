@@ -49,18 +49,34 @@ public class PlayerController {
         float newX = player.getPosX();
         float newY = player.getPosY();
         float speed = player.getSpeed();
-        if (Gdx.input.isKeyPressed(Input.Keys.W)) {
-            newY -= speed;
-        }
-        if (Gdx.input.isKeyPressed(Input.Keys.S)) {
-            newY += speed;
-        }
-        if (Gdx.input.isKeyPressed(Input.Keys.A)) {
-            newX += speed;
-            player.getPlayerSprite().flip(true, false);
-        }
-        if (Gdx.input.isKeyPressed(Input.Keys.D)) {
-            newX -= speed;
+        if (Game.getCurrentUser().isNumberController()) {
+            if (Gdx.input.isKeyPressed(Input.Keys.NUMPAD_8)) {
+                newY -= speed;
+            }
+            if (Gdx.input.isKeyPressed(Input.Keys.NUMPAD_2)) {
+                newY += speed;
+            }
+            if (Gdx.input.isKeyPressed(Input.Keys.NUMPAD_4)) {
+                newX += speed;
+                player.getPlayerSprite().flip(true, false);
+            }
+            if (Gdx.input.isKeyPressed(Input.Keys.NUMPAD_6)) {
+                newX -= speed;
+            }
+        } else {
+            if (Gdx.input.isKeyPressed(Input.Keys.W)) {
+                newY -= speed;
+            }
+            if (Gdx.input.isKeyPressed(Input.Keys.S)) {
+                newY += speed;
+            }
+            if (Gdx.input.isKeyPressed(Input.Keys.A)) {
+                newX += speed;
+                player.getPlayerSprite().flip(true, false);
+            }
+            if (Gdx.input.isKeyPressed(Input.Keys.D)) {
+                newX -= speed;
+            }
         }
 
         CollisionRect nextRect = new CollisionRect(newX, newY, player.getRect().width, player.getRect().height);

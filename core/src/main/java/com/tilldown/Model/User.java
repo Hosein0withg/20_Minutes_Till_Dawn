@@ -18,6 +18,7 @@ public class User {
     public int gameDuration = 2;
     public int gameTimePassed = 0;
     private boolean autoReload = false;
+    private boolean numberController = false;
     public ArrayList<String> gainedAbilities = new ArrayList<>();
 
     public User(String username, String password, String securityQuestion, String securityAnswer, String avatarPath) {
@@ -93,5 +94,13 @@ public class User {
 
     public void setAutoReload(boolean autoReload) {
         this.autoReload = autoReload;
+    }
+
+    public boolean isNumberController() {
+        return numberController;
+    }
+
+    public void setNumberController(boolean numberController) {
+        this.numberController = numberController;
     }
 }

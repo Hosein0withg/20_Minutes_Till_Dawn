@@ -23,6 +23,7 @@ public class SettingMenu implements Screen {
     private final TextButton stopButton;
     private final TextButton backButton;
     private TextButton toggleButton;
+    private TextButton toggleButton2;
     private final Table table;
 
     public SettingMenu(Skin skin) {
@@ -33,6 +34,7 @@ public class SettingMenu implements Screen {
         this.volumeSlider = new Slider(0f, 1f, 0.01f, false, skin);
         this.backButton = new TextButton("Back", skin);
         toggleButton = new TextButton("Auto Reload: OFF", GameAssetManager.getGameAssetManager().getSkin());
+        toggleButton2 = new TextButton("Controller: W-A-S-D", GameAssetManager.getGameAssetManager().getSkin());
         volumeSlider.setValue(0.5f);
         this.table = new Table();
         musicManager.setView(this);
@@ -56,6 +58,15 @@ public class SettingMenu implements Screen {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
                 musicManager.stopMusic();
+            }
+        });
+
+        toggleButton2.addListener(new ClickListener() {
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                Game.getCurrentUser().setNumberController(!Game.getCurrentUser().isNumberController());
+                if (Game.getCurrentUser().isNumberController()) toggleButton2.setText("Controller: 8-4-2-6");
+                else toggleButton2.setText("Controller: W-A-S-D");
             }
         });
 
@@ -84,7 +95,9 @@ public class SettingMenu implements Screen {
         table.row();
         table.add(volumeSlider).width(300).pad(10);
         table.row();
-        table.add(toggleButton).width(500).pad(10);
+        table.add(toggleButton).width(550).pad(10);
+        table.row();
+        table.add(toggleButton2).width(550).pad(10);
         table.row();
         table.add(backButton).width(300).pad(10);
         stage.addActor(table);
