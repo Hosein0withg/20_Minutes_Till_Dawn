@@ -34,7 +34,7 @@ public class PlayerController {
             player.setXP(player.getXP() - player.calculateNextLevelXP());
             player.setLevel(player.getLevel() + 1);
             gameController.getView().showAbility = true;
-            gameController.getView().ability = player.setAbility();
+            gameController.getView().ability = player.setRandomAbility();
             Timer.schedule(new Timer.Task() {
                 @Override
                 public void run() {
@@ -92,12 +92,41 @@ public class PlayerController {
 
 
 
-        if (Gdx.input.isKeyPressed(Input.Keys.R)) {
+        if (Gdx.input.isKeyJustPressed(Input.Keys.R)) {
             gameController.getWeaponController().reloadGun();
-        } else if (Gdx.input.isKeyPressed(Input.Keys.ESCAPE)) {
+        } else if (Gdx.input.isKeyJustPressed(Input.Keys.ESCAPE)) {
             Main.getMain().getScreen().dispose();
             gameController.getView().pause();
             Main.getMain().setScreen(new PreGameMenu(new PreGameMenuController(), GameAssetManager.getGameAssetManager().getSkin()));
+        } else if (Gdx.input.isKeyJustPressed(Input.Keys.T)) {
+            Game.getCurrentUser().setGameDuration(Game.getCurrentUser().gameDuration);
+            gameController.cheatGameTime();
+            Game.getCurrentUser().gameTimePassed = (int) ((Game.getCurrentUser().gameDuration * 60) - gameController.getGameTime());
+        } else if (Gdx.input.isKeyJustPressed(Input.Keys.L)) {
+            player.setLevel(player.getLevel() + 1);
+            player.setXP(0);
+            gameController.getView().showAbility = true;
+            gameController.getView().ability = player.setRandomAbility();
+            Timer.schedule(new Timer.Task() {
+                @Override
+                public void run() {
+                    gameController.getView().showAbility = false;
+                }
+            }, 10);
+        } else if (Gdx.input.isKeyJustPressed(Input.Keys.H)) {
+            if (player.getHP() <= 0) {
+                player.setHP(3);
+            }
+        } else if (Gdx.input.isKeyJustPressed(Input.Keys.P)) {
+            player.boostPlayerSpeed();
+            gameController.getView().showAbility = true;
+            gameController.getView().ability = "Speedy";
+            Timer.schedule(new Timer.Task() {
+                @Override
+                public void run() {
+                    gameController.getView().showAbility = false;
+                }
+            }, 10);
         }
 
     }

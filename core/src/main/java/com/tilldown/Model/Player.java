@@ -5,7 +5,6 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.utils.Timer;
-import com.tilldown.Main;
 
 import java.util.Random;
 
@@ -170,7 +169,7 @@ public class Player {
         return (20 * level);
     }
 
-    public String setAbility() {
+    public String setRandomAbility() {
         switch (new Random().nextInt(5)) {
             case 0:
                 if (!Game.getCurrentUser().gainedAbilities.contains("Vitality"))
@@ -214,7 +213,7 @@ public class Player {
         }, 10);
     }
 
-    private void boostPlayerSpeed() {
+    public void boostPlayerSpeed() {
         Player player = Game.getCurrentUser().getCurrentHero();
         player.setSpeed(player.getSpeed() * 2);
 

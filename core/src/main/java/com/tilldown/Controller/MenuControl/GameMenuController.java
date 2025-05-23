@@ -27,6 +27,9 @@ public class GameMenuController {
             } else if (view.getPreGameButton().isPressed()) {
                 Main.getMain().getScreen().dispose();
                 Main.getMain().setScreen(new PreGameMenu(new PreGameMenuController(), GameAssetManager.getGameAssetManager().getSkin()));
+            } else if (view.getHintButton().isPressed()) {
+                Main.getMain().getScreen().dispose();
+                Main.getMain().setScreen(new HintMenu(new HintMenuController(), GameAssetManager.getGameAssetManager().getSkin()));
             }
         }
     }

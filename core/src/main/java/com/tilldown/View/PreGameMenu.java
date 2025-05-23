@@ -22,7 +22,6 @@ public class PreGameMenu implements Screen {
     private final Label gun;
     private final Label duration;
     public Table table;
-    public Table table2;
     private final PreGameMenuController controller;
 
     public PreGameMenu(PreGameMenuController controller, Skin skin) {
@@ -36,8 +35,6 @@ public class PreGameMenu implements Screen {
         this.gun = new Label("Gun:", skin);
         this.duration = new Label("Game Duration:", skin);
         this.table = new Table();
-        this.table2 = new Table();
-
         controller.setView(this);
     }
 
@@ -80,14 +77,12 @@ public class PreGameMenu implements Screen {
         table.add(backButton).width(400).pad(50);
         stage.addActor(table);
 
-        table2.setFillParent(true);
         this.hero.setPosition(600, 765);
         gun.setPosition(600, 680);
         duration.setPosition(524, 595);
         stage.addActor(this.hero);
         stage.addActor(gun);
         stage.addActor(duration);
-        stage.addActor(table2);
     }
 
     @Override
