@@ -21,11 +21,8 @@ public class WorldController {
     }
 
     public void update() {
-        backgroundX = playerController.getPlayer().getPosX();
-        backgroundY = playerController.getPlayer().getPosY();
         Main.getBatch().draw(backgroundTexture, backgroundX, backgroundY);
         tentacleMonster.getSprite().draw(Main.getBatch());
-        tentacleMonster.setPosY(tentacleMonster.getPosY() + 1);
         idleAnimation();
     }
 

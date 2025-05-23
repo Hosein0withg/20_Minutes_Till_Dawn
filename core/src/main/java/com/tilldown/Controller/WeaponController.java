@@ -9,7 +9,6 @@ import com.tilldown.Main;
 import com.tilldown.Model.Bullet;
 import com.tilldown.Model.Game;
 import com.tilldown.Model.Weapon;
-import com.tilldown.View.GameView;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -28,21 +27,29 @@ public class WeaponController {
         updateBullets();
     }
 
+    public void updateWeaponPosition(float playerX, float playerY) {
+        weapon.updatePosition(playerX, playerY);
+    }
+
     public void handleWeaponRotation(int x, int y) {
-        Sprite weaponSprite = weapon.getGunSprite();
+        float worldX = x;
+        float worldY = Gdx.graphics.getHeight() - y;
 
-        float weaponCenterX = (float) Gdx.graphics.getWidth() / 2;
-        float weaponCenterY = (float) Gdx.graphics.getHeight() / 2;
+        float weaponX = weapon.getGunSprite().getX();
+        float weaponY = weapon.getGunSprite().getY();
+        float angle = MathUtils.atan2(worldY - weaponY, worldX - weaponX);
 
-        float angle = (float) Math.atan2(y - weaponCenterY, x - weaponCenterX);
-
-        weaponSprite.setRotation((float) (Math.PI - angle * MathUtils.radiansToDegrees));
+        weapon.getGunSprite().setRotation(angle * MathUtils.radiansToDegrees);
     }
 
     public void handleWeaponShoot(int x, int y) {
+        //float targetX = Gdx.graphics.getWidth() - x;
+        //float targetY = Gdx.graphics.getHeight() - y;
+        float weaponX = weapon.getGunSprite().getX();
+        float weaponY = weapon.getGunSprite().getY();
+
         if (Game.getCurrentUser().getCurrentHero().getAmmoLeft() > 0 && !isReloading) {
-            bullets.add(new Bullet(x, y));
-            //Game.getCurrentUser().getCurrentHero().setXP(Game.getCurrentUser().getCurrentHero().getXP() + 10);
+            bullets.add(new Bullet(weaponX, weaponY, x, y));
             Game.getCurrentUser().getCurrentHero().setAmmoLeft(Game.getCurrentUser().getCurrentHero().getAmmoLeft() - 1);
         }
         if (Game.getCurrentUser().getCurrentHero().getAmmoLeft() <= 0 && Game.getCurrentUser().isAutoReload()) {
@@ -66,15 +73,8 @@ public class WeaponController {
 
         while (iterator.hasNext()) {
             Bullet b = iterator.next();
+            b.updatePosition();
             b.getSprite().draw(Main.getBatch());
-
-            Vector2 direction = new Vector2(
-                Gdx.graphics.getWidth() / 2f - b.getX(),
-                Gdx.graphics.getHeight() / 2f - b.getY()
-            ).nor();
-
-            b.getSprite().setX(b.getSprite().getX() - direction.x * 5);
-            b.getSprite().setY(b.getSprite().getY() + direction.y * 5);
 
             if (b.getSprite().getX() < 0 || b.getSprite().getX() > Gdx.graphics.getWidth() ||
                 b.getSprite().getY() < 0 || b.getSprite().getY() > Gdx.graphics.getHeight()) {

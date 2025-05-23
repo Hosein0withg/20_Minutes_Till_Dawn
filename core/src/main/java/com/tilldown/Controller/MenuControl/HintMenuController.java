@@ -49,7 +49,7 @@ public class HintMenuController {
         return "Vitality -> increase max HP (1 unit)\n" +
             "Damager -> increase gun damage for 10 sec(25%)\n" +
             "Procrease -> increase projectile of gun (1 unit)\n" +
-            "Amocrease -> increase max amo of gun (5 unit)\n" +
+            "Amocrease -> increase max ammo of gun (5 unit)\n" +
             "Speedy -> double hero speed for 10 sec";
     }
 }

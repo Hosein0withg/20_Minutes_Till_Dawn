@@ -9,7 +9,7 @@ import com.tilldown.Model.Tree;
 import java.util.ArrayList;
 
 public class SpawnTree implements Screen {
-    private static ArrayList<Tree> trees = new ArrayList<>();
+    private ArrayList<Tree> trees = new ArrayList<>();
     private final int mapWidth = 2700;
     private final int mapHeight = 2000;
     private final int treeCount = 20;

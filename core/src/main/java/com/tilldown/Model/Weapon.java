@@ -3,6 +3,7 @@ package com.tilldown.Model;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 public class Weapon {
     private Texture gunTexture;
@@ -11,6 +12,8 @@ public class Weapon {
     private int damage;
     private int reloadTime;
     private int projectile;
+    private float offsetX = 20f;
+    private float offsetY = -10f;
 
     public Weapon(int damage, int projectile, int reloadTime, int ammo) {
         switch (damage) {
@@ -25,13 +28,20 @@ public class Weapon {
                 break;
         }
         this.gunSprite = new Sprite(gunTexture);
-        gunSprite.setX((float) Gdx.graphics.getWidth() / 2);
-        gunSprite.setY((float) Gdx.graphics.getHeight() / 2);
         gunSprite.setSize(50, 50);
         this.ammo = ammo;
         this.damage = damage;
         this.projectile = projectile;
         this.reloadTime = reloadTime;
+    }
+
+    public void updatePosition(float playerX, float playerY) {
+        gunSprite.setX(playerX + offsetX);
+        gunSprite.setY(playerY + offsetY);
+    }
+
+    public void draw(SpriteBatch batch) {
+        gunSprite.draw(batch);
     }
 
     public Sprite getGunSprite() {

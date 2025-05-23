@@ -30,9 +30,9 @@ public class Player {
     public Player(int HP, int speed, Animation<Texture> character_idle_frames, String idle0Address) {
         this.playerTexture = new Texture(idle0Address);
         this.playerSprite = new Sprite(playerTexture);
-        playerSprite.setPosition((float) Gdx.graphics.getWidth() / 2, (float) Gdx.graphics.getHeight() / 2);
+        playerSprite.setPosition(50, 50);
         playerSprite.setSize(playerTexture.getWidth() * 3, playerTexture.getHeight() * 3);
-        rect = new CollisionRect((float) Gdx.graphics.getWidth() / 2, (float) Gdx.graphics.getHeight() / 2,
+        rect = new CollisionRect(50, 50,
             playerTexture.getWidth() * 3, playerTexture.getHeight() * 3);
         this.HP = HP;
         this.speed = speed;
@@ -63,6 +63,8 @@ public class Player {
 
     public void setPosX(float posX) {
         this.posX = posX;
+        playerSprite.setX(posX);
+        rect.move(this.posX, this.posY);
     }
 
     public float getPosY() {
@@ -71,6 +73,8 @@ public class Player {
 
     public void setPosY(float posY) {
         this.posY = posY;
+        playerSprite.setY(posY);
+        rect.move(this.posX, this.posY);
     }
 
     public float getHP() {

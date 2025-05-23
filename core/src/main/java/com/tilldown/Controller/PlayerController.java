@@ -4,6 +4,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Animation;
+import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.utils.Timer;
 import com.tilldown.Controller.MenuControl.PreGameMenuController;
 import com.tilldown.Main;
@@ -20,6 +21,7 @@ public class PlayerController {
     }
 
     public void update() {
+        player.getPlayerSprite().setPosition(player.getPosX(), player.getPosY());
         player.getPlayerSprite().draw(Main.getBatch());
         updateLevel();
 
@@ -51,31 +53,31 @@ public class PlayerController {
         float speed = player.getSpeed();
         if (Game.getCurrentUser().isNumberController()) {
             if (Gdx.input.isKeyPressed(Input.Keys.NUMPAD_8)) {
-                newY -= speed;
-            }
-            if (Gdx.input.isKeyPressed(Input.Keys.NUMPAD_2)) {
                 newY += speed;
             }
+            if (Gdx.input.isKeyPressed(Input.Keys.NUMPAD_2)) {
+                newY -= speed;
+            }
             if (Gdx.input.isKeyPressed(Input.Keys.NUMPAD_4)) {
-                newX += speed;
+                newX -= speed;
                 player.getPlayerSprite().flip(true, false);
             }
             if (Gdx.input.isKeyPressed(Input.Keys.NUMPAD_6)) {
-                newX -= speed;
+                newX += speed;
             }
         } else {
             if (Gdx.input.isKeyPressed(Input.Keys.W)) {
-                newY -= speed;
-            }
-            if (Gdx.input.isKeyPressed(Input.Keys.S)) {
                 newY += speed;
             }
+            if (Gdx.input.isKeyPressed(Input.Keys.S)) {
+                newY -= speed;
+            }
             if (Gdx.input.isKeyPressed(Input.Keys.A)) {
-                newX += speed;
+                newX -= speed;
                 player.getPlayerSprite().flip(true, false);
             }
             if (Gdx.input.isKeyPressed(Input.Keys.D)) {
-                newX -= speed;
+                newX += speed;
             }
         }
 
@@ -87,10 +89,18 @@ public class PlayerController {
                 return;
             }
         }
+
+        float minX = 0;
+        float minY = 0;
+        float maxX = Gdx.graphics.getWidth() - player.getRect().width;
+        float maxY = Gdx.graphics.getHeight() - player.getRect().height;
+        newX = MathUtils.clamp(newX, minX, maxX);
+        newY = MathUtils.clamp(newY, minY, maxY);
         player.setPosX(newX);
         player.setPosY(newY);
 
-
+        gameController.getWeaponController().updateWeaponPosition(
+            player.getPosX(), player.getPosY());
 
         if (Gdx.input.isKeyJustPressed(Input.Keys.R)) {
             gameController.getWeaponController().reloadGun();

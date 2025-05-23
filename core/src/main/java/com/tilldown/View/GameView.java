@@ -91,12 +91,10 @@ public class GameView implements Screen, InputProcessor {
         float playerY = Game.getCurrentUser().getCurrentHero().getPosY();
 
         for (Tree tree : Game.trees) {
-            float treeScreenX = tree.getWorldX() + playerX + (Gdx.graphics.getWidth() / 2f);
-            float treeScreenY = tree.getWorldY() + playerY + (Gdx.graphics.getHeight() / 2f);
             Main.getBatch().draw(
                 tree.getSprite().getTexture(),
-                treeScreenX,
-                treeScreenY,
+                tree.getWorldX(),
+                tree.getWorldY(),
                 tree.getSprite().getWidth(),
                 tree.getSprite().getHeight()
             );
