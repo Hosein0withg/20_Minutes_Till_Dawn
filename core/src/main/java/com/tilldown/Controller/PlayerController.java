@@ -7,8 +7,7 @@ import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.utils.Timer;
 import com.tilldown.Controller.MenuControl.PreGameMenuController;
 import com.tilldown.Main;
-import com.tilldown.Model.GameAssetManager;
-import com.tilldown.Model.Player;
+import com.tilldown.Model.*;
 import com.tilldown.View.PreGameMenu;
 
 public class PlayerController {
@@ -27,7 +26,6 @@ public class PlayerController {
         if (player.isPlayerIdle()) {
             idleAnimation();
         }
-
         handlePlayerInput();
     }
 
@@ -48,19 +46,35 @@ public class PlayerController {
 
 
     public void handlePlayerInput() {
+        float newX = player.getPosX();
+        float newY = player.getPosY();
+        float speed = player.getSpeed();
         if (Gdx.input.isKeyPressed(Input.Keys.W)) {
-            player.setPosY(player.getPosY() - player.getSpeed());
-        }
-        if (Gdx.input.isKeyPressed(Input.Keys.D)) {
-            player.setPosX(player.getPosX() - player.getSpeed());
+            newY -= speed;
         }
         if (Gdx.input.isKeyPressed(Input.Keys.S)) {
-            player.setPosY(player.getPosY() + player.getSpeed());
+            newY += speed;
         }
         if (Gdx.input.isKeyPressed(Input.Keys.A)) {
-            player.setPosX(player.getPosX() + player.getSpeed());
+            newX += speed;
             player.getPlayerSprite().flip(true, false);
         }
+        if (Gdx.input.isKeyPressed(Input.Keys.D)) {
+            newX -= speed;
+        }
+
+        CollisionRect nextRect = new CollisionRect(newX, newY, player.getRect().width, player.getRect().height);
+
+        for (Tree tree : Game.trees) {
+            if (nextRect.collidesWith(tree.getRect())) {
+                player.setHP(player.getHP() - 1);
+                return;
+            }
+        }
+        player.setPosX(newX);
+        player.setPosY(newY);
+
+
         if (Gdx.input.isKeyPressed(Input.Keys.R)) {
             gameController.getWeaponController().reloadGun();
         } else if (Gdx.input.isKeyPressed(Input.Keys.ESCAPE)) {
@@ -68,6 +82,7 @@ public class PlayerController {
             gameController.getView().pause();
             Main.getMain().setScreen(new PreGameMenu(new PreGameMenuController(), GameAssetManager.getGameAssetManager().getSkin()));
         }
+
     }
 
 
