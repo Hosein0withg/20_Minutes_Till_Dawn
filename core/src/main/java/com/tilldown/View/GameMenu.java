@@ -18,7 +18,6 @@ public class GameMenu implements Screen {
     private final TextButton scoreboardButton;
     private final TextButton preGameButton;
     private final TextButton hintButton;
-    private final TextButton resumeGameButton;
     private final TextButton backButton;
     public Table table;
     private final GameMenuController controller;
@@ -30,7 +29,6 @@ public class GameMenu implements Screen {
         this.scoreboardButton = new TextButton("Scoreboard", skin);
         this.preGameButton = new TextButton("Pre Game", skin);
         this.hintButton = new TextButton("Hint", skin);
-        this.resumeGameButton = new TextButton("Resume Game", skin);
         this.backButton = new TextButton("Logout", skin);
         this.table = new Table();
 
@@ -53,8 +51,6 @@ public class GameMenu implements Screen {
         table.add(scoreboardButton).width(400);
         table.row();
         table.add(hintButton).width(400);
-        table.row();
-        table.add(resumeGameButton).width(400);
         table.row();
         table.add(backButton).width(400);
         stage.addActor(table);
@@ -93,10 +89,6 @@ public class GameMenu implements Screen {
     @Override
     public void dispose() {
 
-    }
-
-    public TextButton getResumeGameButton() {
-        return resumeGameButton;
     }
 
     public TextButton getHintButton() {

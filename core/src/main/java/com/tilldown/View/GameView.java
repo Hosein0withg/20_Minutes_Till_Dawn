@@ -35,6 +35,7 @@ public class GameView implements Screen, InputProcessor {
     Label abilityLabel;
     public boolean showAbility = false;
     public String ability = "";
+    Skin skin;
 
     public GameView(GameController controller, Skin skin) {
         this.controller = controller;
@@ -43,6 +44,12 @@ public class GameView implements Screen, InputProcessor {
         Gdx.input.setCursorPosition(Gdx.graphics.getWidth() / 2, Gdx.graphics.getHeight() / 2);
         cursorTexture = new Texture("cursor.png");
         cursorSprite = new Sprite(cursorTexture);
+        this.skin = skin;
+    }
+
+    @Override
+    public void show() {
+        table.clear();
         Player hero = Game.getCurrentUser().getCurrentHero();
         timerLabel = new Label("Time Left: " + formatTime(controller.getGameTime()), skin);
         HPLabel = new Label("HP: " + (int) hero.getHP(), skin);
@@ -52,10 +59,6 @@ public class GameView implements Screen, InputProcessor {
         abilityLabel = new Label("Ability: ", skin);
         xpBar = new ProgressBar(0, Game.getCurrentUser().getCurrentHero().calculateNextLevelXP(), 1, false, GameAssetManager.getGameAssetManager().getSkin());
         xpBar.setValue(Game.getCurrentUser().getCurrentHero().getXP());
-    }
-
-    @Override
-    public void show() {
         stage = new Stage(new ScreenViewport());
         table.top().left().setFillParent(true);
         Gdx.input.setInputProcessor(this);
@@ -86,9 +89,6 @@ public class GameView implements Screen, InputProcessor {
         cursorSprite.setPosition(Gdx.input.getX(), Gdx.graphics.getHeight() - Gdx.input.getY());
         Main.getBatch().begin();
         controller.updateGame();
-
-        float playerX = Game.getCurrentUser().getCurrentHero().getPosX();
-        float playerY = Game.getCurrentUser().getCurrentHero().getPosY();
 
         for (Tree tree : Game.trees) {
             Main.getBatch().draw(

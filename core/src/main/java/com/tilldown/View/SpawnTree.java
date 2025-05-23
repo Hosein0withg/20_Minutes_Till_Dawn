@@ -22,8 +22,8 @@ public class SpawnTree implements Screen {
 
     public void spawnTrees() {
         for (int i = 0; i < treeCount; i++) {
-            int x = MathUtils.random(30, mapWidth - 30);
-            int y = MathUtils.random(30, mapHeight - 30);
+            int x = MathUtils.random(50, mapWidth - 100);
+            int y = MathUtils.random(200, mapHeight - 100);
             Tree tree = new Tree(x, y);
             trees.add(tree);
         }

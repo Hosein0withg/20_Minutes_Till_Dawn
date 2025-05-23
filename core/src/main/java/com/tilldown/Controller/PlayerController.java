@@ -6,9 +6,11 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.utils.Timer;
+import com.tilldown.Controller.MenuControl.PauseMenuController;
 import com.tilldown.Controller.MenuControl.PreGameMenuController;
 import com.tilldown.Main;
 import com.tilldown.Model.*;
+import com.tilldown.View.PauseMenu;
 import com.tilldown.View.PreGameMenu;
 
 public class PlayerController {
@@ -110,8 +112,7 @@ public class PlayerController {
             gameController.getWeaponController().reloadGun();
         } else if (Gdx.input.isKeyJustPressed(Input.Keys.ESCAPE)) {
             Main.getMain().getScreen().dispose();
-            gameController.getView().pause();
-            Main.getMain().setScreen(new PreGameMenu(new PreGameMenuController(), GameAssetManager.getGameAssetManager().getSkin()));
+            Main.getMain().setScreen(new PauseMenu(new PauseMenuController(), GameAssetManager.getGameAssetManager().getSkin(), gameController.getView()));
         } else if (Gdx.input.isKeyJustPressed(Input.Keys.T)) {
             Game.getCurrentUser().setGameDuration(Game.getCurrentUser().gameDuration);
             gameController.cheatGameTime();
