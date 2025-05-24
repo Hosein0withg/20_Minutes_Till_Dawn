@@ -25,7 +25,7 @@ public class WorldController {
         Main.getBatch().draw(backgroundTexture, 0, 0);
         monsterSpawnTimer += delta;
         if (monsterSpawnTimer >= 3f) {
-            int monstersToSpawn = (int) Math.floor(Game.getCurrentUser().gameTimePassed / 30f);
+            int monstersToSpawn = (int) Math.floor(Game.gameTimePassed / 30f);
             for (int i = 0; i < monstersToSpawn; i++) {
                 monsters.add(new TentacleMonster());
             }
@@ -38,7 +38,7 @@ public class WorldController {
             monster.moveMonster();
             monster.getSprite().draw(Main.getBatch());
             if (monster.getHP() <= 0) {
-                Game.getCurrentUser().seedsOnMap.add(new Seed(monster.getPosX(), monster.getPosY()));
+                Game.seedsOnMap.add(new Seed(monster.getPosX(), monster.getPosY()));
                 monsters.remove(monster);
                 Game.getCurrentUser().getCurrentHero().setKill(Game.getCurrentUser().getCurrentHero().getKill() + 1);
                 i--;

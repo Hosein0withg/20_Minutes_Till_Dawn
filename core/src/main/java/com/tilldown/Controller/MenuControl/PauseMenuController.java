@@ -2,6 +2,7 @@ package com.tilldown.Controller.MenuControl;
 
 import com.tilldown.Main;
 import com.tilldown.Model.GameAssetManager;
+import com.tilldown.View.MenuViews.EndGameMenu;
 import com.tilldown.View.MenuViews.GameMenu;
 import com.tilldown.View.MenuViews.PauseMenu;
 
@@ -19,7 +20,7 @@ public class PauseMenuController {
                 Main.getMain().setScreen(view.getGameView());
             } else if (view.getGiveUpButton().isPressed()) {
                 Main.getMain().getScreen().dispose();
-                Main.getMain().setScreen(new GameMenu(new GameMenuController(), GameAssetManager.getGameAssetManager().getSkin()));
+                Main.getMain().setScreen(new EndGameMenu(new EndGameMenuController(), GameAssetManager.getGameAssetManager().getSkin(), false));
             } else if (view.getShowCheatCodesButton().isPressed() && !view.isCheatCodes) {
                 view.showCheatCodeGuide();
             } else if (view.getShowAbilitiesButton().isPressed() && !view.isAbility) {

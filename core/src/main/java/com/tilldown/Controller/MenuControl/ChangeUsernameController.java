@@ -3,6 +3,7 @@ package com.tilldown.Controller.MenuControl;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.tilldown.Main;
+import com.tilldown.Model.App;
 import com.tilldown.Model.Game;
 import com.tilldown.Model.GameAssetManager;
 import com.tilldown.Model.User;
@@ -22,10 +23,10 @@ public class ChangeUsernameController {
                 @Override
                 public void changed(ChangeListener.ChangeEvent event, Actor actor) {
                     String username = view.username.getText();
-                    if (Game.findUser(username) != null) {
+                    if (App.findUser(username) != null) {
                         view.errorLabel.setText("Username already exists");
                     } else {
-                        User currentUser = Game.findUser(Game.getCurrentUser().getUsername());
+                        User currentUser = App.findUser(Game.getCurrentUser().getUsername());
                         if (currentUser != null) {
                             currentUser.setUsername(username);
                             Main.getMain().setScreen(new ProfileMenu(new ProfileMenuController(), GameAssetManager.getGameAssetManager().getSkin()));

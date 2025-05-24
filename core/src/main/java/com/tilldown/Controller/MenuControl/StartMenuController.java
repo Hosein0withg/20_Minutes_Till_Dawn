@@ -2,6 +2,7 @@ package com.tilldown.Controller.MenuControl;
 
 import com.badlogic.gdx.Gdx;
 import com.tilldown.Main;
+import com.tilldown.Model.App;
 import com.tilldown.Model.Game;
 import com.tilldown.Model.GameAssetManager;
 import com.tilldown.Model.User;
@@ -38,7 +39,7 @@ public class StartMenuController {
 
     private void setGuest() {
         User guest = new User("Guest", "Guest", "Guest", "Guest", "D:\\20min\\assets\\avatar\\2.png");
-        Game.users.add(guest);
-        Game.setCurrentUser(guest);
+        App.users.add(guest);
+        App.setCurrentUser(guest);
     }
 }

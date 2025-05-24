@@ -2,6 +2,7 @@ package com.tilldown.Controller.MenuControl;
 
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.tilldown.Main;
+import com.tilldown.Model.App;
 import com.tilldown.Model.Game;
 import com.tilldown.Model.GameAssetManager;
 import com.tilldown.Model.User;
@@ -29,8 +30,8 @@ public class ProfileMenuController {
                 Main.getMain().getScreen().dispose();
                 Main.getMain().setScreen(new ChangeAvatar(new ChangeAvatarController(), GameAssetManager.getGameAssetManager().getSkin()));
             } else if (view.getDeleteAccount().isChecked()) {
-                Game.users.remove(Game.getCurrentUser());
-                Game.setCurrentUser(null);
+                App.users.remove(Game.getCurrentUser());
+                App.setCurrentUser(null);
                 Main.getMain().getScreen().dispose();
                 Main.getMain().setScreen(new StartMenu(new StartMenuController(), GameAssetManager.getGameAssetManager().getSkin()));
             }
@@ -42,7 +43,7 @@ public class ProfileMenuController {
         String output = "";
         if (player != null) {
             output += "username: " + player.getUsername() + "\n";
-            output += "point: " + player.getPoints();
+            output += "point: " + player.getScore();
         }
         view.setInformation(new Label(output, GameAssetManager.getGameAssetManager().getSkin()));
     }

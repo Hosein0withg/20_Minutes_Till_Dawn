@@ -23,7 +23,7 @@ public class ChangePasswordController {
                     if (Regex.password.getMatcher(password) == null) {
                         view.errorLabel.setText("Password is too easy!");
                     } else {
-                        User currentUser = Game.findUser(Game.getCurrentUser().getUsername());
+                        User currentUser = App.findUser(Game.getCurrentUser().getUsername());
                         if (currentUser != null) {
                             currentUser.setPassword(password);
                             Main.getMain().setScreen(new ProfileMenu(new ProfileMenuController(), GameAssetManager.getGameAssetManager().getSkin()));

@@ -1,15 +1,19 @@
 package com.tilldown.Controller;
 
 import com.badlogic.gdx.Gdx;
+import com.tilldown.Controller.MenuControl.EndGameMenuController;
+import com.tilldown.Main;
 import com.tilldown.Model.Game;
+import com.tilldown.Model.GameAssetManager;
 import com.tilldown.View.GameView;
+import com.tilldown.View.MenuViews.EndGameMenu;
 
 public class GameController {
     private GameView view;
     private PlayerController playerController;
     private WorldController worldController;
     private WeaponController weaponController;
-    private float gameTime = Game.getCurrentUser().gameDuration * 60;
+    private float gameTime = Game.gameDuration * 60;
 
 
     public void setView(GameView view) {
@@ -17,6 +21,7 @@ public class GameController {
         playerController = new PlayerController(Game.getCurrentUser().getCurrentHero(), this);
         worldController = new WorldController(playerController);
         weaponController = new WeaponController(Game.getCurrentUser().getCurrentHero().getCurrentGun(), this);
+        Game.gameTimePassed = 0;
     }
 
     public void updateGame(float delta) {
@@ -25,10 +30,11 @@ public class GameController {
             playerController.update();
             weaponController.update();
             gameTime -= Gdx.graphics.getDeltaTime();
-            Game.getCurrentUser().gameTimePassed = (int) ((Game.getCurrentUser().gameDuration * 60) - gameTime);
+            Game.gameTimePassed = (int) ((Game.gameDuration * 60) - gameTime);
 
             if (gameTime <= 0) {
-                Gdx.app.exit();
+                Main.getMain().getScreen().dispose();
+                Main.getMain().setScreen(new EndGameMenu(new EndGameMenuController(), GameAssetManager.getGameAssetManager().getSkin(), true));
             }
         }
     }

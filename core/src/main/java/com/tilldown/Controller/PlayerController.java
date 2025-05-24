@@ -6,9 +6,11 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.utils.Timer;
+import com.tilldown.Controller.MenuControl.EndGameMenuController;
 import com.tilldown.Controller.MenuControl.PauseMenuController;
 import com.tilldown.Main;
 import com.tilldown.Model.*;
+import com.tilldown.View.MenuViews.EndGameMenu;
 import com.tilldown.View.MenuViews.PauseMenu;
 
 public class PlayerController {
@@ -103,11 +105,11 @@ public class PlayerController {
             }
         }
 
-        for (int i = 0; i < Game.getCurrentUser().seedsOnMap.size(); i++) {
-            Seed seed = Game.getCurrentUser().seedsOnMap.get(i);
+        for (int i = 0; i < Game.seedsOnMap.size(); i++) {
+            Seed seed = Game.seedsOnMap.get(i);
             if (nextRect.overlap(seed.getCollisionRect())) {
                 player.setXP(player.getXP() + 3);
-                Game.getCurrentUser().seedsOnMap.remove(seed);
+                Game.seedsOnMap.remove(seed);
                 i++;
             }
         }
@@ -130,9 +132,8 @@ public class PlayerController {
             Main.getMain().getScreen().dispose();
             Main.getMain().setScreen(new PauseMenu(new PauseMenuController(), GameAssetManager.getGameAssetManager().getSkin(), gameController.getView()));
         } else if (Gdx.input.isKeyJustPressed(Input.Keys.T)) {
-            Game.getCurrentUser().setGameDuration(Game.getCurrentUser().gameDuration);
             gameController.cheatGameTime();
-            Game.getCurrentUser().gameTimePassed = (int) ((Game.getCurrentUser().gameDuration * 60) - gameController.getGameTime());
+            Game.gameTimePassed = (int) ((Game.gameDuration * 60) - gameController.getGameTime());
         } else if (Gdx.input.isKeyJustPressed(Input.Keys.L)) {
             player.setLevel(player.getLevel() + 1);
             player.setXP(0);
@@ -158,6 +159,11 @@ public class PlayerController {
                     gameController.getView().showAbility = false;
                 }
             }, 10);
+        }
+
+        if (player.getHP() <= 0) {
+            Main.getMain().getScreen().dispose();
+            Main.getMain().setScreen(new EndGameMenu(new EndGameMenuController(), GameAssetManager.getGameAssetManager().getSkin(), false));
         }
 
     }

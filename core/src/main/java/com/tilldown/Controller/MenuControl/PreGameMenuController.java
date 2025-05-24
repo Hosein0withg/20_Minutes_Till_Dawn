@@ -69,16 +69,16 @@ public class PreGameMenuController {
         if (view != null) {
             switch (view.getSelectedDuration()) {
                 case "2":
-                    Game.getCurrentUser().setGameDuration(2);
+                    Game.gameDuration = 2;
                     break;
                 case "5":
-                    Game.getCurrentUser().setGameDuration(5);
+                    Game.gameDuration = 5;
                     break;
                 case "10":
-                    Game.getCurrentUser().setGameDuration(10);
+                    Game.gameDuration = 10;
                     break;
                 case "20":
-                    Game.getCurrentUser().setGameDuration(20);
+                    Game.gameDuration = 20;
                     break;
             }
         }

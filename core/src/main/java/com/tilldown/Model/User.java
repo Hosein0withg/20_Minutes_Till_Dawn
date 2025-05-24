@@ -1,7 +1,6 @@
 package com.tilldown.Model;
 
 import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 
@@ -13,14 +12,12 @@ public class User {
     private final String securityQuestion;
     private final String securityAnswer;
     private Texture avatar;
-    private int points;
-    private Player currentHero;
-    public int gameDuration = 2;
-    public int gameTimePassed = 0;
+    private int score = 0;
+    private int kill = 0;
+    private int livedTime = 0;
     private boolean autoReload = false;
     private boolean numberController = false;
     public ArrayList<String> gainedAbilities = new ArrayList<>();
-    public ArrayList<Seed> seedsOnMap = new ArrayList<>();
 
     public User(String username, String password, String securityQuestion, String securityAnswer, String avatarPath) {
         this.username = username;
@@ -28,8 +25,7 @@ public class User {
         this.securityQuestion = securityQuestion;
         this.securityAnswer = securityAnswer;
         this.avatar = new Texture(avatarPath);
-        points = 0;
-        this.currentHero = Game.characters.get(0);
+        App.setCurrentHero(Game.characters.get(0));
 
     }
 
@@ -69,24 +65,20 @@ public class User {
         return avatar;
     }
 
-    public int getPoints() {
-        return points;
+    public int getScore() {
+        return score;
     }
 
-    public void setPoints(int points) {
-        this.points = points;
+    public void setScore(int score) {
+        this.score = score;
     }
 
     public Player getCurrentHero() {
-        return currentHero;
+        return App.getCurrentHero();
     }
 
     public void setCurrentHero(Player currentHero) {
-        this.currentHero = currentHero;
-    }
-
-    public void setGameDuration(int gameDuration) {
-        this.gameDuration = gameDuration;
+        App.setCurrentHero(currentHero);
     }
 
     public boolean isAutoReload() {
@@ -103,5 +95,21 @@ public class User {
 
     public void setNumberController(boolean numberController) {
         this.numberController = numberController;
+    }
+
+    public int getKill() {
+        return kill;
+    }
+
+    public void setKill(int kill) {
+        this.kill = kill;
+    }
+
+    public int getLivedTime() {
+        return livedTime;
+    }
+
+    public void setLivedTime(int livedTime) {
+        this.livedTime = livedTime;
     }
 }

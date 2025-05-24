@@ -98,7 +98,7 @@ public class GameView implements Screen, InputProcessor {
             );
         }
 
-        for (Seed seed : Game.getCurrentUser().seedsOnMap) {
+        for (Seed seed : Game.seedsOnMap) {
             Main.getBatch().draw(seed.getTexture(), seed.getPosX(), seed.getPosY());
         }
 
