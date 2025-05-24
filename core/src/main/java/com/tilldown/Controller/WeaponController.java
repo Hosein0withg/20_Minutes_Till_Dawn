@@ -6,6 +6,7 @@ import com.badlogic.gdx.utils.Timer;
 import com.tilldown.Main;
 import com.tilldown.Model.Bullet;
 import com.tilldown.Model.Game;
+import com.tilldown.Model.TentacleMonster;
 import com.tilldown.Model.Weapon;
 
 import java.util.ArrayList;
@@ -15,9 +16,11 @@ public class WeaponController {
     private Weapon weapon;
     private ArrayList<Bullet> bullets = new ArrayList<>();
     private boolean isReloading = false;
+    private GameController gameController;
 
-    public WeaponController(Weapon weapon) {
+    public WeaponController(Weapon weapon, GameController gameController) {
         this.weapon = weapon;
+        this.gameController = gameController;
     }
 
     public void update() {
@@ -45,7 +48,8 @@ public class WeaponController {
         float weaponY = weapon.getGunSprite().getY();
 
         if (Game.getCurrentUser().getCurrentHero().getAmmoLeft() > 0 && !isReloading) {
-            bullets.add(new Bullet(weaponX, weaponY, x, y));
+            bullets.add(new Bullet(weaponX, weaponY, x, y,
+                Game.getCurrentUser().getCurrentHero().getCurrentGun().getDamage() * Game.getCurrentUser().getCurrentHero().getCurrentGun().getProjectile()));
             Game.getCurrentUser().getCurrentHero().setAmmoLeft(Game.getCurrentUser().getCurrentHero().getAmmoLeft() - 1);
         }
         if (Game.getCurrentUser().getCurrentHero().getAmmoLeft() <= 0 && Game.getCurrentUser().isAutoReload()) {
@@ -69,12 +73,27 @@ public class WeaponController {
 
         while (iterator.hasNext()) {
             Bullet b = iterator.next();
+            if (!b.isActive()) {
+                iterator.remove();
+                continue;
+            }
             b.updatePosition();
+            checkMonsterCollisions(b);
             b.getSprite().draw(Main.getBatch());
 
             if (b.getSprite().getX() < 0 || b.getSprite().getX() > Gdx.graphics.getWidth() ||
                 b.getSprite().getY() < 0 || b.getSprite().getY() > Gdx.graphics.getHeight()) {
                 iterator.remove();
+            }
+        }
+    }
+
+    private void checkMonsterCollisions(Bullet bullet) {
+        for (TentacleMonster monster : gameController.getWorldController().monsters) {
+            if (bullet.getCollisionRect().overlap(monster.getRect())) {
+                monster.setHP(monster.getHP() - bullet.getDamage());
+                bullet.deactivate();
+                break;
             }
         }
     }

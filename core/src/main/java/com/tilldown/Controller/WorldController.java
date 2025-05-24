@@ -13,7 +13,7 @@ import java.util.ArrayList;
 public class WorldController {
     private PlayerController playerController;
     private final Texture backgroundTexture;
-    private ArrayList<TentacleMonster> monsters = new ArrayList<>();
+    public ArrayList<TentacleMonster> monsters = new ArrayList<>();
     private float monsterSpawnTimer = 0;
     private Animation<Texture> tentacleAnimation;
 
@@ -33,13 +33,16 @@ public class WorldController {
             }
             monsterSpawnTimer = 0;
         }
-        for (TentacleMonster monster : monsters) {
+        for (int i = 0; i < monsters.size(); i++) {
+            TentacleMonster monster = monsters.get(i);
             monster.setTime(monster.getTime() + delta);
             monster.getSprite().setRegion(tentacleAnimation.getKeyFrame(monster.getTime()));
             monster.moveMonster();
             monster.getSprite().draw(Main.getBatch());
             if (monster.getHP() <= 0) {
                 monsters.remove(monster);
+                Game.getCurrentUser().getCurrentHero().setKill(Game.getCurrentUser().getCurrentHero().getKill() + 1);
+                i--;
             }
         }
     }

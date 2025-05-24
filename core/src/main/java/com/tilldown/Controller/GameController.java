@@ -16,7 +16,7 @@ public class GameController {
         this.view = view;
         playerController = new PlayerController(Game.getCurrentUser().getCurrentHero(), this);
         worldController = new WorldController(playerController);
-        weaponController = new WeaponController(Game.getCurrentUser().getCurrentHero().getCurrentGun());
+        weaponController = new WeaponController(Game.getCurrentUser().getCurrentHero().getCurrentGun(), this);
     }
 
     public void updateGame(float delta) {
@@ -51,5 +51,9 @@ public class GameController {
 
     public void cheatGameTime() {
         this.gameTime -= 60;
+    }
+
+    public WorldController getWorldController() {
+        return worldController;
     }
 }

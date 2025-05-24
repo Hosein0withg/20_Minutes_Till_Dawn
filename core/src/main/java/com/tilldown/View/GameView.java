@@ -84,6 +84,7 @@ public class GameView implements Screen, InputProcessor {
             abilityLabel.setText("Ability: nothing");
         }
         HPLabel.setText("HP: " + (int) Game.getCurrentUser().getCurrentHero().getHP());
+        killLabel.setText("Kill: " + Game.getCurrentUser().getCurrentHero().getKill());
         xpBar.setRange(0, Game.getCurrentUser().getCurrentHero().calculateNextLevelXP());
         xpBar.setValue(Game.getCurrentUser().getCurrentHero().getXP());
         cursorSprite.setPosition(Gdx.input.getX(), Gdx.graphics.getHeight() - Gdx.input.getY());
