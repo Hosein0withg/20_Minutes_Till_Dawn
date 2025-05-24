@@ -2,6 +2,7 @@ package com.tilldown.View.MenuViews;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.graphics.Cursor;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
@@ -44,6 +45,9 @@ public class PauseMenu implements Screen {
         stage = new Stage(new ScreenViewport());
         Gdx.input.setInputProcessor(stage);
 
+        Gdx.input.setCursorCatched(false);
+        Gdx.graphics.setSystemCursor(Cursor.SystemCursor.Arrow);
+
         table.setFillParent(true);
         table.center();
         table.add(resumeGameButton).width(420);
@@ -83,7 +87,6 @@ public class PauseMenu implements Screen {
 
     @Override
     public void hide() {
-
     }
 
     @Override

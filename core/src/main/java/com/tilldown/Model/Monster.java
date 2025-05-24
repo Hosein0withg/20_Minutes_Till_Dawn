@@ -16,7 +16,7 @@ public class Monster {
     private float time = 0;
     private float speed;
 
-    public Monster(monsterName monsterName, int HP, float speed, String idle0) {
+    public Monster(monsterName monsterName, int HP, float speed, String idle0, float sizeMultiplier) {
         this.monsterName = monsterName;
         texture = new Texture(idle0);
         sprite = new Sprite(texture);
@@ -41,8 +41,8 @@ public class Monster {
                 break;
         }
         sprite.setPosition(posX, posY);
-        sprite.setSize((float) (texture.getWidth() * 1.5), (float) (texture.getHeight() * 1.5));
-        rect = new CollisionRect(posX, posY, (float) (texture.getWidth() * 1.5), (float) (texture.getHeight() * 1.5));
+        sprite.setSize((float) (texture.getWidth() * sizeMultiplier), (float) (texture.getHeight() * sizeMultiplier));
+        rect = new CollisionRect(posX, posY, (float) (texture.getWidth() * sizeMultiplier), (float) (texture.getHeight() * sizeMultiplier));
     }
 
     public void moveMonster() {

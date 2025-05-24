@@ -2,6 +2,7 @@ package com.tilldown.Controller;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Animation;
+import com.badlogic.gdx.utils.Timer;
 import com.tilldown.Main;
 import com.tilldown.Model.*;
 
@@ -13,9 +14,11 @@ public class WorldController {
     public ArrayList<Monster> monsters = new ArrayList<>();
     private float tentacleSpawnTimer = 0;
     private float eyebatSpawnTimer = 0;
+    private float elderDashTimer = 0;
     private final Animation<Texture> tentacleAnimation;
     private final Animation<Texture> eyebatAnimation;
     private final Animation<Texture> elderAnimation;
+    private boolean isBossSpawned = false;
 
     public WorldController(PlayerController playerController) {
         this.backgroundTexture = new Texture("background.png");
@@ -30,20 +33,25 @@ public class WorldController {
 
         tentacleSpawnTimer += delta;
         eyebatSpawnTimer += delta;
+        elderDashTimer += delta;
 
         if (tentacleSpawnTimer >= 3f) {
             int tentaclesToSpawn = (int) Math.floor(Game.gameTimePassed / 30f);
             for (int i = 0; i < tentaclesToSpawn; i++) {
-                monsters.add(new Monster(monsterName.TentacleMonster, 25, 0.5f, GameAssetManager.tentacleMonster[0]));
+                monsters.add(new Monster(monsterName.TentacleMonster, 25, 0.5f, GameAssetManager.tentacleMonster[0], 1.2f));
             }
             tentacleSpawnTimer = 0;
         }
         if (Game.gameTimePassed >= (Game.gameDuration * 15) && eyebatSpawnTimer >= 10f) {
             int eyebatsToSpawn = (int) Math.floor((double) (4 * Game.gameTimePassed - (Game.gameDuration * 60) + 30) / 30);
             for (int i = 0; i < eyebatsToSpawn; i++) {
-                monsters.add(new Monster(monsterName.Eyebat, 50, 0.6f, GameAssetManager.eyebat[0]));
+                monsters.add(new Monster(monsterName.Eyebat, 50, 0.6f, GameAssetManager.eyebat[0], 1f));
             }
             eyebatSpawnTimer = 0;
+        }
+        if (!isBossSpawned && Game.gameTimePassed >= (Game.gameDuration * 30)) {
+            isBossSpawned = true;
+            monsters.add(new Monster(monsterName.Elder, 400, 0.7f, GameAssetManager.elder[0], 3f));
         }
 
         for (int i = 0; i < monsters.size(); i++) {
@@ -59,6 +67,16 @@ public class WorldController {
                 case Elder:
                     monster.getSprite().setRegion(elderAnimation.getKeyFrame(monster.getTime(), true));
                     break;
+            }
+            if (monster.monsterName == monsterName.Elder && elderDashTimer >= 5f) {
+                elderDashTimer = 0;
+                monster.setSpeed(2.1f);
+                Timer.schedule(new Timer.Task() {
+                    @Override
+                    public void run() {
+                        monster.setSpeed(0.7f);
+                    }
+                }, 1.5f);
             }
             monster.moveMonster();
             monster.getSprite().draw(Main.getBatch());

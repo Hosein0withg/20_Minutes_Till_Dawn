@@ -3,6 +3,7 @@ package com.tilldown.View;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.graphics.Cursor;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.scenes.scene2d.Stage;
@@ -37,7 +38,7 @@ public class GameView implements Screen, InputProcessor {
     public GameView(GameController controller, Skin skin) {
         this.controller = controller;
         controller.setView(this);
-        //Gdx.input.setCursorCatched(true);
+        Gdx.input.setCursorCatched(true);
         Gdx.input.setCursorPosition(Gdx.graphics.getWidth() / 2, Gdx.graphics.getHeight() / 2);
         cursorTexture = new Texture("cursor.png");
         cursorSprite = new Sprite(cursorTexture);
@@ -67,6 +68,19 @@ public class GameView implements Screen, InputProcessor {
         table.add(killLabel).pad(20);
         table.add(abilityLabel).pad(20);
         stage.addActor(table);
+        setupGameCursor();
+    }
+
+    private void setupGameCursor() {
+        Gdx.input.setCursorCatched(true);
+        Gdx.graphics.setCursor();
+
+        if (cursorTexture == null) {
+            cursorTexture = new Texture("cursor.png");
+            cursorSprite = new Sprite(cursorTexture);
+        }
+
+        Gdx.input.setCursorPosition(Gdx.graphics.getWidth()/2, Gdx.graphics.getHeight()/2);
     }
 
     @Override
@@ -84,7 +98,13 @@ public class GameView implements Screen, InputProcessor {
         killLabel.setText("Kill: " + Game.getCurrentUser().getCurrentHero().getKill());
         xpBar.setRange(0, Game.getCurrentUser().getCurrentHero().calculateNextLevelXP());
         xpBar.setValue(Game.getCurrentUser().getCurrentHero().getXP());
-        cursorSprite.setPosition(Gdx.input.getX(), Gdx.graphics.getHeight() - Gdx.input.getY());
+        if (Gdx.input.isCursorCatched()) {
+            cursorSprite.setPosition(
+                Gdx.input.getX() - cursorSprite.getWidth()/2,
+                Gdx.graphics.getHeight() - Gdx.input.getY() - cursorSprite.getHeight()/2
+            );
+            cursorSprite.draw(Main.getBatch());
+        }
         Main.getBatch().begin();
         controller.updateGame(delta);
 
@@ -102,7 +122,9 @@ public class GameView implements Screen, InputProcessor {
             Main.getBatch().draw(seed.getTexture(), seed.getPosX(), seed.getPosY());
         }
 
-        //cursorSprite.draw(Main.getBatch());
+        if (Gdx.input.isCursorCatched()) {
+            cursorSprite.draw(Main.getBatch());
+        }
         Main.getBatch().end();
         stage.act(Math.min(Gdx.graphics.getDeltaTime(), 1 / 30f));
         stage.draw();
@@ -115,23 +137,28 @@ public class GameView implements Screen, InputProcessor {
 
     @Override
     public void pause() {
-
+        Gdx.input.setCursorCatched(false);
+        Gdx.graphics.setSystemCursor(Cursor.SystemCursor.Arrow);
     }
 
     @Override
     public void resume() {
-
+        setupGameCursor();
     }
 
     @Override
     public void hide() {
-
+        Gdx.input.setCursorCatched(true);
+        Gdx.graphics.setSystemCursor(Cursor.SystemCursor.None);
+        Gdx.input.setCursorCatched(false);
+        Gdx.graphics.setSystemCursor(Cursor.SystemCursor.Arrow);
     }
 
     @Override
     public void dispose() {
-        cursorTexture.dispose();
         stage.dispose();
+        Gdx.input.setCursorCatched(false);
+        Gdx.graphics.setSystemCursor(Cursor.SystemCursor.Arrow);
     }
 
     @Override
