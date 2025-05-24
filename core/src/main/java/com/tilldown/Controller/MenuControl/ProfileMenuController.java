@@ -4,9 +4,8 @@ import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.tilldown.Main;
 import com.tilldown.Model.Game;
 import com.tilldown.Model.GameAssetManager;
-import com.tilldown.Model.Player;
 import com.tilldown.Model.User;
-import com.tilldown.View.*;
+import com.tilldown.View.MenuViews.*;
 
 public class ProfileMenuController {
     private ProfileMenu view;

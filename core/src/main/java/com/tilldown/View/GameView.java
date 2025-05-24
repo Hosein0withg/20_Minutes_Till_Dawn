@@ -88,7 +88,7 @@ public class GameView implements Screen, InputProcessor {
         xpBar.setValue(Game.getCurrentUser().getCurrentHero().getXP());
         cursorSprite.setPosition(Gdx.input.getX(), Gdx.graphics.getHeight() - Gdx.input.getY());
         Main.getBatch().begin();
-        controller.updateGame();
+        controller.updateGame(delta);
 
         for (Tree tree : Game.trees) {
             Main.getBatch().draw(

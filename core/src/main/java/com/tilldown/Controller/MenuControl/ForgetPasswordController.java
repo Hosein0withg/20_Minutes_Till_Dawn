@@ -3,10 +3,9 @@ package com.tilldown.Controller.MenuControl;
 import com.tilldown.Main;
 import com.tilldown.Model.Game;
 import com.tilldown.Model.GameAssetManager;
-import com.tilldown.Model.Player;
 import com.tilldown.Model.User;
-import com.tilldown.View.ForgetPassword;
-import com.tilldown.View.LoginMenu;
+import com.tilldown.View.MenuViews.ForgetPassword;
+import com.tilldown.View.MenuViews.LoginMenu;
 
 public class ForgetPasswordController {
     private ForgetPassword view;

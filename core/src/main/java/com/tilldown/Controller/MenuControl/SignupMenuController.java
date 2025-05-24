@@ -2,8 +2,8 @@ package com.tilldown.Controller.MenuControl;
 
 import com.tilldown.Main;
 import com.tilldown.Model.*;
-import com.tilldown.View.SignupMenu;
-import com.tilldown.View.StartMenu;
+import com.tilldown.View.MenuViews.SignupMenu;
+import com.tilldown.View.MenuViews.StartMenu;
 
 import java.util.Random;
 

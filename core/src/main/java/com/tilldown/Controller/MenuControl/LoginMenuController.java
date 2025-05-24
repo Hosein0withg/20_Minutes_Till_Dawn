@@ -2,9 +2,9 @@ package com.tilldown.Controller.MenuControl;
 
 import com.tilldown.Main;
 import com.tilldown.Model.*;
-import com.tilldown.View.ForgetPassword;
-import com.tilldown.View.GameMenu;
-import com.tilldown.View.LoginMenu;
+import com.tilldown.View.MenuViews.ForgetPassword;
+import com.tilldown.View.MenuViews.GameMenu;
+import com.tilldown.View.MenuViews.LoginMenu;
 
 public class LoginMenuController {
     private LoginMenu view;

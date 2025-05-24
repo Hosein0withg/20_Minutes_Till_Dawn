@@ -7,11 +7,9 @@ import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.utils.Timer;
 import com.tilldown.Controller.MenuControl.PauseMenuController;
-import com.tilldown.Controller.MenuControl.PreGameMenuController;
 import com.tilldown.Main;
 import com.tilldown.Model.*;
-import com.tilldown.View.PauseMenu;
-import com.tilldown.View.PreGameMenu;
+import com.tilldown.View.MenuViews.PauseMenu;
 
 public class PlayerController {
     private Player player;

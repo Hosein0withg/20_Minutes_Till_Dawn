@@ -1,4 +1,4 @@
-package com.tilldown.View;
+package com.tilldown.View.MenuViews;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
@@ -12,7 +12,6 @@ import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import com.tilldown.Controller.MenuControl.HintMenuController;
 import com.tilldown.Main;
 import com.tilldown.Model.GameAssetManager;
-import sun.tools.jconsole.Tab;
 
 public class HintMenu implements Screen {
     private Stage stage;

@@ -1,4 +1,4 @@
-package com.tilldown.View;
+package com.tilldown.View.MenuViews;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
@@ -10,7 +10,6 @@ import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import com.tilldown.Controller.MenuControl.ProfileMenuController;
 import com.tilldown.Main;
 import com.tilldown.Model.Game;
-import com.tilldown.Model.Player;
 import com.tilldown.Model.User;
 
 public class ProfileMenu implements Screen {

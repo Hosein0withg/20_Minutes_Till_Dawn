@@ -4,37 +4,44 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.tilldown.Main;
+import com.tilldown.Model.Game;
 import com.tilldown.Model.GameAssetManager;
 import com.tilldown.Model.TentacleMonster;
+
+import java.util.ArrayList;
 
 public class WorldController {
     private PlayerController playerController;
     private final Texture backgroundTexture;
-    private TentacleMonster tentacleMonster;
+    private ArrayList<TentacleMonster> monsters = new ArrayList<>();
+    private float monsterSpawnTimer = 0;
+    private Animation<Texture> tentacleAnimation;
 
     public WorldController(PlayerController playerController) {
         this.backgroundTexture = new Texture("background.png");
         this.playerController = playerController;
-        this.tentacleMonster = new TentacleMonster();
+        this.tentacleAnimation = GameAssetManager.getGameAssetManager().getTentacle_idle_animation();
     }
 
-    public void update() {
+    public void update(float delta) {
         Main.getBatch().draw(backgroundTexture, 0, 0);
-        tentacleMonster.getSprite().draw(Main.getBatch());
-        idleAnimation();
-    }
-
-    public void idleAnimation() {
-        Animation<Texture> animation = GameAssetManager.getGameAssetManager().getTentacle_idle_animation();
-
-        tentacleMonster.getSprite().setRegion(animation.getKeyFrame(tentacleMonster.getTime()));
-
-        if (!animation.isAnimationFinished(tentacleMonster.getTime())) {
-            tentacleMonster.setTime(tentacleMonster.getTime() + Gdx.graphics.getDeltaTime());
-        } else {
-            tentacleMonster.setTime(0);
+        monsterSpawnTimer += delta;
+        if (monsterSpawnTimer >= 3f) {
+            int monstersToSpawn = (int) Math.floor(Game.getCurrentUser().gameTimePassed / 30f);
+            for (int i = 0; i < monstersToSpawn; i++) {
+                monsters.add(new TentacleMonster());
+            }
+            monsterSpawnTimer = 0;
         }
-        animation.setPlayMode(Animation.PlayMode.LOOP);
+        for (TentacleMonster monster : monsters) {
+            monster.setTime(monster.getTime() + delta);
+            monster.getSprite().setRegion(tentacleAnimation.getKeyFrame(monster.getTime()));
+            monster.moveMonster();
+            monster.getSprite().draw(Main.getBatch());
+            if (monster.getHP() <= 0) {
+                monsters.remove(monster);
+            }
+        }
     }
 
 }

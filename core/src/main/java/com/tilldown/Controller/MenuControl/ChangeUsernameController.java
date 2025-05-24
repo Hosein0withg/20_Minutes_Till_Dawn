@@ -5,9 +5,9 @@ import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.tilldown.Main;
 import com.tilldown.Model.Game;
 import com.tilldown.Model.GameAssetManager;
-import com.tilldown.Model.Player;
 import com.tilldown.Model.User;
-import com.tilldown.View.*;
+import com.tilldown.View.MenuViews.ChangeUsername;
+import com.tilldown.View.MenuViews.ProfileMenu;
 
 public class ChangeUsernameController {
     private ChangeUsername view;

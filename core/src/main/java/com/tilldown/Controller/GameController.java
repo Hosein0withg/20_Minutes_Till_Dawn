@@ -19,9 +19,9 @@ public class GameController {
         weaponController = new WeaponController(Game.getCurrentUser().getCurrentHero().getCurrentGun());
     }
 
-    public void updateGame() {
+    public void updateGame(float delta) {
         if (view != null) {
-            worldController.update();
+            worldController.update(delta);
             playerController.update();
             weaponController.update();
             gameTime -= Gdx.graphics.getDeltaTime();

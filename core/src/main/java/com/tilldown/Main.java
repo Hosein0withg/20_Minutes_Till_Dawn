@@ -4,7 +4,7 @@ import com.badlogic.gdx.Game;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.tilldown.Controller.MenuControl.StartMenuController;
 import com.tilldown.Model.GameAssetManager;
-import com.tilldown.View.StartMenu;
+import com.tilldown.View.MenuViews.StartMenu;
 
 /** {@link com.badlogic.gdx.ApplicationListener} implementation shared by all platforms. */
 public class Main extends Game {

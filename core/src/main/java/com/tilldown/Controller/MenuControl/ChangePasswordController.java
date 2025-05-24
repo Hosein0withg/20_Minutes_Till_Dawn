@@ -4,7 +4,8 @@ import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.tilldown.Main;
 import com.tilldown.Model.*;
-import com.tilldown.View.*;
+import com.tilldown.View.MenuViews.ChangePassword;
+import com.tilldown.View.MenuViews.ProfileMenu;
 
 public class ChangePasswordController {
     private ChangePassword view;

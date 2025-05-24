@@ -56,7 +56,7 @@ public class GameAssetManager {
     }
 
     public Animation<Texture> getTentacle_idle_animation() {
-        return new Animation<>(0.1f, new Texture(tentacleMonster[0]), new Texture(tentacleMonster[1]), new Texture(tentacleMonster[2]), new Texture(tentacleMonster[3]));
+        return new Animation<>(0.3f, new Texture(tentacleMonster[0]), new Texture(tentacleMonster[1]), new Texture(tentacleMonster[2]), new Texture(tentacleMonster[3]));
     }
 
     public String getSmg() {

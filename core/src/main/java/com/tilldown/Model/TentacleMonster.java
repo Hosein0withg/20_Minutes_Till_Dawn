@@ -2,8 +2,8 @@ package com.tilldown.Model;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.Sprite;
+import com.badlogic.gdx.math.MathUtils;
 
 public class TentacleMonster {
     public Texture texture = new Texture(GameAssetManager.tentacleMonster[0]);
@@ -11,26 +11,51 @@ public class TentacleMonster {
     private float posX = 0;
     private float posY = 0;
     private CollisionRect rect;
-    public static final int spawnTime = 3;
     private static float spawnRate = 0;
     private int HP = 25;
     private float time = 0;
-    private int speed = 2;
+    private float speed = 0.5f;
 
     public TentacleMonster() {
-        sprite.setPosition((float) Gdx.graphics.getWidth() / 30, (float) Gdx.graphics.getHeight() / 30);
-        sprite.setSize(texture.getWidth() * 2, texture.getHeight() * 2);
-        rect = new CollisionRect((float) Gdx.graphics.getWidth() / 30, (float) Gdx.graphics.getHeight() / 30,
-            (float) (texture.getWidth() * 2), (float) (texture.getHeight() * 2));
+        switch (MathUtils.random(1, 4)) {
+            case 1: // left
+                posX = 50;
+                posY = (float) MathUtils.random(50, Gdx.graphics.getHeight() - 50);
+                break;
+            case 2: // top
+                posX = (float) MathUtils.random(50, Gdx.graphics.getWidth() - 50);
+                posY = Gdx.graphics.getHeight() - 50;
+                break;
+            case 3: // right
+                posX = Gdx.graphics.getWidth() - 50;
+                posY = (float) MathUtils.random(50, Gdx.graphics.getHeight() - 50);
+                break;
+            case 4: // down
+                posX = (float) MathUtils.random(50, Gdx.graphics.getWidth() - 50);
+                posY = 50;
+                break;
+        }
+        sprite.setPosition(posX, posY);
+        sprite.setSize((float) (texture.getWidth() * 1.5), (float) (texture.getHeight() * 1.5));
+        rect = new CollisionRect(posX, posY, (float) (texture.getWidth() * 1.5), (float) (texture.getHeight() * 1.5));
     }
 
     public void moveMonster() {
-
-    }
-
-
-    public static float getSpawnRate() {
-        return (float) Game.getCurrentUser().gameTimePassed / 30;
+        float playerX = Game.getCurrentUser().getCurrentHero().getPosX();
+        float playerY = Game.getCurrentUser().getCurrentHero().getPosY();
+        if (posX < playerX) {
+            posX += speed;
+        } else if (posX > playerX) {
+            posX -= speed;
+        }
+        if (posY < playerY) {
+            posY += speed;
+        } else if (posY > playerY) {
+            posY -= speed;
+        }
+        sprite.setPosition(posX, posY);
+        rect.move(posX, posY);
+        time += Gdx.graphics.getDeltaTime();
     }
 
     public Texture getTexture() {

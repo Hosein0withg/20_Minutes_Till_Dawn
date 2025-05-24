@@ -6,8 +6,8 @@ import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.tilldown.Main;
 import com.tilldown.Model.Game;
 import com.tilldown.Model.GameAssetManager;
-import com.tilldown.View.ChangeAvatar;
-import com.tilldown.View.ProfileMenu;
+import com.tilldown.View.MenuViews.ChangeAvatar;
+import com.tilldown.View.MenuViews.ProfileMenu;
 import java.awt.*;
 
 public class ChangeAvatarController {

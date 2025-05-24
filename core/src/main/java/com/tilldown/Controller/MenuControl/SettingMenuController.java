@@ -4,8 +4,8 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.audio.Music;
 import com.tilldown.Main;
 import com.tilldown.Model.GameAssetManager;
-import com.tilldown.View.GameMenu;
-import com.tilldown.View.SettingMenu;
+import com.tilldown.View.MenuViews.GameMenu;
+import com.tilldown.View.MenuViews.SettingMenu;
 
 public class SettingMenuController {
     private static SettingMenuController instance;

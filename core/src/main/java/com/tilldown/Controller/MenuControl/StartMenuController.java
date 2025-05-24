@@ -4,12 +4,11 @@ import com.badlogic.gdx.Gdx;
 import com.tilldown.Main;
 import com.tilldown.Model.Game;
 import com.tilldown.Model.GameAssetManager;
-import com.tilldown.Model.Player;
 import com.tilldown.Model.User;
-import com.tilldown.View.GameMenu;
-import com.tilldown.View.LoginMenu;
-import com.tilldown.View.SignupMenu;
-import com.tilldown.View.StartMenu;
+import com.tilldown.View.MenuViews.GameMenu;
+import com.tilldown.View.MenuViews.LoginMenu;
+import com.tilldown.View.MenuViews.SignupMenu;
+import com.tilldown.View.MenuViews.StartMenu;
 
 public class StartMenuController {
     private StartMenu view;

@@ -1,4 +1,4 @@
-package com.tilldown.View;
+package com.tilldown.View.MenuViews;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;

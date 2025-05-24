@@ -1,4 +1,4 @@
-package com.tilldown.View;
+package com.tilldown.View.MenuViews;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
@@ -7,27 +7,22 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.*;
 import com.badlogic.gdx.utils.ScreenUtils;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
-import com.tilldown.Controller.MenuControl.LoginMenuController;
+import com.tilldown.Controller.MenuControl.ChangeUsernameController;
 import com.tilldown.Main;
 
-public class LoginMenu implements Screen {
+public class ChangeUsername implements Screen {
     private Stage stage;
-    private final TextButton loginButton;
-    private final TextButton forgetButton;
-    private final TextField username;
-    private final TextField password;
+    private final TextButton changeUsername;
+    public final TextField username;
     public final Label errorLabel;
     public Table table;
-    private final LoginMenuController controller;
+    private final ChangeUsernameController controller;
 
-    public LoginMenu(LoginMenuController controller, Skin skin) {
+    public ChangeUsername(ChangeUsernameController controller, Skin skin) {
         this.controller = controller;
-        this.loginButton = new TextButton("log me in!", skin);
-        this.forgetButton = new TextButton("forget password", skin);
         this.username = new TextField("", skin);
-        this.username.setMessageText("Enter your username");
-        this.password = new TextField("", skin);
-        this.password.setMessageText("Enter your password");
+        this.username.setMessageText("Enter a new username");
+        this.changeUsername = new TextButton("Change", skin);
         this.errorLabel = new Label("", skin);
         errorLabel.setColor(Color.RED);
 
@@ -45,11 +40,7 @@ public class LoginMenu implements Screen {
         table.center();
         table.add(username).width(600).height(80).pad(10);
         table.row();
-        table.add(password).width(600).height(80).pad(10);
-        table.row();
-        table.add(loginButton).width(300).height(120).pad(10);
-        table.row();
-        table.add(forgetButton).width(500).height(120).pad(10);
+        table.add(changeUsername).width(600).height(80).pad(10);
         table.row();
         table.add(errorLabel).pad(10);
         stage.addActor(table);
@@ -62,7 +53,7 @@ public class LoginMenu implements Screen {
         Main.getBatch().end();
         stage.act(Math.min(Gdx.graphics.getDeltaTime(), 1 / 30f));
         stage.draw();
-        controller.handleLoginMenuButton(username.getText(), password.getText());
+        controller.handleChangeUsernameMenuButton();
     }
 
     @Override
@@ -90,13 +81,7 @@ public class LoginMenu implements Screen {
 
     }
 
-    public TextButton getLoginButton() {
-        return loginButton;
+    public TextButton getChangeUsername() {
+        return changeUsername;
     }
-
-    public TextButton getForgetButton() {
-        return forgetButton;
-    }
-
-
 }

@@ -1,4 +1,4 @@
-package com.tilldown.View;
+package com.tilldown.View.MenuViews;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
@@ -9,11 +9,11 @@ import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.utils.ScreenUtils;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
-import com.tilldown.Controller.MenuControl.HintMenuController;
 import com.tilldown.Controller.MenuControl.PauseMenuController;
 import com.tilldown.Main;
 import com.tilldown.Model.Game;
 import com.tilldown.Model.GameAssetManager;
+import com.tilldown.View.GameView;
 
 public class PauseMenu implements Screen {
     private Stage stage;

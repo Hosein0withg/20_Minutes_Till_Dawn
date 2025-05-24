@@ -3,7 +3,7 @@ package com.tilldown.Controller.MenuControl;
 import com.tilldown.Main;
 import com.tilldown.Model.Game;
 import com.tilldown.Model.GameAssetManager;
-import com.tilldown.View.*;
+import com.tilldown.View.MenuViews.*;
 
 public class GameMenuController {
     private GameMenu view;
