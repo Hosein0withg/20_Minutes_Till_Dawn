@@ -27,13 +27,14 @@ public class GameAssetManager {
     public static String[] character5 = {"5/Idle_0.png", "5/Idle_1.png", "5/Idle_2.png", "5/Idle_3.png", "5/Idle_4.png", "5/Idle_5.png"};
 
     public static String[] tentacleMonster = {"tentacle/TentacleIdle0.png", "tentacle/TentacleIdle1.png", "tentacle/TentacleIdle2.png", "tentacle/TentacleIdle3.png"};
+    public static String[] eyebat = {"eyebat/T_EyeBat_0.png", "T_EyeBat_1.png", "T_EyeBat_2.png", "T_EyeBat_3.png"};
+    public static String[] elder = {"elder/BrainMonster_0.png", "elder/BrainMonster_1.png", "elder/BrainMonster_2.png", "elder/BrainMonster_3.png"};
 
     private final String tree = "tree.png";
     private final String smg = "gun/SMG.png";
     private final String revolver = "gun/Revolver.png";
     private final String shotgun = "gun/Shotgun.png";
     private final String seed = "seed.png";
-
     private final String bullet = "bullet.png";
 
 
@@ -58,6 +59,14 @@ public class GameAssetManager {
 
     public Animation<Texture> getTentacle_idle_animation() {
         return new Animation<>(0.3f, new Texture(tentacleMonster[0]), new Texture(tentacleMonster[1]), new Texture(tentacleMonster[2]), new Texture(tentacleMonster[3]));
+    }
+
+    public Animation<Texture> getEyebat_idle_animation() {
+        return new Animation<>(0.3f, new Texture(eyebat[0]), new Texture(eyebat[1]), new Texture(eyebat[2]), new Texture(eyebat[3]));
+    }
+
+    public Animation<Texture> getElder_idle_animation() {
+        return new Animation<>(0.3f, new Texture(elder[0]), new Texture(elder[1]), new Texture(elder[2]), new Texture(elder[3]));
     }
 
     public String getSmg() {

@@ -5,18 +5,23 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.math.MathUtils;
 
-public class TentacleMonster {
-    public Texture texture = new Texture(GameAssetManager.tentacleMonster[0]);
-    public Sprite sprite = new Sprite(texture);
+public class Monster {
+    public monsterName monsterName;
+    public Texture texture;
+    public Sprite sprite;
     private float posX = 0;
     private float posY = 0;
     private CollisionRect rect;
-    private static float spawnRate = 0;
-    private int HP = 25;
+    private int HP;
     private float time = 0;
-    private float speed = 0.5f;
+    private float speed;
 
-    public TentacleMonster() {
+    public Monster(monsterName monsterName, int HP, float speed, String idle0) {
+        this.monsterName = monsterName;
+        texture = new Texture(idle0);
+        sprite = new Sprite(texture);
+        this.HP = HP;
+        this.speed = speed;
         switch (MathUtils.random(1, 4)) {
             case 1: // left
                 posX = 50;
@@ -74,36 +79,16 @@ public class TentacleMonster {
         return sprite;
     }
 
-    public void setSprite(Sprite sprite) {
-        this.sprite = sprite;
-    }
-
     public float getPosX() {
         return posX;
-    }
-
-    public void setPosX(float posX) {
-        this.posX = posX;
     }
 
     public float getPosY() {
         return posY;
     }
 
-    public void setPosY(float posY) {
-        this.posY = posY;
-    }
-
     public CollisionRect getRect() {
         return rect;
-    }
-
-    public void setRect(CollisionRect rect) {
-        this.rect = rect;
-    }
-
-    public static void setSpawnRate(float spawnRate) {
-        TentacleMonster.spawnRate = spawnRate;
     }
 
     public int getHP() {
@@ -122,5 +107,23 @@ public class TentacleMonster {
         this.time = time;
     }
 
+    public void setPosX(float posX) {
+        this.posX = posX;
+    }
 
+    public void setPosY(float posY) {
+        this.posY = posY;
+    }
+
+    public void setRect(CollisionRect rect) {
+        this.rect = rect;
+    }
+
+    public float getSpeed() {
+        return speed;
+    }
+
+    public void setSpeed(float speed) {
+        this.speed = speed;
+    }
 }

@@ -96,7 +96,7 @@ public class PlayerController {
             }
         }
 
-        for (TentacleMonster monster : gameController.getWorldController().monsters) {
+        for (Monster monster : gameController.getWorldController().monsters) {
             if (nextRect.overlap(monster.getRect())) {
                 if (!player.isInvincible()) {
                     player.setHP(player.getHP() - 1);

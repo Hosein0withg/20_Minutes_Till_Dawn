@@ -6,7 +6,7 @@ import com.badlogic.gdx.utils.Timer;
 import com.tilldown.Main;
 import com.tilldown.Model.Bullet;
 import com.tilldown.Model.Game;
-import com.tilldown.Model.TentacleMonster;
+import com.tilldown.Model.Monster;
 import com.tilldown.Model.Weapon;
 
 import java.util.ArrayList;
@@ -89,7 +89,7 @@ public class WeaponController {
     }
 
     private void checkMonsterCollisions(Bullet bullet) {
-        for (TentacleMonster monster : gameController.getWorldController().monsters) {
+        for (Monster monster : gameController.getWorldController().monsters) {
             if (bullet.getCollisionRect().overlap(monster.getRect())) {
                 monster.setHP(monster.getHP() - bullet.getDamage());
                 bullet.deactivate();

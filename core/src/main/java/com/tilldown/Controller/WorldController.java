@@ -1,6 +1,5 @@
 package com.tilldown.Controller;
 
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.tilldown.Main;
@@ -11,7 +10,7 @@ import java.util.ArrayList;
 public class WorldController {
     private PlayerController playerController;
     private final Texture backgroundTexture;
-    public ArrayList<TentacleMonster> monsters = new ArrayList<>();
+    public ArrayList<Monster> monsters = new ArrayList<>();
     private float monsterSpawnTimer = 0;
     private Animation<Texture> tentacleAnimation;
 
@@ -27,12 +26,12 @@ public class WorldController {
         if (monsterSpawnTimer >= 3f) {
             int monstersToSpawn = (int) Math.floor(Game.gameTimePassed / 30f);
             for (int i = 0; i < monstersToSpawn; i++) {
-                monsters.add(new TentacleMonster());
+                monsters.add(new Monster(monsterName.TentacleMonster, 25, 0.5f, GameAssetManager.tentacleMonster[0]));
             }
             monsterSpawnTimer = 0;
         }
         for (int i = 0; i < monsters.size(); i++) {
-            TentacleMonster monster = monsters.get(i);
+            Monster monster = monsters.get(i);
             monster.setTime(monster.getTime() + delta);
             monster.getSprite().setRegion(tentacleAnimation.getKeyFrame(monster.getTime()));
             monster.moveMonster();
