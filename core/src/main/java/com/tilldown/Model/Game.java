@@ -14,8 +14,8 @@ public class Game {
     public static ArrayList<Weapon> guns;
     public static ArrayList<Tree> trees;
     public static ArrayList<Seed> seedsOnMap;
-    public static int gameDuration = 2;
-    public static int gameTimePassed = 0;
+    public static int gameDuration = 2; //min
+    public static int gameTimePassed = 0; //sec
 
     static {
         characters = new ArrayList<>();

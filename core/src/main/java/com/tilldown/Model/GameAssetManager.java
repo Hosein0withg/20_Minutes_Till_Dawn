@@ -27,7 +27,7 @@ public class GameAssetManager {
     public static String[] character5 = {"5/Idle_0.png", "5/Idle_1.png", "5/Idle_2.png", "5/Idle_3.png", "5/Idle_4.png", "5/Idle_5.png"};
 
     public static String[] tentacleMonster = {"tentacle/TentacleIdle0.png", "tentacle/TentacleIdle1.png", "tentacle/TentacleIdle2.png", "tentacle/TentacleIdle3.png"};
-    public static String[] eyebat = {"eyebat/T_EyeBat_0.png", "T_EyeBat_1.png", "T_EyeBat_2.png", "T_EyeBat_3.png"};
+    public static String[] eyebat = {"eyebat/T_EyeBat_0.png", "eyebat/T_EyeBat_1.png", "eyebat/T_EyeBat_2.png", "eyebat/T_EyeBat_3.png"};
     public static String[] elder = {"elder/BrainMonster_0.png", "elder/BrainMonster_1.png", "elder/BrainMonster_2.png", "elder/BrainMonster_3.png"};
 
     private final String tree = "tree.png";

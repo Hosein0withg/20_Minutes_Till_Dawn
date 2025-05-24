@@ -4,10 +4,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.utils.Timer;
 import com.tilldown.Main;
-import com.tilldown.Model.Bullet;
-import com.tilldown.Model.Game;
-import com.tilldown.Model.Monster;
-import com.tilldown.Model.Weapon;
+import com.tilldown.Model.*;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -78,7 +75,7 @@ public class WeaponController {
                 continue;
             }
             b.updatePosition();
-            checkMonsterCollisions(b);
+            checkIfBulletHitEnemy(b);
             b.getSprite().draw(Main.getBatch());
 
             if (b.getSprite().getX() < 0 || b.getSprite().getX() > Gdx.graphics.getWidth() ||
@@ -88,10 +85,16 @@ public class WeaponController {
         }
     }
 
-    private void checkMonsterCollisions(Bullet bullet) {
+    private void checkIfBulletHitEnemy(Bullet bullet) {
         for (Monster monster : gameController.getWorldController().monsters) {
             if (bullet.getCollisionRect().overlap(monster.getRect())) {
                 monster.setHP(monster.getHP() - bullet.getDamage());
+                bullet.deactivate();
+                break;
+            }
+        }
+        for (Tree tree : Game.trees) {
+            if (bullet.getCollisionRect().overlap(tree.getRect())) {
                 bullet.deactivate();
                 break;
             }
