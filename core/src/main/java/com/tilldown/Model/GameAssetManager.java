@@ -32,6 +32,7 @@ public class GameAssetManager {
     private final String smg = "gun/SMG.png";
     private final String revolver = "gun/Revolver.png";
     private final String shotgun = "gun/Shotgun.png";
+    private final String seed = "seed.png";
 
     private final String bullet = "bullet.png";
 
@@ -77,6 +78,10 @@ public class GameAssetManager {
 
     public String getTree() {
         return tree;
+    }
+
+    public String getSeed() {
+        return seed;
     }
 }
 

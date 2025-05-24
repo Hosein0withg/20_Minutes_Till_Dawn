@@ -14,10 +14,7 @@ import com.badlogic.gdx.utils.ScreenUtils;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import com.tilldown.Controller.GameController;
 import com.tilldown.Main;
-import com.tilldown.Model.Game;
-import com.tilldown.Model.GameAssetManager;
-import com.tilldown.Model.Player;
-import com.tilldown.Model.Tree;
+import com.tilldown.Model.*;
 
 
 public class GameView implements Screen, InputProcessor {
@@ -99,6 +96,10 @@ public class GameView implements Screen, InputProcessor {
                 tree.getSprite().getWidth(),
                 tree.getSprite().getHeight()
             );
+        }
+
+        for (Seed seed : Game.getCurrentUser().seedsOnMap) {
+            Main.getBatch().draw(seed.getTexture(), seed.getPosX(), seed.getPosY());
         }
 
         //cursorSprite.draw(Main.getBatch());

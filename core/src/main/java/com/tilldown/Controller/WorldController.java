@@ -4,9 +4,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.tilldown.Main;
-import com.tilldown.Model.Game;
-import com.tilldown.Model.GameAssetManager;
-import com.tilldown.Model.TentacleMonster;
+import com.tilldown.Model.*;
 
 import java.util.ArrayList;
 
@@ -40,6 +38,7 @@ public class WorldController {
             monster.moveMonster();
             monster.getSprite().draw(Main.getBatch());
             if (monster.getHP() <= 0) {
+                Game.getCurrentUser().seedsOnMap.add(new Seed(monster.getPosX(), monster.getPosY()));
                 monsters.remove(monster);
                 Game.getCurrentUser().getCurrentHero().setKill(Game.getCurrentUser().getCurrentHero().getKill() + 1);
                 i--;

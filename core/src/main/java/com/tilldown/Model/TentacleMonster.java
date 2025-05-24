@@ -43,15 +43,19 @@ public class TentacleMonster {
     public void moveMonster() {
         float playerX = Game.getCurrentUser().getCurrentHero().getPosX();
         float playerY = Game.getCurrentUser().getCurrentHero().getPosY();
-        if (posX < playerX) {
-            posX += speed;
-        } else if (posX > playerX) {
-            posX -= speed;
+        if (Math.abs(playerX - posX) > 5) {
+            if (posX < playerX) {
+                posX += speed;
+            } else if (posX > playerX) {
+                posX -= speed;
+            }
         }
-        if (posY < playerY) {
-            posY += speed;
-        } else if (posY > playerY) {
-            posY -= speed;
+        if (Math.abs(playerY - posY) > 5) {
+            if (posY < playerY) {
+                posY += speed;
+            } else if (posY > playerY) {
+                posY -= speed;
+            }
         }
         sprite.setPosition(posX, posY);
         rect.move(posX, posY);

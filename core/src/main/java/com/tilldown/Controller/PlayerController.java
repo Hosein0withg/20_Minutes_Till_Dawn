@@ -94,6 +94,24 @@ public class PlayerController {
             }
         }
 
+        for (TentacleMonster monster : gameController.getWorldController().monsters) {
+            if (nextRect.overlap(monster.getRect())) {
+                if (!player.isInvincible()) {
+                    player.setHP(player.getHP() - 1);
+                    player.startInvincibility();
+                }
+            }
+        }
+
+        for (int i = 0; i < Game.getCurrentUser().seedsOnMap.size(); i++) {
+            Seed seed = Game.getCurrentUser().seedsOnMap.get(i);
+            if (nextRect.overlap(seed.getCollisionRect())) {
+                player.setXP(player.getXP() + 3);
+                Game.getCurrentUser().seedsOnMap.remove(seed);
+                i++;
+            }
+        }
+
         float minX = 0;
         float minY = 0;
         float maxX = Gdx.graphics.getWidth() - player.getRect().width;

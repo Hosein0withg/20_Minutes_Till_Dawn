@@ -20,6 +20,7 @@ public class User {
     private boolean autoReload = false;
     private boolean numberController = false;
     public ArrayList<String> gainedAbilities = new ArrayList<>();
+    public ArrayList<Seed> seedsOnMap = new ArrayList<>();
 
     public User(String username, String password, String securityQuestion, String securityAnswer, String avatarPath) {
         this.username = username;
