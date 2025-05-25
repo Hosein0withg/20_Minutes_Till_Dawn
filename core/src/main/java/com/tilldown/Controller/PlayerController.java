@@ -38,6 +38,8 @@ public class PlayerController {
         if (player.getXP() >= player.calculateNextLevelXP()) {
             player.setXP(player.getXP() - player.calculateNextLevelXP());
             player.setLevel(player.getLevel() + 1);
+            if (Game.getCurrentUser().isSfx())
+                GameAssetManager.getGameAssetManager().getLevelUpSound().play(1.0f);
             gameController.getView().showAbility = true;
             gameController.getView().ability = player.setRandomAbility();
             Timer.schedule(new Timer.Task() {
@@ -89,7 +91,7 @@ public class PlayerController {
         for (Tree tree : Game.trees) {
             if (nextRect.overlap(tree.getRect())) {
                 if (!player.isInvincible()) {
-                    player.setHP(player.getHP() - 1);
+                    player.gotDamaged();
                     player.startInvincibility();
                 }
                 return;
@@ -99,7 +101,7 @@ public class PlayerController {
         for (Monster monster : gameController.getWorldController().monsters) {
             if (nextRect.overlap(monster.getRect())) {
                 if (!player.isInvincible()) {
-                    player.setHP(player.getHP() - 1);
+                    player.gotDamaged();
                     player.startInvincibility();
                 }
             }
@@ -140,6 +142,8 @@ public class PlayerController {
             player.setXP(0);
             gameController.getView().showAbility = true;
             gameController.getView().ability = player.setRandomAbility();
+            if (Game.getCurrentUser().isSfx())
+                GameAssetManager.getGameAssetManager().getLevelUpSound().play(1.0f);
             Timer.schedule(new Timer.Task() {
                 @Override
                 public void run() {

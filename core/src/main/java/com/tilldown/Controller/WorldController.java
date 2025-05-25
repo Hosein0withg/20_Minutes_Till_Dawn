@@ -126,7 +126,7 @@ public class WorldController {
 
     private void checkIfBulletHitPlayer(Bullet bullet) {
         if (bullet.getCollisionRect().overlap(App.getCurrentHero().getRect())) {
-            App.getCurrentHero().setHP(App.getCurrentHero().getHP() - 1);
+            App.getCurrentHero().gotDamaged();
             bullet.deactivate();
         }
         for (Monster monster : playerController.getGameController().getWorldController().monsters) {

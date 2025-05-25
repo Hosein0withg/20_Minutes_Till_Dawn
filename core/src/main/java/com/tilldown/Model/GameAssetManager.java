@@ -1,6 +1,7 @@
 package com.tilldown.Model;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
@@ -36,6 +37,12 @@ public class GameAssetManager {
     private final String shotgun = "gun/Shotgun.png";
     private final String seed = "seed.png";
     private final String bullet = "bullet.png";
+
+    private final Sound winSound = Gdx.audio.newSound(Gdx.files.internal("sfx/win.wav"));
+    private final Sound looseSound = Gdx.audio.newSound(Gdx.files.internal("sfx/loose.wav"));
+    private final Sound gunShotSound = Gdx.audio.newSound(Gdx.files.internal("sfx/gun_shot.wav"));
+    private final Sound levelUpSound = Gdx.audio.newSound(Gdx.files.internal("sfx/level_up.wav"));
+    private final Sound damageSound = Gdx.audio.newSound(Gdx.files.internal("sfx/minecraft_damage.wav"));
 
 
     private GameAssetManager() {
@@ -91,6 +98,26 @@ public class GameAssetManager {
 
     public String getSeed() {
         return seed;
+    }
+
+    public Sound getWinSound() {
+        return winSound;
+    }
+
+    public Sound getLooseSound() {
+        return looseSound;
+    }
+
+    public Sound getGunShotSound() {
+        return gunShotSound;
+    }
+
+    public Sound getLevelUpSound() {
+        return levelUpSound;
+    }
+
+    public Sound getDamageSound() {
+        return damageSound;
     }
 }
 

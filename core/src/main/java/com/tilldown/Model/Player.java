@@ -103,6 +103,12 @@ public class Player {
         this.HP = HP;
     }
 
+    public void gotDamaged() {
+        this.HP--;
+        if (Game.getCurrentUser().isSfx())
+            GameAssetManager.getGameAssetManager().getDamageSound().play(1.0f);
+    }
+
     public CollisionRect getRect() {
         return rect;
     }

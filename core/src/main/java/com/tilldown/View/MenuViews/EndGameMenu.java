@@ -12,6 +12,7 @@ import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import com.tilldown.Controller.MenuControl.EndGameMenuController;
 import com.tilldown.Main;
 import com.tilldown.Model.Game;
+import com.tilldown.Model.GameAssetManager;
 import com.tilldown.Model.Player;
 import com.tilldown.Model.User;
 
@@ -36,8 +37,15 @@ public class EndGameMenu implements Screen {
 
         this.controller = controller;
         this.goToGameMenu = new TextButton("Go To Game Menu", skin);
-        if (won) this.isWinLabel = new Label("! ! WON ! !", skin);
-        else this.isWinLabel = new Label(" ! ! DEAD ! !", skin);
+        if (won) {
+            this.isWinLabel = new Label("! ! WON ! !", skin);
+            if (Game.getCurrentUser().isSfx())
+                GameAssetManager.getGameAssetManager().getWinSound().play(1.0f);
+        } else {
+            this.isWinLabel = new Label("! ! ! LOST ! !", skin);
+            if (Game.getCurrentUser().isSfx())
+                GameAssetManager.getGameAssetManager().getLooseSound().play(1.0f);
+        }
         this.usernameLabel = new Label("Username: " + Game.getCurrentUser().getUsername(), skin);
         this.scoreLabel = new Label("Score: " + score, skin);
         this.killsLabel = new Label("Kills: " + Game.getCurrentUser().getKill(), skin);

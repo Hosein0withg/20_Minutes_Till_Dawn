@@ -17,6 +17,7 @@ public class User {
     private int livedTime = 0;
     private boolean autoReload = false;
     private boolean numberController = false;
+    private boolean sfx = true;
     public ArrayList<String> gainedAbilities = new ArrayList<>();
 
     public User(String username, String password, String securityQuestion, String securityAnswer, String avatarPath) {
@@ -59,10 +60,6 @@ public class User {
 
     public void setAvatar(Texture avatar) {
         this.avatar = avatar;
-    }
-
-    public Texture getAvatar() {
-        return avatar;
     }
 
     public int getScore() {
@@ -111,5 +108,13 @@ public class User {
 
     public void setLivedTime(int livedTime) {
         this.livedTime = livedTime;
+    }
+
+    public boolean isSfx() {
+        return sfx;
+    }
+
+    public void setSfx(boolean sfx) {
+        this.sfx = sfx;
     }
 }
