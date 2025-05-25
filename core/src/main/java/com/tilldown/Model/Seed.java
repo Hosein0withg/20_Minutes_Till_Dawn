@@ -24,35 +24,15 @@ public class Seed {
         this.texture = texture;
     }
 
-    public Sprite getSprite() {
-        return sprite;
-    }
-
-    public void setSprite(Sprite sprite) {
-        this.sprite = sprite;
-    }
-
     public float getPosX() {
         return posX;
-    }
-
-    public void setPosX(float posX) {
-        this.posX = posX;
     }
 
     public float getPosY() {
         return posY;
     }
 
-    public void setPosY(float posY) {
-        this.posY = posY;
-    }
-
     public CollisionRect getCollisionRect() {
         return collisionRect;
-    }
-
-    public void setCollisionRect(CollisionRect collisionRect) {
-        this.collisionRect = collisionRect;
     }
 }

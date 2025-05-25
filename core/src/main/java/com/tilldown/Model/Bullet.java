@@ -12,14 +12,15 @@ public class Bullet {
     private int damage;
     private float directionX;
     private float directionY;
-    private float speed = 10;
+    private float speed;
     private boolean active = true;
     private CollisionRect collisionRect;
     private Monster shooterMonster;
 
-    public Bullet(float startX, float startY, float targetX, float targetY, int damage, boolean screenCoordinates) {
+    public Bullet(float startX, float startY, float targetX, float targetY, int damage, boolean screenCoordinates, int speed) {
         sprite.setSize(20, 20);
         sprite.setPosition(startX, startY);
+        this.speed = speed;
 
         float angle;
         if (screenCoordinates) {

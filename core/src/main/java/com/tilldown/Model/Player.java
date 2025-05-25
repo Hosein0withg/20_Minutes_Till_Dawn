@@ -1,6 +1,5 @@
 package com.tilldown.Model;
 
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.Sprite;
@@ -59,20 +58,8 @@ public class Player {
         }
     }
 
-    public Texture getPlayerTexture() {
-        return playerTexture;
-    }
-
-    public void setPlayerTexture(Texture playerTexture) {
-        this.playerTexture = playerTexture;
-    }
-
     public Sprite getPlayerSprite() {
         return playerSprite;
-    }
-
-    public void setPlayerSprite(Sprite playerSprite) {
-        this.playerSprite = playerSprite;
     }
 
     public float getPosX() {
@@ -113,10 +100,6 @@ public class Player {
         return rect;
     }
 
-    public void setRect(CollisionRect rect) {
-        this.rect = rect;
-    }
-
     public float getTime() {
         return time;
     }
@@ -135,18 +118,6 @@ public class Player {
 
     public boolean isPlayerIdle() {
         return isPlayerIdle;
-    }
-
-    public void setPlayerIdle(boolean playerIdle) {
-        isPlayerIdle = playerIdle;
-    }
-
-    public boolean isPlayerRunning() {
-        return isPlayerRunning;
-    }
-
-    public void setPlayerRunning(boolean playerRunning) {
-        isPlayerRunning = playerRunning;
     }
 
     public Animation<Texture> getCharacter_idle_frames() {
@@ -255,17 +226,5 @@ public class Player {
 
     public boolean isInvincible() {
         return isInvincible;
-    }
-
-    public void setInvincible(boolean invincible) {
-        isInvincible = invincible;
-    }
-
-    public float getInvincibleTimer() {
-        return invincibleTimer;
-    }
-
-    public void setInvincibleTimer(float invincibleTimer) {
-        this.invincibleTimer = invincibleTimer;
     }
 }

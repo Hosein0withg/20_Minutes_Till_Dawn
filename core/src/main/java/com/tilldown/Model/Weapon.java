@@ -1,6 +1,5 @@
 package com.tilldown.Model;
 
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -56,10 +55,6 @@ public class Weapon {
         this.ammo = ammo;
     }
 
-    public Texture getGunTexture() {
-        return gunTexture;
-    }
-
     public int getDamage() {
         return damage;
     }
@@ -72,20 +67,8 @@ public class Weapon {
         return projectile;
     }
 
-    public void setGunTexture(Texture gunTexture) {
-        this.gunTexture = gunTexture;
-    }
-
-    public void setGunSprite(Sprite gunSprite) {
-        this.gunSprite = gunSprite;
-    }
-
     public void setDamage(int damage) {
         this.damage = damage;
-    }
-
-    public void setReloadTime(int reloadTime) {
-        this.reloadTime = reloadTime;
     }
 
     public void setProjectile(int projectile) {

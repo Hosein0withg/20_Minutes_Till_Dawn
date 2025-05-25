@@ -15,7 +15,7 @@ import com.tilldown.View.MenuViews.PauseMenu;
 
 public class PlayerController {
     private Player player;
-    private GameController gameController;
+    private final GameController gameController;
 
     public PlayerController(Player player, GameController gameController) {
         this.player = player;
@@ -50,7 +50,6 @@ public class PlayerController {
             }, 10);
         }
     }
-
 
     public void handlePlayerInput() {
         float newX = player.getPosX();
@@ -175,7 +174,6 @@ public class PlayerController {
         }
 
     }
-
 
     public void idleAnimation() {
         Animation<Texture> animation = GameAssetManager.getGameAssetManager().getCharacter_idle_animation();

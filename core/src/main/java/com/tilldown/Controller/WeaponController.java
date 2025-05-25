@@ -10,10 +10,10 @@ import java.util.ArrayList;
 import java.util.Iterator;
 
 public class WeaponController {
-    private Weapon weapon;
-    private ArrayList<Bullet> bullets = new ArrayList<>();
+    private final Weapon weapon;
+    private final ArrayList<Bullet> bullets = new ArrayList<>();
     private boolean isReloading = false;
-    private GameController gameController;
+    private final GameController gameController;
 
     public WeaponController(Weapon weapon, GameController gameController) {
         this.weapon = weapon;
@@ -30,12 +30,9 @@ public class WeaponController {
     }
 
     public void handleWeaponRotation(int x, int y) {
-        float worldX = x;
-        float worldY = Gdx.graphics.getHeight() - y;
-
         float weaponX = weapon.getGunSprite().getX();
         float weaponY = weapon.getGunSprite().getY();
-        float angle = MathUtils.atan2(worldY - weaponY, worldX - weaponX);
+        float angle = MathUtils.atan2(Gdx.graphics.getHeight() - y - weaponY, (float) x - weaponX);
 
         weapon.getGunSprite().setRotation(angle * MathUtils.radiansToDegrees);
     }
@@ -46,7 +43,7 @@ public class WeaponController {
 
         if (Game.getCurrentUser().getCurrentHero().getAmmoLeft() > 0 && !isReloading) {
             bullets.add(new Bullet(weaponX, weaponY, x, y,
-                Game.getCurrentUser().getCurrentHero().getCurrentGun().getDamage() * Game.getCurrentUser().getCurrentHero().getCurrentGun().getProjectile(), true));
+                Game.getCurrentUser().getCurrentHero().getCurrentGun().getDamage() * Game.getCurrentUser().getCurrentHero().getCurrentGun().getProjectile(), true, 10));
             Game.getCurrentUser().getCurrentHero().setAmmoLeft(Game.getCurrentUser().getCurrentHero().getAmmoLeft() - 1);
             if (Game.getCurrentUser().isSfx())
                 GameAssetManager.getGameAssetManager().getGunShotSound().play(1.0f);

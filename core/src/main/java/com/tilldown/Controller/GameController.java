@@ -40,10 +40,6 @@ public class GameController {
         }
     }
 
-    public PlayerController getPlayerController() {
-        return playerController;
-    }
-
     public WeaponController getWeaponController() {
         return weaponController;
     }

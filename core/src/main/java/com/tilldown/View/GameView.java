@@ -21,7 +21,7 @@ public class GameView implements Screen, InputProcessor {
     private Stage stage;
     private Texture cursorTexture;
     private Sprite cursorSprite;
-    private GameController controller;
+    private final GameController controller;
     Table table = new Table();
     Label timerLabel;
     Label HPLabel;

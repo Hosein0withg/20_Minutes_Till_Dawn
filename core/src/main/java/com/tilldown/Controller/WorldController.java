@@ -17,7 +17,7 @@ public class WorldController {
     private float tentacleSpawnTimer = 0;
     private float eyebatSpawnTimer = 0;
     private float elderDashTimer = 0;
-    private ArrayList<Bullet> eyebatBullets = new ArrayList<>();
+    private final ArrayList<Bullet> eyebatBullets = new ArrayList<>();
     private final Animation<Texture> tentacleAnimation;
     private final Animation<Texture> eyebatAnimation;
     private final Animation<Texture> elderAnimation;
@@ -84,7 +84,7 @@ public class WorldController {
                 monster.setShootTimer(monster.getShootTimer() + delta);
                 if (monster.getShootTimer() >= 3f) {
                     monster.setShootTimer(0);
-                    Bullet bullet = new Bullet(monster.getPosX(), monster.getPosY(), App.getCurrentHero().getPosX(), App.getCurrentHero().getPosY(), 1, false);
+                    Bullet bullet = new Bullet(monster.getPosX(), monster.getPosY(), App.getCurrentHero().getPosX(), App.getCurrentHero().getPosY(), 1, false, 4);
                     bullet.setShooterMonster(monster);
                     eyebatBullets.add(bullet);
 
@@ -146,5 +146,4 @@ public class WorldController {
         isBossSpawned = true;
         monsters.add(new Monster(monsterName.Elder, 400, 0.7f, GameAssetManager.elder[0], 3f));
     }
-
 }

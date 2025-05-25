@@ -32,31 +32,15 @@ public class Tree {
         return sprite;
     }
 
-    public void setSprite(Sprite sprite) {
-        this.sprite = sprite;
-    }
-
     public float getWorldX() {
         return worldX;
-    }
-
-    public void setWorldX(float worldX) {
-        this.worldX = worldX;
     }
 
     public float getWorldY() {
         return worldY;
     }
 
-    public void setWorldY(float worldY) {
-        this.worldY = worldY;
-    }
-
     public CollisionRect getRect() {
         return rect;
-    }
-
-    public void setRect(CollisionRect rect) {
-        this.rect = rect;
     }
 }
