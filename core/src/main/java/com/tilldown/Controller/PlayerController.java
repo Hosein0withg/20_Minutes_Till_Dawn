@@ -164,6 +164,8 @@ public class PlayerController {
                     gameController.getView().showAbility = false;
                 }
             }, 10);
+        } else if (Gdx.input.isKeyJustPressed(Input.Keys.B)) {
+            getGameController().getWorldController().spawnBoss();
         }
 
         if (player.getHP() <= 0) {

@@ -83,7 +83,7 @@ public class HintMenu implements Screen {
 
     public void showCheatCodeGuide() {
         Label cheatCodesLabel = new Label(controller.getCheatCodeGuide(), GameAssetManager.getGameAssetManager().getSkin());
-        cheatCodesLabel.setPosition(600, 515);
+        cheatCodesLabel.setPosition(600, 500);
         stage.addActor(cheatCodesLabel);
         isCheatCodes = true;
     }

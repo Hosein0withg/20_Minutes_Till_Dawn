@@ -43,7 +43,7 @@ public class HintMenuController {
     }
 
     public String getCheatCodeGuide() {
-        return "T for decrease game duration - P for increase speed - L for level up - H for extra HP";
+        return "T for decrease game duration - P for increase speed - L for level up \n                   H for extra HP - B for summon the Boss";
     }
 
     public String getAbilitiesGuide() {

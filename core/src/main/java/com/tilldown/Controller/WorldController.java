@@ -53,8 +53,7 @@ public class WorldController {
             eyebatSpawnTimer = 0;
         }
         if (!isBossSpawned && Game.gameTimePassed >= (Game.gameDuration * 30)) {
-            isBossSpawned = true;
-            monsters.add(new Monster(monsterName.Elder, 400, 0.7f, GameAssetManager.elder[0], 3f));
+            spawnBoss();
         }
 
         for (int i = 0; i < monsters.size(); i++) {
@@ -141,6 +140,11 @@ public class WorldController {
                 break;
             }
         }
+    }
+
+    public void spawnBoss() {
+        isBossSpawned = true;
+        monsters.add(new Monster(monsterName.Elder, 400, 0.7f, GameAssetManager.elder[0], 3f));
     }
 
 }

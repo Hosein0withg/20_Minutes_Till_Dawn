@@ -115,9 +115,9 @@ public class PauseMenu implements Screen {
     }
 
     public void showCheatCodeGuide() {
-        Label cheatCodesLabel = new Label("T for decrease game duration - P for increase speed \n                L for level up - H for extra HP",
+        Label cheatCodesLabel = new Label("  T for decrease game duration - P for increase speed \nL for level up - H for extra HP - B for summon the Boss",
             GameAssetManager.getGameAssetManager().getSkin());
-        cheatCodesLabel.setPosition(50, 565);
+        cheatCodesLabel.setPosition(30, 565);
         stage.addActor(cheatCodesLabel);
         isCheatCodes = true;
     }
