@@ -24,6 +24,7 @@ public class SettingMenu implements Screen {
     private final TextButton backButton;
     private TextButton toggleButton;
     private TextButton toggleButton2;
+    private TextButton toggleButton3;
     private final Table table;
 
     public SettingMenu(Skin skin) {
@@ -35,6 +36,7 @@ public class SettingMenu implements Screen {
         this.backButton = new TextButton("Back", skin);
         toggleButton = new TextButton("Auto Reload: OFF", GameAssetManager.getGameAssetManager().getSkin());
         toggleButton2 = new TextButton("Controller: W-A-S-D", GameAssetManager.getGameAssetManager().getSkin());
+        toggleButton3 = new TextButton("SFX: ON", GameAssetManager.getGameAssetManager().getSkin());
         volumeSlider.setValue(0.5f);
         this.table = new Table();
         musicManager.setView(this);
@@ -61,6 +63,14 @@ public class SettingMenu implements Screen {
             }
         });
 
+        toggleButton.addListener(new ClickListener() {
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                Game.getCurrentUser().setAutoReload(!Game.getCurrentUser().isAutoReload());
+                toggleButton.setText("Auto Reload: " + (Game.getCurrentUser().isAutoReload() ? "ON" : "OFF"));
+            }
+        });
+
         toggleButton2.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
@@ -70,11 +80,12 @@ public class SettingMenu implements Screen {
             }
         });
 
-        toggleButton.addListener(new ClickListener() {
+        toggleButton3.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                Game.getCurrentUser().setAutoReload(!Game.getCurrentUser().isAutoReload());
-                toggleButton.setText("Auto Reload: " + (Game.getCurrentUser().isAutoReload() ? "ON" : "OFF"));
+                Game.getCurrentUser().setSfx(!Game.getCurrentUser().isSfx());
+                if (Game.getCurrentUser().isSfx()) toggleButton3.setText("SFX: ON");
+                else toggleButton3.setText("SFX: OFF");
             }
         });
     }
@@ -98,6 +109,8 @@ public class SettingMenu implements Screen {
         table.add(toggleButton).width(550).pad(10);
         table.row();
         table.add(toggleButton2).width(550).pad(10);
+        table.row();
+        table.add(toggleButton3).width(550).pad(10);
         table.row();
         table.add(backButton).width(300).pad(10);
         stage.addActor(table);
