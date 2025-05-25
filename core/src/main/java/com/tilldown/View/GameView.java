@@ -123,7 +123,7 @@ public class GameView implements Screen, InputProcessor {
 
     @Override
     public void pause() {
-
+        Gdx.input.setCursorCatched(false);
     }
 
     @Override

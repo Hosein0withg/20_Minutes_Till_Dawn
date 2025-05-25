@@ -17,6 +17,7 @@ public class PauseMenuController {
             if (view.getResumeGameButton().isPressed()) {
                 Main.getMain().setScreen(view.getGameView());
             } else if (view.getGiveUpButton().isPressed()) {
+                view.getGameView().pause();
                 Main.getMain().getScreen().dispose();
                 Main.getMain().setScreen(new EndGameMenu(new EndGameMenuController(), GameAssetManager.getGameAssetManager().getSkin(), false));
             } else if (view.getShowCheatCodesButton().isPressed() && !view.isCheatCodes) {

@@ -15,14 +15,20 @@ public class Bullet {
     private float speed = 10;
     private boolean active = true;
     private CollisionRect collisionRect;
+    private Monster shooterMonster;
 
-    public Bullet(float startX, float startY, float targetX, float targetY, int damage) {
+    public Bullet(float startX, float startY, float targetX, float targetY, int damage, boolean screenCoordinates) {
         sprite.setSize(20, 20);
         sprite.setPosition(startX, startY);
 
-        float worldTargetY = Gdx.graphics.getHeight() - targetY;
+        float angle;
+        if (screenCoordinates) {
+            float worldTargetY = Gdx.graphics.getHeight() - targetY;
+            angle = MathUtils.atan2(worldTargetY - startY, targetX - startX);
+        } else {
+            angle = MathUtils.atan2(targetY - startY, targetX - startX);
+        }
 
-        float angle = MathUtils.atan2(worldTargetY - startY, targetX - startX);
         this.directionX = MathUtils.cos(angle) * speed;
         this.directionY = MathUtils.sin(angle) * speed;
         this.collisionRect = new CollisionRect(sprite.getX(), sprite.getY(), sprite.getWidth(), sprite.getHeight());
@@ -48,14 +54,6 @@ public class Bullet {
         return collisionRect;
     }
 
-    public float getSpriteX() {
-        return sprite.getX();
-    }
-
-    public float getSpriteY() {
-        return sprite.getY();
-    }
-
     public Texture getTexture() {
         return texture;
     }
@@ -68,39 +66,15 @@ public class Bullet {
         return sprite;
     }
 
-    public void setSprite(Sprite sprite) {
-        this.sprite = sprite;
-    }
-
     public int getDamage() {
         return damage;
     }
 
-    public void setDamage(int damage) {
-        this.damage = damage;
+    public Monster getShooterMonster() {
+        return shooterMonster;
     }
 
-    public float getDirectionX() {
-        return directionX;
-    }
-
-    public void setDirectionX(float directionX) {
-        this.directionX = directionX;
-    }
-
-    public float getDirectionY() {
-        return directionY;
-    }
-
-    public void setDirectionY(float directionY) {
-        this.directionY = directionY;
-    }
-
-    public float getSpeed() {
-        return speed;
-    }
-
-    public void setSpeed(float speed) {
-        this.speed = speed;
+    public void setShooterMonster(Monster shooterMonster) {
+        this.shooterMonster = shooterMonster;
     }
 }

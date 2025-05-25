@@ -15,6 +15,8 @@ public class Monster {
     private int HP;
     private float time = 0;
     private float speed;
+    private float shootTimer = 0.0f;
+    private boolean canShoot = false;
 
     public Monster(monsterName monsterName, int HP, float speed, String idle0, float sizeMultiplier) {
         this.monsterName = monsterName;
@@ -43,6 +45,9 @@ public class Monster {
         sprite.setPosition(posX, posY);
         sprite.setSize((float) (texture.getWidth() * sizeMultiplier), (float) (texture.getHeight() * sizeMultiplier));
         rect = new CollisionRect(posX, posY, (float) (texture.getWidth() * sizeMultiplier), (float) (texture.getHeight() * sizeMultiplier));
+        if (this.monsterName == com.tilldown.Model.monsterName.Eyebat) {
+            this.canShoot = true;
+        }
     }
 
     public void moveMonster() {
@@ -125,5 +130,17 @@ public class Monster {
 
     public void setSpeed(float speed) {
         this.speed = speed;
+    }
+
+    public float getShootTimer() {
+        return shootTimer;
+    }
+
+    public void setShootTimer(float shootTimer) {
+        this.shootTimer = shootTimer;
+    }
+
+    public boolean isCanShoot() {
+        return canShoot;
     }
 }

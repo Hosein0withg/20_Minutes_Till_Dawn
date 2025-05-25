@@ -1,5 +1,6 @@
 package com.tilldown.Controller;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.utils.Timer;
@@ -7,6 +8,7 @@ import com.tilldown.Main;
 import com.tilldown.Model.*;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 
 public class WorldController {
     private PlayerController playerController;
@@ -15,6 +17,7 @@ public class WorldController {
     private float tentacleSpawnTimer = 0;
     private float eyebatSpawnTimer = 0;
     private float elderDashTimer = 0;
+    private ArrayList<Bullet> eyebatBullets = new ArrayList<>();
     private final Animation<Texture> tentacleAnimation;
     private final Animation<Texture> eyebatAnimation;
     private final Animation<Texture> elderAnimation;
@@ -78,6 +81,16 @@ public class WorldController {
                     }
                 }, 1.5f);
             }
+            if (monster.isCanShoot()) {
+                monster.setShootTimer(monster.getShootTimer() + delta);
+                if (monster.getShootTimer() >= 3f) {
+                    monster.setShootTimer(0);
+                    Bullet bullet = new Bullet(monster.getPosX(), monster.getPosY(), App.getCurrentHero().getPosX(), App.getCurrentHero().getPosY(), 1, false);
+                    bullet.setShooterMonster(monster);
+                    eyebatBullets.add(bullet);
+
+                }
+            }
             monster.moveMonster();
             monster.getSprite().draw(Main.getBatch());
             if (monster.getHP() <= 0) {
@@ -85,6 +98,47 @@ public class WorldController {
                 monsters.remove(monster);
                 Game.getCurrentUser().getCurrentHero().setKill(Game.getCurrentUser().getCurrentHero().getKill() + 1);
                 i--;
+            }
+        }
+
+        updateEyebatBullets();
+    }
+
+    public void updateEyebatBullets() {
+        Iterator<Bullet> iterator = eyebatBullets.iterator();
+
+        while (iterator.hasNext()) {
+            Bullet b = iterator.next();
+            if (!b.isActive()) {
+                iterator.remove();
+                continue;
+            }
+            b.updatePosition();
+            checkIfBulletHitPlayer(b);
+            b.getSprite().draw(Main.getBatch());
+
+            if (b.getSprite().getX() < 0 || b.getSprite().getX() > Gdx.graphics.getWidth() ||
+                b.getSprite().getY() < 0 || b.getSprite().getY() > Gdx.graphics.getHeight()) {
+                iterator.remove();
+            }
+        }
+    }
+
+    private void checkIfBulletHitPlayer(Bullet bullet) {
+        if (bullet.getCollisionRect().overlap(App.getCurrentHero().getRect())) {
+            App.getCurrentHero().setHP(App.getCurrentHero().getHP() - 1);
+            bullet.deactivate();
+        }
+        for (Monster monster : playerController.getGameController().getWorldController().monsters) {
+            if (bullet.getCollisionRect().overlap(monster.getRect()) && !bullet.getShooterMonster().equals(monster)) {
+                bullet.deactivate();
+                break;
+            }
+        }
+        for (Tree tree : Game.trees) {
+            if (bullet.getCollisionRect().overlap(tree.getRect())) {
+                bullet.deactivate();
+                break;
             }
         }
     }

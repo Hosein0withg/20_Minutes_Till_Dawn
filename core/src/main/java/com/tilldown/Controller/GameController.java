@@ -33,6 +33,7 @@ public class GameController {
             Game.gameTimePassed = (int) ((Game.gameDuration * 60) - gameTime);
 
             if (gameTime <= 0) {
+                view.pause();
                 Main.getMain().getScreen().dispose();
                 Main.getMain().setScreen(new EndGameMenu(new EndGameMenuController(), GameAssetManager.getGameAssetManager().getSkin(), true));
             }

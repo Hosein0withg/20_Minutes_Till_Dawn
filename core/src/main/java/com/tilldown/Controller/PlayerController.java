@@ -163,6 +163,7 @@ public class PlayerController {
         }
 
         if (player.getHP() <= 0) {
+            gameController.getView().pause();
             Main.getMain().getScreen().dispose();
             Main.getMain().setScreen(new EndGameMenu(new EndGameMenuController(), GameAssetManager.getGameAssetManager().getSkin(), false));
         }
@@ -189,5 +190,10 @@ public class PlayerController {
 
     public void setPlayer(Player player) {
         this.player = player;
+    }
+
+
+    public GameController getGameController() {
+        return gameController;
     }
 }
