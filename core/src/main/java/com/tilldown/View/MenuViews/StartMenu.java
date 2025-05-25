@@ -23,7 +23,7 @@ public class StartMenu implements Screen {
     private final StartMenuController controller;
 
     public StartMenu(StartMenuController controller, Skin skin) {
-        App.setCurrentUser(new User("Guest", "Guest", "Guest", "Guest", "avatar\\1.png"));
+        App.setCurrentUser(new User("Guest", "Guest", "Guest", "Guest", "avatar/1.png", 0, 0, 0));
         this.controller = controller;
         this.signupButton = new TextButton("signup", skin);
         this.loginButton = new TextButton("login", skin);

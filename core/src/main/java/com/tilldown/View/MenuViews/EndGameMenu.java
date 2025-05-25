@@ -32,8 +32,10 @@ public class EndGameMenu implements Screen {
         User user = Game.getCurrentUser();
         Player player = user.getCurrentHero();
         int score = Game.gameTimePassed * player.getKill();
+        user.setScore(user.getScore() + score);
         user.setKill(user.getKill() + player.getKill());
-        user.setLivedTime(user.getLivedTime() + Game.gameTimePassed);
+        if (Game.gameTimePassed > user.getLivedTime())
+            user.setLivedTime(Game.gameTimePassed);
 
         this.controller = controller;
         this.goToGameMenu = new TextButton("Go To Game Menu", skin);

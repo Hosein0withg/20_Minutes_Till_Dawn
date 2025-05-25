@@ -39,7 +39,7 @@ public class SignupMenuController {
             return new Result(false, "password is too easy!");
         }
         String randomAvatar = avatarOptions[new Random().nextInt(avatarOptions.length)];
-        User player = new User(username, password, securityQuestion, securityAnswer, randomAvatar);
+        User player = new User(username, password, securityQuestion, securityAnswer, randomAvatar, 0, 0, 0);
         App.users.add(player);
 
         return new Result(true, "Signup successful!");

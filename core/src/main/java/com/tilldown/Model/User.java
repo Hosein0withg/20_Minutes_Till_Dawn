@@ -12,21 +12,24 @@ public class User {
     private final String securityQuestion;
     private final String securityAnswer;
     private Texture avatar;
-    private int score = 0;
-    private int kill = 0;
-    private int livedTime = 0;
+    private int score;
+    private int kill;
+    private int livedTime;
     private boolean autoReload = false;
     private boolean numberController = false;
     private boolean sfx = true;
     public ArrayList<String> gainedAbilities = new ArrayList<>();
 
-    public User(String username, String password, String securityQuestion, String securityAnswer, String avatarPath) {
+    public User(String username, String password, String securityQuestion, String securityAnswer, String avatarPath, int score, int kill, int livedTime) {
         this.username = username;
         this.password = password;
         this.securityQuestion = securityQuestion;
         this.securityAnswer = securityAnswer;
         this.avatar = new Texture(avatarPath);
         App.setCurrentHero(Game.characters.get(0));
+        this.score = score;
+        this.kill = kill;
+        this.livedTime = livedTime;
 
     }
 

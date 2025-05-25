@@ -38,7 +38,7 @@ public class StartMenuController {
     }
 
     private void setGuest() {
-        User guest = new User("Guest", "Guest", "Guest", "Guest", "D:\\20min\\assets\\avatar\\2.png");
+        User guest = new User("Guest", "Guest", "Guest", "Guest", "avatar/2.png", 0, 0, 0);
         App.users.add(guest);
         App.setCurrentUser(guest);
     }

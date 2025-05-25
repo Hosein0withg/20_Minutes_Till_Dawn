@@ -31,6 +31,9 @@ public class GameMenuController {
             } else if (view.getHintButton().isPressed()) {
                 Main.getMain().getScreen().dispose();
                 Main.getMain().setScreen(new HintMenu(new HintMenuController(), GameAssetManager.getGameAssetManager().getSkin()));
+            } else if (view.getScoreboardButton().isPressed()) {
+                Main.getMain().getScreen().dispose();
+                Main.getMain().setScreen(new ScoreboardMenu(new ScoreboardMenuController(), GameAssetManager.getGameAssetManager().getSkin()));
             }
         }
     }
